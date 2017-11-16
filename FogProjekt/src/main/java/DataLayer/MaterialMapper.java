@@ -21,13 +21,12 @@ public class MaterialMapper {
         try {
             
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM products";
+            String SQL = "SELECT name, length, unit, description, price FROM products";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                 product = new Product(
-                rs.getInt("id"),
                 rs.getString("name"),
                 rs.getInt("length"),
                 rs.getString("unit"),

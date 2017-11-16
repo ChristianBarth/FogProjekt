@@ -49,25 +49,18 @@ public class MaterialMapperTest {
      @Test
     public void getProductsFromDatabase(){
         ArrayList<Product> products = new ArrayList<Product>();
-        try {
             products.addAll(mm.getProducts());
-        } catch (SQLException ex) {
-            Logger.getLogger(MaterialMapperTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
             assertEquals(products.size(), 29);
+            System.out.println("Test 1");
             System.out.println("Size of array: " + products.size());
     }
     
     @Test
     public void getProductValues(){
         ArrayList<Product> products = new ArrayList<Product>();
-        try {
             products.addAll(mm.getProducts());
-        } catch (SQLException ex) {
-            Logger.getLogger(MaterialMapperTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println("Test 2");
         for (Product product : products){
-            System.out.println("id: " + product.getid());
             System.out.println("name: " + product.getName());
             System.out.println("length: " + product.getLength());
             System.out.println("unit: " + product.getUnit());
