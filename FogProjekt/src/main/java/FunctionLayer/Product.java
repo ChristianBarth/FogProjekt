@@ -1,22 +1,27 @@
-
 package FunctionLayer;
 
-
-public class WoodAndRoof {
+/**
+ * @author PC
+ */
+public class Product {
+    
     private String name;
     private int length;
     private int amount;
     private String unit;
     private String description;
-    
-    public WoodAndRoof(String name, int length, int amount, String unit, String description){
+    private int price;
+
+    public Product(String name, int length, int amount, String unit, String description, int price) {
         this.name = name;
         this.length = length;
         this.amount = amount;
         this.unit = unit;
         this.description = description;
+        this.price = price;
     }
 
+    
     public String getName() {
         return name;
     }
@@ -31,6 +36,14 @@ public class WoodAndRoof {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getUnit() {
@@ -49,11 +62,13 @@ public class WoodAndRoof {
         this.description = description;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPrice() {
+        return price;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setPrice(int price) {
+        this.price = price;
     }
+    
+    
 }

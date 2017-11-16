@@ -6,7 +6,7 @@ package DataLayer;
  * and open the template in the editor.
  */
 
-import FunctionLayer.WoodAndRoof;
+import FunctionLayer.Product;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -47,31 +47,32 @@ public class MaterialMapperTest {
     }
     
      @Test
-    public void getMaterialFromDatabase(){
-        ArrayList<WoodAndRoof> WoodandRoofs = new ArrayList<WoodAndRoof>();
+    public void getProductsFromDatabase(){
+        ArrayList<Product> products = new ArrayList<Product>();
         try {
-            WoodandRoofs.addAll(mm.getWoodAndRoof());
+            products.addAll(mm.getProducts());
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapperTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-            assertEquals(WoodandRoofs.size(), 16);
-            System.out.println("Size of array: " + WoodandRoofs.size());
+            assertEquals(products.size(), 29);
+            System.out.println("Size of array: " + products.size());
     }
     
     @Test
-    public void getMaterialValues(){
-        ArrayList<WoodAndRoof> WoodandRoofs = new ArrayList<WoodAndRoof>();
+    public void getProductValues(){
+        ArrayList<Product> products = new ArrayList<Product>();
         try {
-            WoodandRoofs.addAll(mm.getWoodAndRoof());
+            products.addAll(mm.getProducts());
         } catch (SQLException ex) {
             Logger.getLogger(MaterialMapperTest.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (WoodAndRoof WoodandRoof : WoodandRoofs){
-            System.out.println("name: " + WoodandRoof.getName());
-            System.out.println("length: " + WoodandRoof.getLength());
-            System.out.println("amount: " + WoodandRoof.getAmount());
-            System.out.println("unit: " + WoodandRoof.getUnit());
-            System.out.println("description: " + WoodandRoof.getDescription());
+        for (Product product : products){
+            System.out.println("name: " + product.getName());
+            System.out.println("length: " + product.getLength());
+            System.out.println("amount: " + product.getAmount());
+            System.out.println("unit: " + product.getUnit());
+            System.out.println("description: " + product.getDescription());
+            System.out.println("price: " + product.getPrice());
         }
     }
 }

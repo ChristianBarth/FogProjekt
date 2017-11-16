@@ -1,7 +1,6 @@
 package DataLayer;
 
-import FunctionLayer.FittingAndScrews;
-import FunctionLayer.WoodAndRoof;
+import FunctionLayer.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,61 +13,32 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class MaterialMapper {
-    public ArrayList<WoodAndRoof> getWoodAndRoof() throws SQLException {
+    public ArrayList<Product> getProducts() throws SQLException {
         
-        ArrayList<WoodAndRoof> WoodandRoof = new ArrayList<WoodAndRoof>();
-        WoodAndRoof WoodsAndRoofs;
+        ArrayList<Product> products = new ArrayList<Product>();
+        Product product;
         
         try {
             
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM woodandroof";
+            String SQL = "SELECT * FROM products";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
-                WoodsAndRoofs = new WoodAndRoof(
+                product = new Product(
                 rs.getString("name"),
                 rs.getInt("length"),
                 rs.getInt("amount"),
                 rs.getString("unit"),
-                rs.getString("description")
+                rs.getString("description"),
+                rs.getInt("price")
                 );
-                WoodandRoof.add(WoodsAndRoofs);
+                products.add(product);
             }
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return WoodandRoof;
-    }
-    
-    public ArrayList<FittingAndScrews> getFittingAndScrews() throws SQLException {
-        
-        ArrayList<FittingAndScrews> FittingandScrews = new ArrayList<FittingAndScrews>();
-        FittingAndScrews fittingandscrews;
-        
-        try {
-            
-            Connection con = Connector.connection();
-            String SQL = "SELECT * FROM fittingandscrews";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
-                
-                fittingandscrews = new FittingAndScrews(
-                rs.getString("name"),
-                rs.getInt("amount"),
-                rs.getString("unit"),
-                rs.getString("description")
-                );
-                FittingandScrews.add(fittingandscrews);
-                
-            }
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return FittingandScrews;
-        
+        return products;
     }
 }
