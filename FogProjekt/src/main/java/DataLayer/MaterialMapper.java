@@ -27,9 +27,9 @@ public class MaterialMapper {
             
             while(rs.next()){
                 product = new Product(
+                rs.getInt("id"),
                 rs.getString("name"),
                 rs.getInt("length"),
-                rs.getInt("amount"),
                 rs.getString("unit"),
                 rs.getString("description"),
                 rs.getInt("price")
