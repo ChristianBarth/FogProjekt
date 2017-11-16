@@ -67,9 +67,9 @@ public class MaterialMapperTest {
             Logger.getLogger(MaterialMapperTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (Product product : products){
+            System.out.println("id: " + product.getid());
             System.out.println("name: " + product.getName());
             System.out.println("length: " + product.getLength());
-            System.out.println("amount: " + product.getAmount());
             System.out.println("unit: " + product.getUnit());
             System.out.println("description: " + product.getDescription());
             System.out.println("price: " + product.getPrice());
