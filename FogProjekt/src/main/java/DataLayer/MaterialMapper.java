@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author PC
  */
 public class MaterialMapper {
-    public ArrayList<Product> getProducts() throws SQLException {
+    public ArrayList<Product> getProducts() {
         
         ArrayList<Product> products = new ArrayList<Product>();
         Product product;
@@ -37,7 +37,6 @@ public class MaterialMapper {
                 products.add(product);
             }
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MaterialMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return products;
     }
