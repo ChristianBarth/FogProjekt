@@ -49,9 +49,13 @@ public class MaterialMapperTest {
      @Test
     public void getProductsFromDatabase(){
         ArrayList<Product> products = new ArrayList<Product>();
+<<<<<<< HEAD
         
+=======
+>>>>>>> calculator
             products.addAll(mm.getProducts());
             assertEquals(products.size(), 29);
+            System.out.println("Test 1");
             System.out.println("Size of array: " + products.size());
     }
     
@@ -59,9 +63,12 @@ public class MaterialMapperTest {
     public void getProductValues(){
         ArrayList<Product> products = new ArrayList<Product>();
             products.addAll(mm.getProducts());
+<<<<<<< HEAD
             
+=======
+            System.out.println("Test 2");
+>>>>>>> calculator
         for (Product product : products){
-            System.out.println("id: " + product.getid());
             System.out.println("name: " + product.getName());
             System.out.println("length: " + product.getLength());
             System.out.println("unit: " + product.getUnit());

@@ -5,39 +5,27 @@ package FunctionLayer;
  */
 public class Product {
     
-    private int id;
     private String name;
     private int length;
-    private int amount;
+    private double amount;
     private String unit;
     private String description;
     private int price;
-
-    public Product(int id, String name, int length, String unit, String description, int price) {
-        this.id = id;
+        
+        public Product(String name, int length, String unit, String description, int price) {
         this.name = name;
         this.length = length;
         this.unit = unit;
         this.description = description;
         this.price = price;
     }
-
-    public Product(int id, String name, int length, int amount, String unit, String description, int price) {
-        this.id = id;
+    public Product(String name, int length, double amount, String unit, String description, int price) {
         this.name = name;
         this.length = length;
         this.amount = amount;
         this.unit = unit;
         this.description = description;
         this.price = price;
-    }
-        
-    public int getid() {
-        return id;
-    }
-
-    public void setid(int id) {
-        this.id = id;
     }
     
     public String getName() {
@@ -56,11 +44,11 @@ public class Product {
         this.length = length;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
     
