@@ -23,6 +23,7 @@ public class SingleFlatRoofCal {
 //            System.out.println(product.getLength());
 //        }
 //       System.out.println("Element: " + mm.getProducts().get(0).getPrice());
+
         SingleFlatRoofCal sfrc = new SingleFlatRoofCal();
 
         double length = 780;
@@ -32,11 +33,11 @@ public class SingleFlatRoofCal {
         System.out.println("Part1 - Amount: " + sfrc.getLengthPart1(length).getAmount() + " Product: " + mm.getProducts().get(1).getName());
         System.out.println("Part2 - Amount: " + sfrc.getLengthPart2(width).getAmount() + " Product: " + mm.getProducts().get(2).getName());
         System.out.println("Part3 - Amount: " + sfrc.getLengthPart3(length).getAmount() + " Product: " + mm.getProducts().get(3).getName());
-
+        
         System.out.println("Part7 - Amount: " + sfrc.getLengthPart7(length).getAmount() + " Product: " + mm.getProducts().get(7).getName());
         System.out.println("Part9 - Amount: " + sfrc.getLengthPart9(width).getAmount() + " Product: " + mm.getProducts().get(9).getName());
 
-        System.out.println("Part10 - Amount: " + sfrc.getLengthPart9(length).getAmount() + " Product: " + mm.getProducts().get(10).getName());
+        System.out.println("Part10 - Amount: " + sfrc.getLengthPart10(width).getAmount() + " Product: " + mm.getProducts().get(10).getName());
 
         System.out.println("Part14 - Amount: " + sfrc.getLengthPart14(length).getAmount() + " Product: " + mm.getProducts().get(14).getName());
         System.out.println("Part15 - Amount: " + sfrc.getLengthPart15(width).getAmount() + " Product: " + mm.getProducts().get(15).getName());
@@ -79,16 +80,16 @@ public class SingleFlatRoofCal {
         return product;
     }
 
-    // 45x195mm (480cm) spærtræ ubh. (Skur del skal måske ikke bruge lige nu)
+    // 45x195mm (600cm) spærtræ ubh. spær monteres på rem
     public Product getLengthPart9(double length) {
         double lengthPart = Math.ceil(length / 60);
         Product product = new Product(mm.getProducts().get(9).getName(), mm.getProducts().get(9).getLength(), lengthPart, mm.getProducts().get(9).getUnit(), mm.getProducts().get(9).getDescription(), mm.getProducts().get(9).getPrice());
         return product;
     }
 
-    // 45x195mm (600cm) spærtræ ubh. Monteres på rem.
+    // 97x97mm (300cm) trykimp. stolpe. Stolper nedgraves 90cm i jord.
     public Product getLengthPart10(double length) {
-        double lengthPart = Math.ceil(length);
+        double lengthPart = Math.ceil(length = 4);
         Product product = new Product(mm.getProducts().get(10).getName(), mm.getProducts().get(10).getLength(), lengthPart, mm.getProducts().get(10).getUnit(), mm.getProducts().get(10).getDescription(), mm.getProducts().get(10).getPrice());
         return product;
     }
@@ -109,7 +110,7 @@ public class SingleFlatRoofCal {
 
     public ArrayList<Product> getProducts() {
         ArrayList<Product> MaterialList = new ArrayList<Product>();
-
+        
         return MaterialList;
     }
 
