@@ -87,9 +87,11 @@ public class SingleFlatRoofCal {
         return product;
         }
         
-        public Product getLengthPart10(double length){
-        double lengthPart = Math.ceil(length);
-        Product product = new Product(mm.getProducts().get(7).getName(), mm.getProducts().get(7).getLength(), lengthPart, mm.getProducts().get(7).getUnit(), mm.getProducts().get(7).getDescription(), mm.getProducts().get(7).getPrice());
+        public Product getLengthPart15(double length, double width){
+        double rooflength = Math.ceil(length / mm.getProducts().get(15).getLength()); //Tagpladens længde i DB er 600
+        double roofwidth = Math.ceil(width /  10.9); //Tagplade er 109 mm bred
+        double lengthPart = Math.ceil(rooflength * roofwidth);
+        Product product = new Product(mm.getProducts().get(15).getName(), mm.getProducts().get(15).getLength(), lengthPart, mm.getProducts().get(15).getUnit(), mm.getProducts().get(15).getDescription(), mm.getProducts().get(15).getPrice());
         return product;
         }
         
@@ -100,3 +102,4 @@ public class SingleFlatRoofCal {
     }
 
 }
+
