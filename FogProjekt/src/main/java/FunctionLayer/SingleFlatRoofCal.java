@@ -86,12 +86,6 @@ public class SingleFlatRoofCal {
         return product;
     }
 
-    public Product getLengthPart15(double length, double width) {
-        double rooflength = Math.ceil(length / mm.getProducts().get(15).getLength()); //Tagpladens længde i DB er 600
-        double roofwidth = Math.ceil(width / 10.9); //Tagplade er 109 mm bred
-        double lengthPart = Math.ceil(rooflength * roofwidth);
-    }
-
     // 45x195mm (600cm) spærtræ ubh. Monteres på rem.
     public Product getLengthPart10(double length) {
         double lengthPart = Math.ceil(length);
