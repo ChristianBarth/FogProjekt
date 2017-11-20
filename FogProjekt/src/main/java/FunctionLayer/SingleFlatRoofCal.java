@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class SingleFlatRoofCal {
 
-    public static void main(String[] args) {
+    /* public static void main(String[] args) {
       MaterialMapper mm = new MaterialMapper();
 //        mm.getProducts();
 //        for (Product product : mm.getProducts()) {
@@ -40,7 +40,7 @@ public class SingleFlatRoofCal {
         
         System.out.println("Part14 - Amount: " + sfrc.getLengthPart14(length).getAmount() + " Product: " + mm.getProducts().get(14).getName());
         System.out.println("Part15 - Amount: " + sfrc.getLengthPart15(width).getAmount() + " Product: " + mm.getProducts().get(15).getName());
-    }
+    } */
   
     private MaterialMapper mm = new MaterialMapper();
 
