@@ -34,9 +34,9 @@ public class SingleFlatRoofCal {
         System.out.println("Part3 - Amount: " + sfrc.getLengthPart3(length).getAmount() + " Product: " + mm.getProducts().get(3).getName());
 
         System.out.println("Part7 - Amount: " + sfrc.getLengthPart7(length).getAmount() + " Product: " + mm.getProducts().get(7).getName());
-        System.out.println("Part9 - Amount: " + sfrc.getLengthPart9(width).getAmount() + " Product: " + mm.getProducts().get(9).getName());
+        System.out.println("Part9 - Amount: " + sfrc.getLengthPart9(length).getAmount() + " Product: " + mm.getProducts().get(9).getName());
 
-        System.out.println("Part10 - Amount: " + sfrc.getLengthPart9(length).getAmount() + " Product: " + mm.getProducts().get(10).getName());
+        System.out.println("Part10 - Amount: " + sfrc.getLengthPart10(length).getAmount() + " Product: " + mm.getProducts().get(10).getName());
 
         System.out.println("Part14 - Amount: " + sfrc.getLengthPart14(length).getAmount() + " Product: " + mm.getProducts().get(14).getName());
         System.out.println("Part15 - Amount: " + sfrc.getLengthPart15(width).getAmount() + " Product: " + mm.getProducts().get(15).getName());
@@ -79,23 +79,23 @@ public class SingleFlatRoofCal {
         return product;
     }
 
-    // 45x195mm (480cm) spærtræ ubh. (Skur del skal måske ikke bruge lige nu)
+  // 45x195mm (480cm) spærtræ ubh. (Skur del skal måske ikke bruge lige nu)
     public Product getLengthPart9(double length) {
-        double lengthPart = Math.ceil(length / 60);
+        double lengthPart = Math.ceil(length);
         Product product = new Product(mm.getProducts().get(9).getName(), mm.getProducts().get(9).getLength(), lengthPart, mm.getProducts().get(9).getUnit(), mm.getProducts().get(9).getDescription(), mm.getProducts().get(9).getPrice());
         return product;
     }
 
-    // 45x195mm (600cm) spærtræ ubh. Monteres på rem.
+ // 45x195mm (600cm) spærtræ ubh. Monteres på rem. 
     public Product getLengthPart10(double length) {
-        double lengthPart = Math.ceil(length);
+        double lengthPart = Math.ceil(length / 60);
         Product product = new Product(mm.getProducts().get(10).getName(), mm.getProducts().get(10).getLength(), lengthPart, mm.getProducts().get(10).getUnit(), mm.getProducts().get(10).getDescription(), mm.getProducts().get(10).getPrice());
         return product;
     }
 
     // Plastmo Ecolite blåtonet (600x109cm)
     public Product getLengthPart14(double length) {
-        double lengthPart = Math.ceil(length);
+        double lengthPart = Math.ceil(length  / mm.getProducts().get(14).getLength());
         Product product = new Product(mm.getProducts().get(14).getName(), mm.getProducts().get(14).getLength(), lengthPart, mm.getProducts().get(14).getUnit(), mm.getProducts().get(14).getDescription(), mm.getProducts().get(14).getPrice());
         return product;
     }

@@ -5,6 +5,7 @@ package FunctionLayer;
  */
 public class Product {
     
+    private int varenummer;
     private String name;
     private int length;
     private double amount;
@@ -27,6 +28,7 @@ public class Product {
         this.description = description;
         this.price = price;
     }
+    
     
     public String getName() {
         return name;
