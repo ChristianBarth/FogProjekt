@@ -5,8 +5,12 @@
  */
 package PresentationLayer;
 
+import DataLayer.MaterialMapper;
+import FunctionLayer.LogicFacade;
+import FunctionLayer.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,22 +27,32 @@ public class InputServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        String action = request.getParameter("action");
-        
-        if ("build".equals(action)) {
-            String reqLength = request.getParameter("length");
-            int convLength = Integer.parseInt(reqLength);
-            String reqWidth = request.getParameter("width");
-            int convWidth = Integer.parseInt(reqWidth);
-            String reqHeight = request.getParameter("height");
-            int convHeight = Integer.parseInt(reqHeight);
-            
-            sendToConfirmationPage(request, response);
-            return;
+        try {
+
+            response.setContentType("text/html;charset=UTF-8");
+            String action = request.getParameter("action");
+            LogicFacade ProductList = new LogicFacade();
+            MaterialMapper mm = new MaterialMapper();
+
+            if ("build".equals(action)) {
+                String reqLength = request.getParameter("length");
+                double length = Double.parseDouble(reqLength);
+                String reqWidth = request.getParameter("width");
+                double width = Double.parseDouble(reqWidth);
+                String reqHeight = request.getParameter("height");
+                double height = Double.parseDouble(reqHeight);
+
+                ArrayList<Product> ListofItems = ProductList.getListOfItems(length, width);
+                
+                mm.putOrderInDatabase(ListofItems);
+
+                String nextURL = "confirmationPage.jsp";
+                request.getRequestDispatcher(nextURL).forward(request, response);
+            }
+        } catch (Exception e) {
+            request.getRequestDispatcher("error.jsp").forward(request,response);
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -80,7 +94,7 @@ public class InputServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void sendToConfirmationPage (HttpServletRequest request, HttpServletResponse response) {
+    private void sendToConfirmationPage(HttpServletRequest request, HttpServletResponse response) {
         try {
             RequestDispatcher rd = request.getRequestDispatcher("confirmationPage.jsp");
             rd.forward(request, response);

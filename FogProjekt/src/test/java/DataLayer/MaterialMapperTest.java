@@ -46,26 +46,26 @@ public class MaterialMapperTest {
     public void tearDown() {
     }
     
-     @Test
-    public void getProductsFromDatabase(){
-        ArrayList<Product> products = new ArrayList<Product>();
-            products.addAll(mm.getProducts());
-            assertEquals(products.size(), 29);
-            System.out.println("Test 1");
-            System.out.println("Size of array: " + products.size());
-    }
-    
-    @Test
-    public void getProductValues(){
-        ArrayList<Product> products = new ArrayList<Product>();
-            products.addAll(mm.getProducts());
-            System.out.println("Test 2");
-        for (Product product : products){
-            System.out.println("name: " + product.getName());
-            System.out.println("length: " + product.getLength());
-            System.out.println("unit: " + product.getUnit());
-            System.out.println("description: " + product.getDescription());
-            System.out.println("price: " + product.getPrice());
-        }
-    }
+//     @Test
+//    public void getProductsFromDatabase(){
+//        ArrayList<Product> products = new ArrayList<Product>();
+//            products.addAll(mm.getProducts());
+//            assertEquals(products.size(), 29);
+//            System.out.println("Test 1");
+//            System.out.println("Size of array: " + products.size());
+//    }
+//    
+//    @Test
+//    public void getProductValues(){
+//        ArrayList<Product> products = new ArrayList<Product>();
+//            products.addAll(mm.getProducts());
+//            System.out.println("Test 2");
+//        for (Product product : products){
+//            System.out.println("name: " + product.getName());
+//            System.out.println("length: " + product.getLength());
+//            System.out.println("unit: " + product.getUnit());
+//            System.out.println("description: " + product.getDescription());
+//            System.out.println("price: " + product.getPrice());
+//        }
+//    }
 }

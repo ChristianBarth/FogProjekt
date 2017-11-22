@@ -4,22 +4,25 @@ package FunctionLayer;
  * @author PC
  */
 public class Product {
-    
+
     private String name;
     private int length;
-    private double amount;
+    private int width;
+    private int amount;
     private String unit;
     private String description;
     private int price;
-        
-        public Product(String name, int length, String unit, String description, int price) {
+
+    // Entity til alle produkter i databasen.
+    public Product(String name, int length, String unit, String description, int price) {
         this.name = name;
         this.length = length;
         this.unit = unit;
         this.description = description;
         this.price = price;
     }
-    public Product(String name, int length, double amount, String unit, String description, int price) {
+
+    public Product(String name, int length, int amount, String unit, String description, int price) {
         this.name = name;
         this.length = length;
         this.amount = amount;
@@ -27,7 +30,7 @@ public class Product {
         this.description = description;
         this.price = price;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -44,14 +47,22 @@ public class Product {
         this.length = length;
     }
 
-    public double getAmount() {
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
-    
+
     public String getUnit() {
         return unit;
     }
@@ -75,6 +86,5 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
-    
-    
+
 }
