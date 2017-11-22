@@ -32,7 +32,7 @@ public class SingleFlatRoofCal {
         System.out.println("Part1 - Amount: " + sfrc.getLengthPart1(length).getAmount() + " Product: " + mm.getProducts().get(1).getName());
         System.out.println("Part2 - Amount: " + sfrc.getLengthPart2(width).getAmount() + " Product: " + mm.getProducts().get(2).getName());
         System.out.println("Part3 - Amount: " + sfrc.getLengthPart3(length).getAmount() + " Product: " + mm.getProducts().get(3).getName());
-
+        
         System.out.println("Part7 - Amount: " + sfrc.getLengthPart7(length).getAmount() + " Product: " + mm.getProducts().get(7).getName());
         System.out.println("Part9 - Amount: " + sfrc.getLengthPart9(length).getAmount() + " Product: " + mm.getProducts().get(9).getName());
 
@@ -109,7 +109,7 @@ public class SingleFlatRoofCal {
 
     public ArrayList<Product> getProducts() {
         ArrayList<Product> MaterialList = new ArrayList<Product>();
-
+        
         return MaterialList;
     }
 
