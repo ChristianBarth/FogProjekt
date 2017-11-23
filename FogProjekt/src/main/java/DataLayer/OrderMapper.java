@@ -66,7 +66,7 @@ public class OrderMapper {
         }
     }
 
-    public static ArrayList<Order> getOrders() {
+    public static ArrayList<Order> getOrderLines() {
 
         ArrayList<Order> ListofOrders = new ArrayList<Order>();
         try {

@@ -49,7 +49,8 @@ public class SingleFlatRoofCal {
     public Product getLengthPart0(double length) {
         double lengthPart = (Math.ceil(length / mm.getProducts().get(0).getLength() * 2));
         int lengthPartInt = (int) lengthPart;
-        Product product = new Product(mm.getProducts().get(0).getName(), mm.getProducts().get(0).getLength(), lengthPartInt, mm.getProducts().get(0).getUnit(), mm.getProducts().get(0).getDescription(), mm.getProducts().get(0).getPrice());
+        int priceForParts = lengthPartInt * mm.getProducts().get(0).getPrice();
+        Product product = new Product(mm.getProducts().get(0).getName(), mm.getProducts().get(0).getLength(), lengthPartInt, mm.getProducts().get(0).getUnit(), mm.getProducts().get(0).getDescription(), priceForParts);
         return product;
     }
 
@@ -57,7 +58,8 @@ public class SingleFlatRoofCal {
     public Product getLengthPart1(double length) {
         double lengthPart = (Math.ceil(length / mm.getProducts().get(1).getLength() * 2));
         int lengthPartInt = (int) lengthPart;
-        Product product = new Product(mm.getProducts().get(1).getName(), mm.getProducts().get(1).getLength(), lengthPartInt, mm.getProducts().get(1).getUnit(), mm.getProducts().get(1).getDescription(), mm.getProducts().get(1).getPrice());
+        int priceForParts = lengthPartInt * mm.getProducts().get(1).getPrice();
+        Product product = new Product(mm.getProducts().get(1).getName(), mm.getProducts().get(1).getLength(), lengthPartInt, mm.getProducts().get(1).getUnit(), mm.getProducts().get(1).getDescription(), priceForParts);
         return product;
     }
 
@@ -65,7 +67,8 @@ public class SingleFlatRoofCal {
     public Product getLengthPart2(double length) {
         double lengthPart = Math.ceil(length / mm.getProducts().get(2).getLength());
         int lengthPartInt = (int) lengthPart;
-        Product product = new Product(mm.getProducts().get(2).getName(), mm.getProducts().get(2).getLength(), lengthPartInt, mm.getProducts().get(2).getUnit(), mm.getProducts().get(2).getDescription(), mm.getProducts().get(2).getPrice());
+        int priceForParts = lengthPartInt * mm.getProducts().get(2).getPrice();
+        Product product = new Product(mm.getProducts().get(2).getName(), mm.getProducts().get(2).getLength(), lengthPartInt, mm.getProducts().get(2).getUnit(), mm.getProducts().get(2).getDescription(), priceForParts);
         return product;
     }
 
@@ -73,7 +76,8 @@ public class SingleFlatRoofCal {
     public Product getLengthPart3(double length) {
         double lengthPart = (Math.ceil(length / mm.getProducts().get(3).getLength() * 2));
         int lengthPartInt = (int) lengthPart;
-        Product product = new Product(mm.getProducts().get(3).getName(), mm.getProducts().get(3).getLength(), lengthPartInt, mm.getProducts().get(3).getUnit(), mm.getProducts().get(3).getDescription(), mm.getProducts().get(3).getPrice());
+        int priceForParts = lengthPartInt * mm.getProducts().get(3).getPrice();
+        Product product = new Product(mm.getProducts().get(3).getName(), mm.getProducts().get(3).getLength(), lengthPartInt, mm.getProducts().get(3).getUnit(), mm.getProducts().get(3).getDescription(), priceForParts);
         return product;
     }
 
@@ -81,7 +85,8 @@ public class SingleFlatRoofCal {
     public Product getLengthPart7(double length) {
         double lengthPart = Math.ceil(length / mm.getProducts().get(7).getLength());
         int lengthPartInt = (int) lengthPart;
-        Product product = new Product(mm.getProducts().get(7).getName(), mm.getProducts().get(7).getLength(), lengthPartInt, mm.getProducts().get(7).getUnit(), mm.getProducts().get(7).getDescription(), mm.getProducts().get(7).getPrice());
+        int priceForParts = lengthPartInt * mm.getProducts().get(7).getPrice();
+        Product product = new Product(mm.getProducts().get(7).getName(), mm.getProducts().get(7).getLength(), lengthPartInt, mm.getProducts().get(7).getUnit(), mm.getProducts().get(7).getDescription(), priceForParts);
         return product;
     }
 
@@ -97,7 +102,8 @@ public class SingleFlatRoofCal {
     public Product getLengthPart10(double length) {
         double lengthPart = ((Math.ceil(length / 310)) + 1) * 2;
         int lengthPartInt = (int) lengthPart;
-        Product product = new Product(mm.getProducts().get(10).getName(), mm.getProducts().get(10).getLength(), lengthPartInt, mm.getProducts().get(10).getUnit(), mm.getProducts().get(10).getDescription(), mm.getProducts().get(10).getPrice());
+        int priceForParts = lengthPartInt * mm.getProducts().get(10).getPrice();
+        Product product = new Product(mm.getProducts().get(10).getName(), mm.getProducts().get(10).getLength(), lengthPartInt, mm.getProducts().get(10).getUnit(), mm.getProducts().get(10).getDescription(), priceForParts);
         return product;
     }
 
@@ -106,7 +112,8 @@ public class SingleFlatRoofCal {
         double lengthPart = Math.ceil(length / mm.getProducts().get(14).getLength());
         double widthPart = Math.ceil(width / 109);
         int resultPart = (int) (lengthPart * widthPart);
-        Product product = new Product(mm.getProducts().get(14).getName(), mm.getProducts().get(14).getLength(), resultPart, mm.getProducts().get(14).getUnit(), mm.getProducts().get(14).getDescription(), mm.getProducts().get(14).getPrice());
+        int priceForParts = resultPart * mm.getProducts().get(14).getPrice();
+        Product product = new Product(mm.getProducts().get(14).getName(), mm.getProducts().get(14).getLength(), resultPart, mm.getProducts().get(14).getUnit(), mm.getProducts().get(14).getDescription(), priceForParts);
         return product;
     }
 
@@ -115,7 +122,8 @@ public class SingleFlatRoofCal {
         double lengthPart = Math.ceil(length / mm.getProducts().get(15).getLength());
         double widthPart = Math.ceil(width / 109);
         int resultPart = (int) (lengthPart * widthPart);
-        Product product = new Product(mm.getProducts().get(15).getName(), mm.getProducts().get(15).getLength(), resultPart, mm.getProducts().get(15).getUnit(), mm.getProducts().get(15).getDescription(), mm.getProducts().get(15).getPrice());
+        int priceForParts = resultPart * mm.getProducts().get(15).getPrice();
+        Product product = new Product(mm.getProducts().get(15).getName(), mm.getProducts().get(15).getLength(), resultPart, mm.getProducts().get(15).getUnit(), mm.getProducts().get(15).getDescription(), priceForParts);
         return product;
     }
     

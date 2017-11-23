@@ -5,6 +5,7 @@ package FunctionLayer;
  */
 public class Product {
 
+    private int id;
     private String name;
     private int length;
     private int width;
@@ -21,8 +22,20 @@ public class Product {
         this.description = description;
         this.price = price;
     }
-
+    // Entity til at regne antallet ud med i lommeregneren
     public Product(String name, int length, int amount, String unit, String description, int price) {
+        this.name = name;
+        this.length = length;
+        this.amount = amount;
+        this.unit = unit;
+        this.description = description;
+        this.price = price;
+    }
+    
+    // Entity til at hente produkter op af databasen.
+    
+    public Product(int id, String name, int length, int amount, String unit, String description, int price) {
+        this.id = id;
         this.name = name;
         this.length = length;
         this.amount = amount;

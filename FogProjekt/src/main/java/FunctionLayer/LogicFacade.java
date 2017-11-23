@@ -27,6 +27,6 @@ public class LogicFacade {
     }
 
     public static ArrayList<Order> getOrders() {
-        return OrderMapper.getOrders();
+        return OrderMapper.getOrderLines();
     }
 }
