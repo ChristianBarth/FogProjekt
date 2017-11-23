@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DataLayer.MaterialMapper;
+import DataLayer.OrderMapper;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Product;
 import java.io.IOException;
@@ -31,8 +32,6 @@ public class InputServlet extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
-            LogicFacade ProductList = new LogicFacade();
-            MaterialMapper mm = new MaterialMapper();
 
             if ("build".equals(action)) {
                 String reqLength = request.getParameter("length");
@@ -42,10 +41,9 @@ public class InputServlet extends HttpServlet {
                 String reqHeight = request.getParameter("height");
                 double height = Double.parseDouble(reqHeight);
 
-                ArrayList<Product> ListofItems = ProductList.getListOfItems(length, width);
-                mm.createOrderNumber();
+                ArrayList<Product> ListofItems = LogicFacade.getListOfItems(length, width);
                 
-                mm.putOrderInDatabase(ListofItems);
+                LogicFacade.PutOrderInDatabase(ListofItems);
 
                 String nextURL = "confirmationPage.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);

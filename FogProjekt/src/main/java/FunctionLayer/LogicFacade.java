@@ -5,6 +5,7 @@
  */
 package FunctionLayer;
 
+import DataLayer.OrderMapper;
 import java.util.ArrayList;
 
 /**
@@ -12,10 +13,20 @@ import java.util.ArrayList;
  * @author PC
  */
 public class LogicFacade {
-    
-        public ArrayList<Product> getListOfItems(double length, double width) {
+
+    public static ArrayList<Product> getListOfItems(double length, double width) {
         SingleFlatRoofCal calculate = new SingleFlatRoofCal();
         ArrayList<Product> orders = calculate.getProductList(length, width);
         return orders;
+    }
+
+    public static void PutOrderInDatabase(ArrayList<Product> ListofItems) {
+        OrderMapper.createOrderNumber();
+        OrderMapper om = new OrderMapper();
+        om.putOrderInDatabase(ListofItems);
+    }
+
+    public static ArrayList<Order> getOrders() {
+        return OrderMapper.getOrders();
     }
 }

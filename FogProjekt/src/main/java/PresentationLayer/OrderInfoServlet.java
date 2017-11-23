@@ -5,23 +5,20 @@
  */
 package PresentationLayer;
 
-import DataLayer.MaterialMapper;
-import FunctionLayer.Order;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author PC
+ * @author Oliver
  */
-@WebServlet(name = "ShowOrdersServlet", urlPatterns = {"/ShowOrdersServlet"})
-public class ShowOrdersServlet extends HttpServlet {
+@WebServlet(name = "OrderInfoServlet", urlPatterns = {"/OrderInfoServlet"})
+public class OrderInfoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,13 +32,6 @@ public class ShowOrdersServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession();
-        MaterialMapper mm = new MaterialMapper();
-        
-        ArrayList<Order> orders = mm.getOrdernumbersbyUserID(1);
-        
-        session.setAttribute("orders", orders);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
