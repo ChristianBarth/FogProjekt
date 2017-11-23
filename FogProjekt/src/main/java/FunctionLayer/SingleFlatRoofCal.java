@@ -95,7 +95,7 @@ public class SingleFlatRoofCal {
 
     // 97x97mm (300cm) trykimp. stolpe. Stolper nedgraves 90cm i jord.
     public Product getLengthPart10(double length) {
-        double lengthPart = ((Math.ceil(length / 310)) + 2) * 2;
+        double lengthPart = ((Math.ceil(length / 310)) + 1) * 2;
         int lengthPartInt = (int) lengthPart;
         Product product = new Product(mm.getProducts().get(10).getName(), mm.getProducts().get(10).getLength(), lengthPartInt, mm.getProducts().get(10).getUnit(), mm.getProducts().get(10).getDescription(), mm.getProducts().get(10).getPrice());
         return product;

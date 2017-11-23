@@ -6,54 +6,42 @@
 package PresentationLayer;
 
 import DataLayer.MaterialMapper;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.Product;
+import FunctionLayer.Order;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Christian Kolz Barth
+ * @author PC
  */
-@WebServlet(name = "InputServlet", urlPatterns = {"/InputServlet"})
-public class InputServlet extends HttpServlet {
+@WebServlet(name = "ShowOrdersServlet", urlPatterns = {"/ShowOrdersServlet"})
+public class ShowOrdersServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-
-            response.setContentType("text/html;charset=UTF-8");
-            String action = request.getParameter("action");
-            LogicFacade ProductList = new LogicFacade();
-            MaterialMapper mm = new MaterialMapper();
-
-            if ("build".equals(action)) {
-                String reqLength = request.getParameter("length");
-                double length = Double.parseDouble(reqLength);
-                String reqWidth = request.getParameter("width");
-                double width = Double.parseDouble(reqWidth);
-                String reqHeight = request.getParameter("height");
-                double height = Double.parseDouble(reqHeight);
-
-                ArrayList<Product> ListofItems = ProductList.getListOfItems(length, width);
-                mm.createOrderNumber();
-                
-                mm.putOrderInDatabase(ListofItems);
-
-                String nextURL = "confirmationPage.jsp";
-                request.getRequestDispatcher(nextURL).forward(request, response);
-            }
-        } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request,response);
-        }
-
+        response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession();
+        MaterialMapper mm = new MaterialMapper();
+        
+        ArrayList<Order> orders = mm.getOrdernumbersbyUserID(1);
+        
+        session.setAttribute("orders", orders);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -94,4 +82,5 @@ public class InputServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
