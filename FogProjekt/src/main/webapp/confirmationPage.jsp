@@ -13,5 +13,7 @@
     </head>
     <body>
         <h1>Vi modtog dine oplysninger</h1>
+        
+        <a href="index.html">Back to index</a>
     </body>
 </html>

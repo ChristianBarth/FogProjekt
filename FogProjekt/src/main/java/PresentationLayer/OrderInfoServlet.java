@@ -5,14 +5,8 @@
  */
 package PresentationLayer;
 
-import DataLayer.MaterialMapper;
-import DataLayer.OrderMapper;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,37 +15,23 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Christian Kolz Barth
+ * @author Oliver
  */
-@WebServlet(name = "InputServlet", urlPatterns = {"/InputServlet"})
-public class InputServlet extends HttpServlet {
+@WebServlet(name = "OrderInfoServlet", urlPatterns = {"/OrderInfoServlet"})
+public class OrderInfoServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-
-            response.setContentType("text/html;charset=UTF-8");
-            String action = request.getParameter("action");
-
-            if ("build".equals(action)) {
-                String reqLength = request.getParameter("length");
-                double length = Double.parseDouble(reqLength);
-                String reqWidth = request.getParameter("width");
-                double width = Double.parseDouble(reqWidth);
-                String reqHeight = request.getParameter("height");
-                double height = Double.parseDouble(reqHeight);
-
-                ArrayList<Product> ListofItems = LogicFacade.getListOfItems(length, width);
-                
-                LogicFacade.PutOrderInDatabase(ListofItems);
-
-                String nextURL = "confirmationPage.jsp";
-                request.getRequestDispatcher(nextURL).forward(request, response);
-            }
-        } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request,response);
-        }
-
+        response.setContentType("text/html;charset=UTF-8");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -92,4 +72,5 @@ public class InputServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
