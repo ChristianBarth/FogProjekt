@@ -25,10 +25,15 @@ public class LogicFacade {
         OrderMapper om = new OrderMapper();
         om.putOrderInDatabase(ListofItems);
     }
-
+    
+    public static String getSideCarportDrawing(double length, int height){
+        return SVGUtil.BuildSideCarport(length, height);
+    }
+    
     public static ArrayList<Order> getOrderLines() {
         return OrderMapper.getOrderLines();
     }
+    
     public static ArrayList<Product> getProductsFromOrders(){
         return MaterialMapper.getProductOrders();
     }

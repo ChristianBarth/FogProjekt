@@ -18,11 +18,11 @@
         <form name="buildcarport" action="InputServlet" method="POST">
             <input type="hidden" name="action" value="build">
             <br>
-            Længde i cm: <input type="text" name="length" value="" placeholder="Fx. 800"/> 
+            Længde i cm: <input type="text" name="length" value="" placeholder="Mål foregår i cm"/> 
             <br>
-            Bredde i cm: <input type="text" name="width" value="" placeholder="Fx. 600"/>
+            Bredde i cm: <input type="text" name="width" value="" placeholder="Mål foregår i cm"/>
             <br>
-            Højde i cm:  <input type="text" name="height" value="" placeholder="Fx. 250"/>
+            Højde i cm:  <input type="text" name="height" value="" placeholder="Mål foregår i cm"/>
             <br>
             <br>
             <input type="submit" value="BuildCarport"/>

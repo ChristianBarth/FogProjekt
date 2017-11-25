@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -39,12 +40,22 @@ public class InputServlet extends HttpServlet {
                 String reqWidth = request.getParameter("width");
                 double width = Double.parseDouble(reqWidth);
                 String reqHeight = request.getParameter("height");
-                double height = Double.parseDouble(reqHeight);
+                int height = Integer.parseInt(reqHeight);
+                int lengthint = Integer.parseInt(reqLength);
+                
 
                 ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
                 
                 LogicFacade.PutOrderInDatabase(ListofProducts);
-
+                
+                HttpSession session = request.getSession();
+                
+                String drawing = LogicFacade.getSideCarportDrawing(length, height);
+                
+                session.setAttribute("length", lengthint);
+                session.setAttribute("height", height);
+                session.setAttribute("drawing", drawing);
+                
                 String nextURL = "confirmationPage.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);
             }
