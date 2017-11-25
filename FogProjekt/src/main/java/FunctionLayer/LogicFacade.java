@@ -5,6 +5,7 @@
  */
 package FunctionLayer;
 
+import DataLayer.MaterialMapper;
 import DataLayer.OrderMapper;
 import java.util.ArrayList;
 
@@ -14,9 +15,8 @@ import java.util.ArrayList;
  */
 public class LogicFacade {
 
-    public static ArrayList<Product> getListOfItems(double length, double width) {
-        SingleFlatRoofCal calculate = new SingleFlatRoofCal();
-        ArrayList<Product> orders = calculate.getProductList(length, width);
+    public static ArrayList<Product> getListOfProducts(double length, double width) {
+        ArrayList<Product> orders = SingleFlatRoofCal.getProductList(length, width);
         return orders;
     }
 
@@ -26,7 +26,29 @@ public class LogicFacade {
         om.putOrderInDatabase(ListofItems);
     }
 
-    public static ArrayList<Order> getOrders() {
+    public static ArrayList<Order> getOrderLines() {
         return OrderMapper.getOrderLines();
     }
+    public static ArrayList<Product> getProductsFromOrders(){
+        return MaterialMapper.getProductOrders();
+    }
+    
+    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Order> orderlines, ArrayList<Product> orderdetails){
+            ArrayList<Product> ordersofid = new ArrayList<Product>();
+            for (int i = 0; i < orderdetails.size(); i++) {
+                if(number == orderdetails.get(i).getId()){
+                    Product product = new Product(
+                            orderdetails.get(i).getName(),
+                            orderdetails.get(i).getLength(),
+                            orderdetails.get(i).getAmount(),
+                            orderdetails.get(i).getUnit(),
+                            orderdetails.get(i).getDescription(),
+                            orderdetails.get(i).getPrice()
+                    );
+                    ordersofid.add(product);
+                }
+            }
+        return ordersofid;
+    }
+    
 }

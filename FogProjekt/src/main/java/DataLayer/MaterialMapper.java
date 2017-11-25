@@ -41,7 +41,7 @@ public class MaterialMapper {
         return products;
     }
 
-    public static ArrayList<Product> getProductsByID() {
+    public static ArrayList<Product> getProductOrders() {
 
         ArrayList<Product> productOrders = new ArrayList<Product>();
         try {
@@ -65,6 +65,5 @@ public class MaterialMapper {
         } catch (Exception e) {
         }
         return productOrders;
-
     }
 }

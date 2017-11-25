@@ -5,13 +5,18 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.LogicFacade;
+import FunctionLayer.Order;
+import FunctionLayer.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,7 +36,32 @@ public class OrderInfoServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        try {
+
+            response.setContentType("text/html;charset=UTF-8");
+            String action = request.getParameter("action");
+
+            if ("ordernumber".equals(action)) {
+
+                String numberString = request.getParameter("number");
+                int number = Integer.parseInt(numberString);
+                ArrayList<Order> orderlines = LogicFacade.getOrderLines();
+                ArrayList<Product> orderdetails = LogicFacade.getProductsFromOrders();
+                
+                if (number <= orderlines.size()) {
+                    ArrayList<Product> productsfromid = LogicFacade.getOrderProductsFromID(number, orderlines, orderdetails);
+
+                    request.setAttribute("productsfromid", productsfromid);
+
+                    String nextURL = "/orderinfo.jsp";
+                    request.getRequestDispatcher(nextURL).forward(request, response);
+                } else {
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
+            }
+        } catch (Exception e) {
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

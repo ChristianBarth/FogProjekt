@@ -41,9 +41,9 @@ public class InputServlet extends HttpServlet {
                 String reqHeight = request.getParameter("height");
                 double height = Double.parseDouble(reqHeight);
 
-                ArrayList<Product> ListofItems = LogicFacade.getListOfItems(length, width);
+                ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
                 
-                LogicFacade.PutOrderInDatabase(ListofItems);
+                LogicFacade.PutOrderInDatabase(ListofProducts);
 
                 String nextURL = "confirmationPage.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);

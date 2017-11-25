@@ -20,13 +20,23 @@
             <th>Ordrenummer</th>
             <th>Kundenummer</th>
         </tr>
-        <% ArrayList<Order> ListofOrders = LogicFacade.getOrders();
+        <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLines();
             for (Order orders : ListofOrders){ %>
             <tr>
-                <td><a href="OrderInfoServlet"><% out.println(orders.getOrdernumber()); %></a></td>
+                <td><% out.println(orders.getOrdernumber()); %></td>
             <td><% out.println(orders.getCustomerid()); %></td>
             </tr>
         <% } %>
         </table>
+            <form name="findordernumber" action="OrderInfoServlet" method="POST">
+            <input type="hidden" name="action" value="ordernumber">
+            <br>
+            Længde i cm: <input type="text" name="number" value="" placeholder="Type ordernumber"/>
+            <br>
+            <br>
+            <input type="submit" value="Search"/>
+            </form>
+        <br>
+            <a href="index.html">Back to index</a>
     </body>
 </html>

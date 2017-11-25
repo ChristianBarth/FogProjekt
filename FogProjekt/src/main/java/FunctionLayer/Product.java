@@ -33,7 +33,6 @@ public class Product {
     }
     
     // Entity til at hente produkter op af databasen.
-    
     public Product(int id, String name, int length, int amount, String unit, String description, int price) {
         this.id = id;
         this.name = name;
@@ -44,6 +43,15 @@ public class Product {
         this.price = price;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getName() {
         return name;
     }
