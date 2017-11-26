@@ -23,10 +23,12 @@
         <h1>Vi modtog dine oplysninger</h1>
         <br>
         <br>
-        <svg width="<%=length / 25%>%" 
-             viewBox="0 0 <%=length + 500%> <%=height * 3%>">
+        <svg width="75%" 
+             viewBox="0 0 <%=length / 20 + 11%> <%=height / 10 + 40%>">
         <% out.println(sideDrawing);%>
         </svg>
+        <br>
+        <br>
         <a href="index.html">Back to index</a>
     </body>
 </html>

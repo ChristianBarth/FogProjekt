@@ -12,7 +12,7 @@ public class SVGUtil {
     }
 
     private static String layer(int length, int yPos) {
-        return putStolper(length + 200, 200, yPos);
+        return putStolper(length / 10, 10, yPos / 10);
     }
 
     public static String putStolper(int length, int xPos, int yPos) {
@@ -20,17 +20,19 @@ public class SVGUtil {
         StringBuilder sb = new StringBuilder();
         int inBetweenStolper = SVGUtil.calculateInBetween(length);
 
-        while (length >= inBetweenStolper) { // Place all the stolper
+//        while (length >= inBetweenStolper) { // Place all the stolper
+        for (int i = 0; i <= 3; i++) {
             sb.append(Stolpe(inBetweenStolper, xPos, yPos));
             length = length - inBetweenStolper;
             xPos += inBetweenStolper;
         }
+//        }
         return sb.toString();
     }
 
     public static int calculateInBetween(double length) {
 
-        double amountofStolperDouble = Math.ceil(length / 310);
+        double amountofStolperDouble = Math.ceil(length / 31);
         int amountofStolperInt = (int) amountofStolperDouble + 1;
         int lengthInBetween = (int) length / amountofStolperInt;
         return lengthInBetween;
@@ -38,12 +40,12 @@ public class SVGUtil {
     }
 
     public static String Stolpe(int size, int xPos, int yPos) {
-        String res = "<rect x='" + xPos + "' y='" + 50 + "' width='" + size + "' height='" + yPos * 2 + "'"
+        String res = "<rect x='" + xPos + "' y='" + 1 + "' width='" + size + "' height='" + yPos * 2 + "'"
                 + "style=\"stroke: #000000; fill: #ffffff\"/>";
-        res += "<text x='" + (xPos + (size) / 2) + "' y='" + (yPos + 280) + "' "
-                + "font-family=\"Verdana\" font-size=\"20px\""
+        res += "<text x='" + (xPos + (size) / 2) + "' y='" + (yPos * 2 - 3) + "' "
+                + "font-family=\"Verdana\" font-size=\"4px\""
                 + "text-anchor=\"middle\" alignment-baseline=\"middle\">"
-                + size + "</text>\n";
+                + (double) size / 10 + "m" + "</text>\n";
         return res;
     }
 }
