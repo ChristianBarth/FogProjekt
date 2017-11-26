@@ -23,8 +23,8 @@
         <h1>Vi modtog dine oplysninger</h1>
         <br>
         <br>
-        <svg width="60%" 
-             viewBox="0 0 <%=length / 10 + 111%> <%=height / 10 + 80%>">
+        <svg width="75%" 
+             viewBox="0 0 <%=length + 110%> <%=height + 80%>">
         <defs>
     <marker id="beginArrow" 
             markerWidth="9" markerHeight="9" 
@@ -39,25 +39,25 @@
         <path d="M0,0 L8,4 L0,8 L0,0" style="fill: #000000;" />
     </marker>
     </defs>
-    <svg x="100" y="0" width="<%=length / 10 + 11%>" height="<%=height / 10 + 40%>" 
-         viewBox="0 0 <%=length / 10 + 11%> <%=height / 10 + 40%>">
+    <svg x="100" y="0" width="<%=length + 1%>" height="<%=height + 4%>" 
+         viewBox="0 0 <%=length + 1%> <%=height + 4%>">
     <% out.println(sideDrawing);%>
     </svg>
     <!-- Vertical line -->
-    <line x1="70"  y1="0" x2="70" y2="<%=height / 10%>" 
+    <line x1="70"  y1="0" x2="70" y2="<%=height%>" 
           style="stroke:#006600;
           marker-start: url(#beginArrow);
           marker-end: url(#endArrow);"/>
-    <text x="40" y="<%=(height / 10) / 2%>"
+    <text x="40" y="<%=height / 2%>"
           font-size="15px"
           text-anchor="middle"
           style="writing-mode: tb;">Height: <%=height%></text>
     <!-- Horizontal line %-->
-    <line x1="100"  y1="<%=height / 10 + 40%>" x2="<%=length / 10 + 88%>"   y2="<%=height / 10 + 40%>" 
+    <line x1="100"  y1="<%=height + 40%>" x2="<%=length + 100%>"   y2="<%=height + 40%>" 
           style="stroke:#006600;
           marker-start: url(#beginArrow);
           marker-end: url(#endArrow);"/>
-    <text x="<%=(length / 10) / 2 + 95%>" y="<%=height / 10 + 80%>"
+    <text x="<%=length / 2 + 100%>" y="<%=height + 80%>"
           font-size="15px"
           text-anchor="middle">Width: <%=length%></text>
     </svg>

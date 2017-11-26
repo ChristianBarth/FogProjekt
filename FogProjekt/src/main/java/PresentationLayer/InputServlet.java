@@ -43,7 +43,7 @@ public class InputServlet extends HttpServlet {
                 int height = Integer.parseInt(reqHeight);
                 int lengthint = Integer.parseInt(reqLength);
                 
-
+                if(length <= 999 && height <= 999){
                 ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
                 
                 LogicFacade.PutOrderInDatabase(ListofProducts);
@@ -58,6 +58,9 @@ public class InputServlet extends HttpServlet {
                 
                 String nextURL = "confirmationPage.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);
+                } else {
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                }
             }
         } catch (Exception e) {
             request.getRequestDispatcher("error.jsp").forward(request,response);
