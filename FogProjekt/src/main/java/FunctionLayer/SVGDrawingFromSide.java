@@ -3,7 +3,7 @@ package FunctionLayer;
 /**
  * @author Oliver
  */
-public class SVGUtil {
+public class SVGDrawingFromSide {
 
     public static String BuildSideCarport(double length, int height) {
         StringBuilder sb = new StringBuilder();
@@ -18,7 +18,7 @@ public class SVGUtil {
     public static String putStolper(double length, int xPos, int yPos) {
 
         StringBuilder sb = new StringBuilder();
-        double inBetweenStolper = SVGUtil.calculateInBetween(length);
+        double inBetweenStolper = SVGDrawingFromSide.calculateInBetweenSide(length);
 
         while (length >= inBetweenStolper) { // Place all the stolper
             // for (int i = 0; i <= 3; i++) {
@@ -30,7 +30,7 @@ public class SVGUtil {
         return sb.toString();
     }
 
-    public static double calculateInBetween(double length) {
+    public static double calculateInBetweenSide(double length) {
 
         double amountofStolperDouble = Math.ceil(length / 310);
         int amountofStolperInt = (int) amountofStolperDouble;

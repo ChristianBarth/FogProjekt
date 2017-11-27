@@ -42,19 +42,23 @@ public class InputServlet extends HttpServlet {
                 String reqHeight = request.getParameter("height");
                 int height = Integer.parseInt(reqHeight);
                 int lengthint = Integer.parseInt(reqLength);
-                
-                if(length <= 999 && height <= 999){
+                int widthint = Integer.parseInt(reqWidth);
+                if(length <= 999 && height <= 999 && width <= 999){
                 ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
                 
                 LogicFacade.PutOrderInDatabase(ListofProducts);
                 
                 HttpSession session = request.getSession();
                 
-                String drawing = LogicFacade.getSideCarportDrawing(length, height);
+                String drawingFromSide = LogicFacade.getSideCarportDrawing(length, height);
+                
+                String drawingFromTop = LogicFacade.getTopCarportDrawing(length, widthint);
                 
                 session.setAttribute("length", lengthint);
+                session.setAttribute("width", widthint);
                 session.setAttribute("height", height);
-                session.setAttribute("drawing", drawing);
+                session.setAttribute("drawingfromside", drawingFromSide);
+                session.setAttribute("drawingfromtop", drawingFromTop);
                 
                 String nextURL = "confirmationPage.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);

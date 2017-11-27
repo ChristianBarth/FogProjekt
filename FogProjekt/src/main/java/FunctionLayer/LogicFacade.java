@@ -25,35 +25,40 @@ public class LogicFacade {
         OrderMapper om = new OrderMapper();
         om.putOrderInDatabase(ListofItems);
     }
-    
-    public static String getSideCarportDrawing(double length, int height){
-        return SVGUtil.BuildSideCarport(length, height);
+
+    // Side carport tegning
+    public static String getSideCarportDrawing(double length, int height) {
+        return SVGDrawingFromSide.BuildSideCarport(length, height);
     }
-    
+    // Top carport tegning
+    public static String getTopCarportDrawing(double length, int width) {
+        return SVGDrawingFromTop.BuildTopCarport(length, width);
+    }
+
     public static ArrayList<Order> getOrderLines() {
         return OrderMapper.getOrderLines();
     }
-    
-    public static ArrayList<Product> getProductsFromOrders(){
+
+    public static ArrayList<Product> getProductsFromOrders() {
         return MaterialMapper.getProductOrders();
     }
-    
-    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Order> orderlines, ArrayList<Product> orderdetails){
-            ArrayList<Product> ordersofid = new ArrayList<Product>();
-            for (int i = 0; i < orderdetails.size(); i++) {
-                if(number == orderdetails.get(i).getId()){
-                    Product product = new Product(
-                            orderdetails.get(i).getName(),
-                            orderdetails.get(i).getLength(),
-                            orderdetails.get(i).getAmount(),
-                            orderdetails.get(i).getUnit(),
-                            orderdetails.get(i).getDescription(),
-                            orderdetails.get(i).getPrice()
-                    );
-                    ordersofid.add(product);
-                }
+
+    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Order> orderlines, ArrayList<Product> orderdetails) {
+        ArrayList<Product> ordersofid = new ArrayList<Product>();
+        for (int i = 0; i < orderdetails.size(); i++) {
+            if (number == orderdetails.get(i).getId()) {
+                Product product = new Product(
+                        orderdetails.get(i).getName(),
+                        orderdetails.get(i).getLength(),
+                        orderdetails.get(i).getAmount(),
+                        orderdetails.get(i).getUnit(),
+                        orderdetails.get(i).getDescription(),
+                        orderdetails.get(i).getPrice()
+                );
+                ordersofid.add(product);
             }
+        }
         return ordersofid;
     }
-    
+
 }
