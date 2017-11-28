@@ -131,7 +131,8 @@ public class SingleFlatRoofCal {
         return product;
     }
     
-        public ArrayList<Product> getProductList(double length, double width) {
+        public static ArrayList<Product> getProductList(double length, double width) {
+            
         ArrayList<Product> MaterialList = new ArrayList<Product>();
         SingleFlatRoofCal sfrc = new SingleFlatRoofCal();
        

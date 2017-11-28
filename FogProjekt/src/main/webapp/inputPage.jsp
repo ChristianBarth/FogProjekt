@@ -13,16 +13,17 @@
     </head>
     <body>
         <h1>Byg din egen carport</h1>
+        <h2>Det hele foregår i cm.</h2>
         <br>
         Indtast dine ønskede mål i felterne nedenfor.
         <form name="buildcarport" action="InputServlet" method="POST">
             <input type="hidden" name="action" value="build">
             <br>
-            Længde i cm: <input type="text" name="length" value="" placeholder="Fx. 800"/> 
+            Længde i cm: <input type="text" name="length" value="" placeholder="Maks 999"/> 
             <br>
-            Bredde i cm: <input type="text" name="width" value="" placeholder="Fx. 600"/>
+            Bredde i cm: <input type="text" name="width" value="" placeholder="Maks 999"/>
             <br>
-            Højde i cm:  <input type="text" name="height" value="" placeholder="Fx. 250"/>
+            Højde i cm:  <input type="text" name="height" value="" placeholder="Maks 999"/>
             <br>
             <br>
             <input type="submit" value="BuildCarport"/>
