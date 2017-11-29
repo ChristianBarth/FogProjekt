@@ -22,15 +22,20 @@
             <br>
             Indtast e-mail:
             <br>
-            <input type="text" name="email" value="" placeholder="E-mail"/>
+            <input type="text" name="email" value=""/>
             <br>
             Indtast Password:
             <br>
-            <input type="password" name="password" value="" placeholder="Password"/>
+            <input type="password" name="password1" value=""/>
+            <br>
+            Indtast Password igen:
+            <br>
+            <input type="password" name="password2" value=""/>
             <br>
             Indtast telefon nummer:
             <br>
-            <input type="text" name="password" value="" placeholder="Phonenumber"/>
+            <input type="text" name="phonenumber" value=""/>
+            <br>
             <br>
             <input type="submit" value="Register"/>
         </form>

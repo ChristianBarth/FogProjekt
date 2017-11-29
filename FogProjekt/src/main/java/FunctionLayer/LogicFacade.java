@@ -62,8 +62,7 @@ public class LogicFacade {
         return ordersofid;
     }
 
-    public static void createUser(String email, String password, String phonenumber, String role){
-        User user = new User(email, password, phonenumber, role);
+    public static void createUser(User user) throws LoginException{
         UserMapper.registerUser(user);
     }
     

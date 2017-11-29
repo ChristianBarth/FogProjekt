@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import DataLayer.UserMapper;
+import FunctionLayer.LogicFacade;
 import FunctionLayer.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,15 +41,20 @@ public class RegisterServlet extends HttpServlet {
             String action = request.getParameter("action");
 
             if ("register".equals(action)) {
+                
                 String email = request.getParameter("email");
-                String password = request.getParameter("password");
+                String password1 = request.getParameter("password1");
+                String password2 = request.getParameter("password2");
                 String phonenumber = request.getParameter("phonenumber");
 
-                User user = new User(email, password, phonenumber, "customer");
-                UserMapper.registerUser(user);
-                
-                String nextURL = "index.html";
-                request.getRequestDispatcher(nextURL).forward(request, response);
+                if (password1.equals(password2)) {
+                    
+                    User user = new User(email, password1, phonenumber);
+                    LogicFacade.createUser(user);
+
+                    String nextURL = "index.html";
+                    request.getRequestDispatcher(nextURL).forward(request, response);
+                }
             }
         } catch (Exception e) {
             request.getRequestDispatcher("error.jsp").forward(request, response);

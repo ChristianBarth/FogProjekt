@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -20,12 +21,12 @@ import java.util.ArrayList;
  */
 public class UserMapper {
 
-    public static void registerUser(User user) {
+    public static void registerUser(User user) throws LoginException {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO user (email, password, phonenumber, role)";
-            PreparedStatement ps = con.prepareStatement(SQL);
+            String SQL = "INSERT INTO user (email, password, phonenumber, role) VALUES (?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
@@ -33,9 +34,9 @@ public class UserMapper {
             ps.setString(4, user.getRole());
 
             ps.executeUpdate();
-
+            
         } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
+            throw new LoginException(ex.getMessage());
         }
     }
 
