@@ -45,7 +45,7 @@ public class SVGDrawingFromSide {
         res += "<text x='" + (xPos + size / 2) + "' y='" + (yPos - 10) + "' "
                 + "font-family=\"Verdana\" font-size=\"30px\""
                 + "text-anchor=\"middle\" alignment-baseline=\"middle\">"
-                + Math.floor(size) / 100 + "m" + "</text>\n";
+                + size / 100 + "m" + "</text>\n";
         return res;
     }
 }
