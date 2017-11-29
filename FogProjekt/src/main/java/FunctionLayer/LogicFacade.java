@@ -7,6 +7,7 @@ package FunctionLayer;
 
 import DataLayer.MaterialMapper;
 import DataLayer.OrderMapper;
+import DataLayer.UserMapper;
 import java.util.ArrayList;
 
 /**
@@ -61,4 +62,8 @@ public class LogicFacade {
         return ordersofid;
     }
 
+    public static void createUser(String email, String password, String phonenumber, String role){
+        User user = new User(email, password, phonenumber, role);
+        UserMapper.registerUser(user);
+    }
 }
