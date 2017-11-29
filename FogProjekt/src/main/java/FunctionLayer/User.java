@@ -26,7 +26,6 @@ public class User {
         this.role = role;
         this.phoneNumber = phoneNumber;
     }
-
     
     public int getId() {
         return id;
