@@ -12,6 +12,8 @@
         <title>Customer page</title>
     </head>
     <body>
-        <h1>Hello Customer!</h1>
+        <h1>Hello Customer: <%=request.getParameter( "email" )%> .</h1>
+        
+        <a href="inputPage.jsp">Order carport</a>
     </body>
 </html>

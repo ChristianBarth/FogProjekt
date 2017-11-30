@@ -18,7 +18,7 @@ import java.sql.ResultSet;
  */
 public class UserMapper {
 
-    public static void registerUser(User user) {
+    public static void createUser(User user) {
 
         try {
             Connection con = Connector.connection();

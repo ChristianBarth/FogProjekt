@@ -63,7 +63,7 @@ public class LogicFacade {
     }
 
     public static void createUser(User user){
-        UserMapper.registerUser(user);
+        UserMapper.createUser(user);
     }
     
     public static User login(String email, String password) throws LoginException{

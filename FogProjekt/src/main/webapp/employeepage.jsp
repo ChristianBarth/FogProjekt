@@ -12,6 +12,8 @@
         <title>Employee page</title>
     </head>
     <body>
-        <h1>Hello Employee!</h1>
+        <h1>Hello Employee: <%=request.getParameter( "email" )%> .</h1>
+        
+        <a href="allorders.jsp">Click here to see all orders from customers</a>
     </body>
 </html>
