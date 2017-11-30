@@ -2,6 +2,7 @@ package DataLayer;
 
 import FunctionLayer.Order;
 import FunctionLayer.Product;
+import FunctionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,12 +14,13 @@ import java.util.ArrayList;
  */
 public class OrderMapper {
     
-        public static void createEmailID() {
+        public static void getUserInfo(User user) {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (useremail) VALUES (?)";
+            String SQL = "INSERT INTO orders (useremail, phonenumber) VALUES (?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, "admin@mail.dk");
+            ps.setString(1, user.getEmail());
+            ps.setString(2, user.getPhoneNumber());
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -71,14 +73,15 @@ public class OrderMapper {
         ArrayList<Order> ListofOrders = new ArrayList<Order>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT ordernumber, useremail FROM orders";
+            String SQL = "SELECT ordernumber, useremail, phonenumber FROM orders";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Order order = new Order(
                         rs.getInt("ordernumber"),
-                        rs.getString("useremail")
+                        rs.getString("useremail"),
+                        rs.getString("phonenumber")
                 );
                 ListofOrders.add(order);
             }

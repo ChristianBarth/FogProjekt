@@ -4,7 +4,9 @@
     Author     : PC
 --%>
 
+<%@page import="FunctionLayer.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% User user = (User) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +14,7 @@
         <title>Employee page</title>
     </head>
     <body>
-        <h1>Hello Employee: <%=request.getParameter( "email" )%> .</h1>
+        <h1>Hello Employee: <% out.println(user.getEmail()); %> .</h1>
         
         <a href="allorders.jsp">Click here to see all orders from customers</a>
     </body>

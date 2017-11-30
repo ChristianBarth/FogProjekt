@@ -4,7 +4,9 @@
     Author     : Christian Kolz Barth
 --%>
 
+<%@page import="FunctionLayer.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% User user = (User) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,7 +15,8 @@
     </head>
     <body>
         <h1>Byg din egen carport</h1>
-        <h2>Det hele foregår i cm.</h2>
+        
+        <h2>Det hele foregår i cm. <% out.println(user.getEmail()); %></h2>
         <br>
         Indtast dine ønskede mål i felterne nedenfor.
         <form name="buildcarport" action="InputServlet" method="POST">

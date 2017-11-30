@@ -21,8 +21,8 @@ public class LogicFacade {
         return orders;
     }
 
-    public static void PutOrderInDatabase(ArrayList<Product> ListofItems) {
-        OrderMapper.createEmailID();
+    public static void PutOrderInDatabase(User user, ArrayList<Product> ListofItems) {
+        OrderMapper.getUserInfo(user);
         OrderMapper om = new OrderMapper();
         om.putOrderInDatabase(ListofItems);
     }

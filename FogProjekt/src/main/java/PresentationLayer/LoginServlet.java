@@ -45,7 +45,8 @@ public class LoginServlet extends HttpServlet {
 
                 User user = LogicFacade.login(email, password);
                 HttpSession session = request.getSession();
-                session.setAttribute("email", email);
+                session.setAttribute("user", user);
+                
                 if (user.getRole().equals("customer")) {
                     String nextURLcustomer = "customerpage.jsp";
                     request.getRequestDispatcher(nextURLcustomer).forward(request, response);

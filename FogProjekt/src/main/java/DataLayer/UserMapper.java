@@ -40,7 +40,7 @@ public class UserMapper {
     public static User login( String email, String password ) throws LoginException {
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT role FROM users WHERE email=? AND password=?";
+            String SQL = "SELECT phonenumber, role FROM users WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, email);
@@ -48,8 +48,9 @@ public class UserMapper {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                String phoneNumber = rs.getString("phonenumber");
                 String role = rs.getString("role");
-                User user = new User(email, password, role);
+                User user = new User(email, password, phoneNumber, role);
                 return user;
             } else {
                 throw new LoginException("Could not validate user");

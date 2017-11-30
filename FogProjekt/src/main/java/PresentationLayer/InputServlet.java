@@ -9,6 +9,7 @@ import DataLayer.MaterialMapper;
 import DataLayer.OrderMapper;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Product;
+import FunctionLayer.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class InputServlet extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
+            HttpSession session = request.getSession();
 
             if ("build".equals(action)) {
                 String reqLength = request.getParameter("length");
@@ -43,12 +45,13 @@ public class InputServlet extends HttpServlet {
                 int height = Integer.parseInt(reqHeight);
                 int lengthint = Integer.parseInt(reqLength);
                 int widthint = Integer.parseInt(reqWidth);
+                User user = (User) session.getAttribute("user");
                 if(length <= 999 && height <= 999 && width <= 999){
                 ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
                 
-                LogicFacade.PutOrderInDatabase(ListofProducts);
+                LogicFacade.PutOrderInDatabase(user, ListofProducts);
                 
-                HttpSession session = request.getSession();
+//                HttpSession session = request.getSession();
                 
                 String drawingFromSide = LogicFacade.getSideCarportDrawing(length, height);
                 

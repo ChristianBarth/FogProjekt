@@ -16,27 +16,31 @@
     <body>
         <h1>All orders right now:</h1>
         <table>
-        <tr>
-            <th>Ordrenummer</th>
-            <th>Email</th>
-        </tr>
-        <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLines();
-            for (Order orders : ListofOrders){ %>
+            <tr>
+                <th>Ordrenummer</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Dato</th>
+                <th>Status</th>
+            </tr>
+            <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLines();
+            for (Order orders : ListofOrders) { %>
             <tr>
                 <td><% out.println(orders.getOrdernumber()); %></td>
-            <td><% out.println(orders.getEmail()); %></td>
+                <td><% out.println(orders.getEmail()); %></td>
+                <td><% out.println(orders.getPhonenumber()); %></td>
             </tr>
-        <% } %>
+            <% }%>
         </table>
-            <form name="findordernumber" action="OrderInfoServlet" method="POST">
+        <form name="findordernumber" action="OrderInfoServlet" method="POST">
             <input type="hidden" name="action" value="ordernumber">
             <br>
             Længde i cm: <input type="text" name="number" value="" placeholder="Type ordernumber"/>
             <br>
             <br>
             <input type="submit" value="Search"/>
-            </form>
+        </form>
         <br>
-            <a href="index.html">Back to index</a>
+        <a href="index.html">Back to index</a>
     </body>
 </html>
