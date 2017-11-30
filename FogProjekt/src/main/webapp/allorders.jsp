@@ -18,13 +18,13 @@
         <table>
         <tr>
             <th>Ordrenummer</th>
-            <th>Kundenummer</th>
+            <th>Email</th>
         </tr>
         <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLines();
             for (Order orders : ListofOrders){ %>
             <tr>
                 <td><% out.println(orders.getOrdernumber()); %></td>
-            <td><% out.println(orders.getCustomerid()); %></td>
+            <td><% out.println(orders.getEmail()); %></td>
             </tr>
         <% } %>
         </table>

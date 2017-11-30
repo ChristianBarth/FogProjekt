@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
 
                 if (password1.equals(password2)) {
                     
-                    User user = new User(email, password1, phonenumber);
+                    User user = new User(email, password1, phonenumber, "customer");
                     LogicFacade.createUser(user);
 
                     String nextURL = "index.html";
@@ -57,6 +57,7 @@ public class RegisterServlet extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+            e.getMessage();
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
