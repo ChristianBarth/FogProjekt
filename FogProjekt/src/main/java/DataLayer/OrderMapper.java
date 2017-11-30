@@ -13,12 +13,12 @@ import java.util.ArrayList;
  */
 public class OrderMapper {
     
-        public static void createOrderNumber() {
+        public static void createEmailID() {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (customerid) VALUES (?)";
+            String SQL = "INSERT INTO orders (useremail) VALUES (?)";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setInt(1, 1);
+            ps.setString(1, "admin@mail.dk");
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -71,14 +71,14 @@ public class OrderMapper {
         ArrayList<Order> ListofOrders = new ArrayList<Order>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT ordernumber, customerid FROM orders";
+            String SQL = "SELECT ordernumber, useremail FROM orders";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Order order = new Order(
                         rs.getInt("ordernumber"),
-                        rs.getInt("customerid")
+                        rs.getString("useremail")
                 );
                 ListofOrders.add(order);
             }

@@ -6,11 +6,11 @@ package FunctionLayer;
 public class Order {
     
     private int ordernumber;
-    private int customerid;
+    private String email;
 
-    public Order(int ordernumber, int customerid) {
+    public Order(int ordernumber, String email) {
         this.ordernumber = ordernumber;
-        this.customerid = customerid;
+        this.email = email;
     }
 
     public int getOrdernumber() {
@@ -21,12 +21,12 @@ public class Order {
         this.ordernumber = ordernumber;
     }
 
-    public int getCustomerid() {
-        return customerid;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCustomerid(int customerid) {
-        this.customerid = customerid;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     

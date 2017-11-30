@@ -22,7 +22,7 @@ public class LogicFacade {
     }
 
     public static void PutOrderInDatabase(ArrayList<Product> ListofItems) {
-        OrderMapper.createOrderNumber();
+        OrderMapper.createEmailID();
         OrderMapper om = new OrderMapper();
         om.putOrderInDatabase(ListofItems);
     }
@@ -62,8 +62,11 @@ public class LogicFacade {
         return ordersofid;
     }
 
-    public static void createUser(String email, String password, String phonenumber, String role){
-        User user = new User(email, password, phonenumber, role);
+    public static void createUser(User user){
         UserMapper.registerUser(user);
+    }
+    
+    public static User login(String email, String password) throws LoginException{
+        return UserMapper.login(email, password);
     }
 }

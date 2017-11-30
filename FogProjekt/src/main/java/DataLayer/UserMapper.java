@@ -6,13 +6,11 @@
 package DataLayer;
 
 import FunctionLayer.LoginException;
-import FunctionLayer.Product;
 import FunctionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -24,7 +22,7 @@ public class UserMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO user (email, password, phonenumber, role)";
+            String SQL = "INSERT INTO users (email, password, phonenumber, role) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL);
 
             ps.setString(1, user.getEmail());
@@ -33,39 +31,32 @@ public class UserMapper {
             ps.setString(4, user.getRole());
 
             ps.executeUpdate();
-
+            
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-/**
- *
- * @author Christian Kolz Barth
- */
-
-    
     public static User login( String email, String password ) throws LoginException {
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT role FROM user WHERE email=? AND password=?";
+            String SQL = "SELECT role FROM users WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);
-            
-            ps.setString( 1, email );
-            ps.setString( 2, password );
+
+            ps.setString(1, email);
+            ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            
-            if( rs.next() ) {
-                String role = rs.getString( "role" );
-                User user = new User( email, password, role );
+
+            if (rs.next()) {
+                String role = rs.getString("role");
+                User user = new User(email, password, role);
                 return user;
             } else {
-                throw new LoginException( "Could not validate user" );
+                throw new LoginException("Could not validate user");
             }
-            
-        } catch ( ClassNotFoundException | SQLException ex ) {
+
+        } catch (ClassNotFoundException | SQLException ex) {
             throw new LoginException(ex.getMessage());
         }
     }
-    
 }

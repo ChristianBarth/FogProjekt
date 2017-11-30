@@ -11,20 +11,33 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    
+
     <body>
-   <h1>Register</h1>
+        <h1>Register</h1>
         <h2>Her</h2>
         <br>
-       Register right here
+        Register right here
         <form name="registeruser" action="RegisterServlet" method="POST">
             <input type="hidden" name="action" value="register">
             <br>
-           Indtast e-mail: <input type="text" name="email" value="" placeholder="E-mail"/> 
+            Indtast e-mail:
             <br>
-            Indtast Password <input type="text" name="password" value="" placeholder="Password"/>
+            <input type="text" name="email" value=""/>
             <br>
-            <input type="submit" value="BuildCarport"/>
+            Indtast Password:
+            <br>
+            <input type="password" name="password1" value=""/>
+            <br>
+            Indtast Password igen:
+            <br>
+            <input type="password" name="password2" value=""/>
+            <br>
+            Indtast telefon nummer:
+            <br>
+            <input type="text" name="phonenumber" value=""/>
+            <br>
+            <br>
+            <input type="submit" value="Register"/>
         </form>
     </body>
 </html>

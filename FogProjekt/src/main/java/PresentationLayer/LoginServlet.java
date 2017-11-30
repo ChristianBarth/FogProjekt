@@ -5,6 +5,8 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.LogicFacade;
+import FunctionLayer.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,17 +35,28 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
+
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
-            
-            if("login".equals(action)) {
+
+            if ("login".equals(action)) {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
+
+                User user = LogicFacade.login(email, password);
+                HttpSession session = request.getSession();
+                session.setAttribute("email", email);
+                if (user.getRole().equals("customer")) {
+                    String nextURLcustomer = "customerpage.jsp";
+                    request.getRequestDispatcher(nextURLcustomer).forward(request, response);
+                } else {
+                    String nextURLadmin = "employeepage.jsp";
+                    request.getRequestDispatcher(nextURLadmin).forward(request, response);
+                }
             }
-            
+
         } catch (Exception e) {
-            
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 
