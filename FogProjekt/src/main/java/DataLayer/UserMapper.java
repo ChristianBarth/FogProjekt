@@ -5,12 +5,13 @@
  */
 package DataLayer;
 
-<<<<<<< HEAD
+import FunctionLayer.LoginException;
 import FunctionLayer.Product;
 import FunctionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -28,7 +29,7 @@ public class UserMapper {
 
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
-            ps.setString(3, user.getPhonenumber());
+            ps.setString(3, user.getPhoneNumber());
             ps.setString(4, user.getRole());
 
             ps.executeUpdate();
@@ -37,19 +38,12 @@ public class UserMapper {
             ex.printStackTrace();
         }
     }
-=======
-import FunctionLayer.LoginException;
-import FunctionLayer.User;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
  * @author Christian Kolz Barth
  */
-public class UserMapper {
+
     
     public static User login( String email, String password ) throws LoginException {
         try {
@@ -74,5 +68,4 @@ public class UserMapper {
         }
     }
     
->>>>>>> loginFeature
 }
