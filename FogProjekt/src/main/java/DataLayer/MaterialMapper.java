@@ -40,30 +40,4 @@ public class MaterialMapper {
         }
         return products;
     }
-
-    public static ArrayList<Product> getProductOrders() {
-
-        ArrayList<Product> productOrders = new ArrayList<Product>();
-        try {
-            Connection con = Connector.connection();
-            String SQL = "SELECT ordernumber, titel, længde, antal, enhed, beskrivelse, pris FROM stykliste";
-            PreparedStatement ps = con.prepareStatement(SQL);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Product product = new Product(
-                        rs.getInt("ordernumber"),
-                        rs.getString("titel"),
-                        rs.getInt("længde"),
-                        rs.getInt("antal"),
-                        rs.getString("enhed"),
-                        rs.getString("beskrivelse"),
-                        rs.getInt("pris")
-                );
-                productOrders.add(product);
-            }
-        } catch (Exception e) {
-        }
-        return productOrders;
-    }
 }

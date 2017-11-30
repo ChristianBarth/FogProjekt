@@ -14,13 +14,14 @@ import java.util.ArrayList;
  */
 public class OrderMapper {
     
-        public static void getUserInfo(User user) {
+        public static void putUserInfoIntoOrders(User user) {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (useremail, phonenumber) VALUES (?, ?)";
+            String SQL = "INSERT INTO orders (useremail, phonenumber, status) VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPhoneNumber());
+            ps.setString(3, "Pending");
             ps.executeUpdate();
         } catch (Exception e) {
         }
@@ -73,7 +74,7 @@ public class OrderMapper {
         ArrayList<Order> ListofOrders = new ArrayList<Order>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT ordernumber, useremail, phonenumber FROM orders";
+            String SQL = "SELECT ordernumber, useremail, phonenumber, date, status FROM orders";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
 
@@ -81,7 +82,9 @@ public class OrderMapper {
                 Order order = new Order(
                         rs.getInt("ordernumber"),
                         rs.getString("useremail"),
-                        rs.getString("phonenumber")
+                        rs.getString("phonenumber"),
+                        rs.getDate("date"),
+                        rs.getString("status")
                 );
                 ListofOrders.add(order);
             }
@@ -90,4 +93,29 @@ public class OrderMapper {
         return ListofOrders;
     }
     
+    public static ArrayList<Product> getOrderDetails() {
+
+        ArrayList<Product> productOrderDetails = new ArrayList<Product>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT ordernumber, titel, længde, antal, enhed, beskrivelse, pris FROM stykliste";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product(
+                        rs.getInt("ordernumber"),
+                        rs.getString("titel"),
+                        rs.getInt("længde"),
+                        rs.getInt("antal"),
+                        rs.getString("enhed"),
+                        rs.getString("beskrivelse"),
+                        rs.getInt("pris")
+                );
+                productOrderDetails.add(product);
+            }
+        } catch (Exception e) {
+        }
+        return productOrderDetails;
+    }
 }

@@ -43,8 +43,8 @@ public class IDtests {
 
     @Test
     public void getProductsByID() {
-        ArrayList<Order> orderlines = LogicFacade.getOrderLines();
-        ArrayList<Product> products = LogicFacade.getProductsFromOrders();
+        ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
+        ArrayList<Product> products = LogicFacade.getOrderDetails();
         int number = 2;
         ArrayList<Product> productsfromid = LogicFacade.getOrderProductsFromID(number ,orderlines, products);
         for (Product productids : productsfromid){

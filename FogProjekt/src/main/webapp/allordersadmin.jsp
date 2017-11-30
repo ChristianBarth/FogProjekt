@@ -23,17 +23,19 @@
                 <th>Dato</th>
                 <th>Status</th>
             </tr>
-            <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLines();
+            <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLinesAdmin();
             for (Order orders : ListofOrders) { %>
             <tr>
                 <td><% out.println(orders.getOrdernumber()); %></td>
                 <td><% out.println(orders.getEmail()); %></td>
                 <td><% out.println(orders.getPhonenumber()); %></td>
+                <td><% out.println(orders.getTime()); %></td>
+                <td><% out.println(orders.getStatus()); %></td>
             </tr>
             <% }%>
         </table>
-        <form name="findordernumber" action="OrderInfoServlet" method="POST">
-            <input type="hidden" name="action" value="ordernumber">
+        <form name="findordernumber" action="OrderInfoServletAdmin" method="POST">
+            <input type="hidden" name="action" value="ordernumberadmin">
             <br>
             Længde i cm: <input type="text" name="number" value="" placeholder="Type ordernumber"/>
             <br>

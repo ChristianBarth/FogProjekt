@@ -39,6 +39,7 @@ public class UserMapper {
 
     public static User login( String email, String password ) throws LoginException {
         try {
+            
             Connection con = Connector.connection();
             String SQL = "SELECT phonenumber, role FROM users WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement(SQL);

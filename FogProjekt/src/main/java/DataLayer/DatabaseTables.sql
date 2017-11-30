@@ -1,28 +1,43 @@
+DROP SCHEMA `jfog`;
+CREATE SCHEMA `jfog`;
+
 USE `jfog`;
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int(30) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
   `email` varchar(90) NOT NULL,
   `password` varchar(45) NOT NULL,
+  `phonenumber` varchar(45) NOT NULL,
   `role` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`email`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-insert into `user`(`email`, `password`, `role`) values
-('user@mail.dk', 'user', 'customer'),
-('admin@mail.dk', 'admin', 'employee');
+insert into `users`(`email`, `password`, `phonenumber`, `role`) values
+('user@mail.dk', 'user', '88888888', 'customer'),
+('admin@mail.dk', 'admin', '88888888', 'employee');
 
--- DROP TABLE IF EXISTS `odetails`;
--- CREATE TABLE `odetails` (
--- `ordernumber` int(30) NOT NULL AUTO_INCREMENT, 
--- Tilføj Materialelisten / pris
--- Tilføj mængden af materialer
--- 
--- PRIMARY KEY (`ordernumber`),
--- UNIQUE KEY `lol` (`ordernumber`)
--- ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders` (
+`ordernumber` int(30) NOT NULL AUTO_INCREMENT,
+`useremail` varchar(90) NOT NULL,
+`phonenumber` varchar(90) NOT NULL,
+`date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`status` varchar(90) NOT NULL,
+PRIMARY KEY (`ordernumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `stykliste`;
+CREATE TABLE `stykliste` (
+`ordernumber` int(30) NOT NULL,
+`titel` varchar(90) NOT NULL,
+`længde` int(30) NOT NULL,
+`antal` int(30) NOT NULL,
+`enhed` varchar(90) NOT NULL,
+`beskrivelse` varchar(90) NOT NULL,
+`pris` int(30) NOT NULL,
+FOREIGN KEY (`ordernumber`) REFERENCES orders(`ordernumber`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
@@ -32,7 +47,7 @@ CREATE TABLE `products` (
     `unit` varchar(90) NOT NULL,
 	`description` varchar(90) NOT NULL,
     `price` int(30) NOT NULL,
-    PRIMARY KEY (`varenummer`)
+PRIMARY KEY (`varenummer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 insert into `products`(`name`, `length`, `unit`, `description`, `price`) values 

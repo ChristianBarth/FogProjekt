@@ -14,7 +14,7 @@
     <body>
         <h1>Login side</h1>
         <br>
-        <form action="LoginServlet" method="POST">
+        <form name="loginuser"action="LoginServlet" method="POST">
             <input type="hidden" name="action" value="login">
             Indtast din mail:
             <br>

@@ -1,5 +1,7 @@
 package FunctionLayer;
 
+import java.sql.Date;
+
 /**
  * @author PC
  */
@@ -8,11 +10,15 @@ public class Order {
     private int ordernumber;
     private String email;
     private String phonenumber;
+    private Date time;
+    private String status;
 
-    public Order(int ordernumber, String email, String phonenumber) {
+    public Order(int ordernumber, String email, String phonenumber, Date time, String status) {
         this.ordernumber = ordernumber;
         this.email = email;
         this.phonenumber = phonenumber;
+        this.time = time;
+        this.status = status;
     }
 
     public int getOrdernumber() {
@@ -38,6 +44,21 @@ public class Order {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
-    
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
 }

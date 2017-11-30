@@ -5,15 +5,12 @@
  */
 package PresentationLayer;
 
-import DataLayer.MaterialMapper;
-import DataLayer.OrderMapper;
 import FunctionLayer.LogicFacade;
+import FunctionLayer.Order;
 import FunctionLayer.Product;
-import FunctionLayer.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,56 +20,48 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Christian Kolz Barth
+ * @author Oliver
  */
-@WebServlet(name = "InputServlet", urlPatterns = {"/InputServlet"})
-public class InputServlet extends HttpServlet {
+@WebServlet(name = "OrderInfoServletAdmin", urlPatterns = {"/OrderInfoServletAdmin"})
+public class OrderInfoServletAdmin extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
 
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
-            HttpSession session = request.getSession();
 
-            if ("build".equals(action)) {
-                String reqLength = request.getParameter("length");
-                double length = Double.parseDouble(reqLength);
-                String reqWidth = request.getParameter("width");
-                double width = Double.parseDouble(reqWidth);
-                String reqHeight = request.getParameter("height");
-                int height = Integer.parseInt(reqHeight);
-                int lengthint = Integer.parseInt(reqLength);
-                int widthint = Integer.parseInt(reqWidth);
-                User user = (User) session.getAttribute("user");
-                if(length <= 999 && height <= 999 && width <= 999){
-                ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
+            if ("ordernumberadmin".equals(action)) {
+
+                String numberString = request.getParameter("number");
+                int number = Integer.parseInt(numberString);
+                ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
+                ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
                 
-                LogicFacade.PutOrderInDatabase(user, ListofProducts);
-                
-//                HttpSession session = request.getSession();
-                
-                String drawingFromSide = LogicFacade.getSideCarportDrawing(length, height);
-                
-                String drawingFromTop = LogicFacade.getTopCarportDrawing(length, widthint);
-                
-                session.setAttribute("length", lengthint);
-                session.setAttribute("width", widthint);
-                session.setAttribute("height", height);
-                session.setAttribute("drawingfromside", drawingFromSide);
-                session.setAttribute("drawingfromtop", drawingFromTop);
-                
-                String nextURL = "confirmationPage.jsp";
-                request.getRequestDispatcher(nextURL).forward(request, response);
+                if (number <= orderlines.size()) {
+                    ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderlines, orderdetails);
+
+                    request.setAttribute("detailsfromid", detailsfromid);
+
+                    String nextURL = "/orderinfoadmin.jsp";
+                    request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
-                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request,response);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -113,4 +102,5 @@ public class InputServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

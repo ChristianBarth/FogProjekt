@@ -24,7 +24,7 @@
             <th>Beskrivelse</th>
             <th>Pris</th>
         </tr>
-        <% ArrayList<Product> listorders = (ArrayList<Product>)request.getAttribute( "productsfromid");
+        <% ArrayList<Product> listorders = (ArrayList<Product>)request.getAttribute( "detailsfromid");
             for (Product orders : listorders){ %>
             <tr>
             <td><% out.println(orders.getName()); %></td>
@@ -36,6 +36,7 @@
             </tr>
         <% } %>
         </table>
-            <a href="allorders.jsp">Back to all orders</a>
+        <br><br>
+            <a href="allordersadmin.jsp">Back to all orders</a>
     </body>
 </html>

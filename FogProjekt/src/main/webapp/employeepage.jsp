@@ -16,6 +16,6 @@
     <body>
         <h1>Hello Employee: <% out.println(user.getEmail()); %> .</h1>
         
-        <a href="allorders.jsp">Click here to see all orders from customers</a>
+        <a href="allordersadmin.jsp">Click here to see all orders from customers</a>
     </body>
 </html>

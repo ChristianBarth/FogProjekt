@@ -13,30 +13,26 @@
     </head>
 
     <body>
-        <h1>Register</h1>
-        <h2>Her</h2>
+        <h1>Register Her</h1>
         <br>
-        Register right here
         <form name="registeruser" action="RegisterServlet" method="POST">
             <input type="hidden" name="action" value="register">
-            <br>
             Indtast e-mail:
             <br>
             <input type="text" name="email" value=""/>
-            <br>
+            <br><br>
             Indtast Password:
             <br>
             <input type="password" name="password1" value=""/>
-            <br>
+            <br><br>
             Indtast Password igen:
             <br>
             <input type="password" name="password2" value=""/>
-            <br>
+            <br><br>
             Indtast telefon nummer:
             <br>
             <input type="text" name="phonenumber" value=""/>
-            <br>
-            <br>
+            <br><br>
             <input type="submit" value="Register"/>
         </form>
     </body>
