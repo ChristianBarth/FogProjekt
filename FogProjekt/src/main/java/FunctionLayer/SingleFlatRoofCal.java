@@ -132,10 +132,10 @@ public class SingleFlatRoofCal {
         double widthPart = Math.ceil(width / 109);
         int resultPart = (int) (lengthPart * widthPart);
         int amountOfScrews = resultPart * 50;
-        int priceForParts = amountOfScrews * mm.getProducts().get(16).getPrice();
         double amountOfPacks = Math.ceil(amountOfScrews / 200);
+        
         int resultPart2 = (int) amountOfPacks;
-
+        int priceForParts = resultPart2 * mm.getProducts().get(16).getPrice();
         Product product = new Product(mm.getProducts().get(16).getName(), mm.getProducts().get(16).getLength(), resultPart2, mm.getProducts().get(16).getUnit(), mm.getProducts().get(16).getDescription(), priceForParts);
         return product;
 
