@@ -22,11 +22,17 @@
         <form name="buildcarport" action="FlatRoofServlet" method="POST">
             <input type="hidden" name="action" value="build">
             <br>
-            Længde i cm: <input type="text" name="length" value="" placeholder="Maks 999"/> 
+            Længde i cm:
             <br>
-            Bredde i cm: <input type="text" name="width" value="" placeholder="Maks 999"/>
+            <input type="text" name="length" value="" placeholder="Maks 999"/> 
             <br>
-            Højde i cm:  <input type="text" name="height" value="" placeholder="Maks 999"/>
+            Bredde i cm:
+            <br>
+            <input type="text" name="width" value="" placeholder="Maks 999"/>
+            <br>
+            Højde i cm:
+            <br>
+            <input type="text" name="height" value="" placeholder="Maks 999"/>
             <br>
             <br>
             <input type="submit" value="BuildCarport"/>
