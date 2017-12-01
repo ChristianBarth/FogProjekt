@@ -15,6 +15,15 @@
     </head>
     <body>
         <h1>All orders right now:</h1>
+        <form name="findordernumber" action="OrderInfoServletAdmin" method="POST">
+            <input type="hidden" name="action" value="ordernumberadmin">
+            <br>
+            Søg efter ordrenummer: 
+            <br>
+            <input type="text" name="number" value=""/>
+            <input type="submit" value="Search"/>
+        </form>
+        <br><br>
         <table>
             <tr>
                 <th>Ordrenummer</th>
@@ -34,14 +43,6 @@
             </tr>
             <% }%>
         </table>
-        <form name="findordernumber" action="OrderInfoServletAdmin" method="POST">
-            <input type="hidden" name="action" value="ordernumberadmin">
-            <br>
-            Længde i cm: <input type="text" name="number" value="" placeholder="Type ordernumber"/>
-            <br>
-            <br>
-            <input type="submit" value="Search"/>
-        </form>
         <br>
         <a href="index.html">Back to index</a>
     </body>

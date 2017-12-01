@@ -68,7 +68,7 @@ insert into `products`(`name`, `length`, `unit`, `description`, `price`) values
 ('Plastmo Ecolite blåtonet', 600, 'Stk', 'tagplader monteres på spær', 330),
 ('Plastmo Ecolite blåtonet', 360, 'Stk', 'tagplader monteres på spær', 139),
 ('plastmo bundskruer 200 stk', 0, 'Pakke', 'Skruer til tagplader', 589),
-('hulbånd 1x20 mm. 10 mtr.', 0, 'Rulle', 'Til vindkryds på spær', 190),
+('hulbånd 1x20 mm. 20 mtr.', 2000, 'Rulle', 'Til vindkryds på spær', 190),
 ('universal 190 mm. højre', 0, 'Stk', 'Til montering af spær på rem', 70),
 ('universal 190 mm. venstre', 0, 'Stk', 'Til montering af spær på rem', 70),
 ('4,5 x 60 mm. skruer 200stk.', 0, 'Pakke', 'Til montering af stern&vandbrædt', 419),

@@ -17,7 +17,7 @@
                 <title>All Orders</title>
     </head>
     <body>
-        <h1>All orders right now:</h1>
+        <h1>Here are all your orders:</h1>
         <table>
             <tr>
                 <th>Ordrenummer</th>
