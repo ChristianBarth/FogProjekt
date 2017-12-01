@@ -4,6 +4,7 @@
     Author     : Christian Kolz Barth
 --%>
 
+<%@page import="FunctionLayer.User"%>
 <%@page import="FunctionLayer.LogicFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
     int height = (int) session.getAttribute("height");
     String sideDrawing = (String) session.getAttribute("drawingfromside");
     String topDrawing = (String) session.getAttribute("drawingfromtop");
+    User user = (User) session.getAttribute("user");
 %>
 <html>
     <head>
@@ -21,7 +23,7 @@
     </head>
 
     <body>
-        <h1>Vi modtog dine oplysninger. Herunder kan du se din caport</h1>
+        <h1>Vi modtog dine oplysninger. Herunder kan du se din valgte carport <% out.print(user.getEmail()); %> . </h1>
         <br>
         <h1>Top Carport tegning</h1>
         <svg width="50%" 
@@ -104,6 +106,13 @@
     </svg>
     <br>
     <br>
-    <a href="index.html">Back to index</a>
+    <form name="confirmordernow" action="ConfirmOrderServlet" method="POST">
+        Er du sikker på dit køb?:
+        <br><br>
+        <button type="submit" name="action" value="confirmorder">Submit</button>
+    </form>
+    <br>
+    <br>
+    <a href="customerpage.jsp">Nej det er jeg ikke. Jeg vil godt tilbage til min customerpage.</a>
 </body>
 </html>

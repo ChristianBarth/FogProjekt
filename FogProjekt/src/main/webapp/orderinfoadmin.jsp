@@ -37,6 +37,9 @@
         <% } %>
         </table>
         <br><br>
-            <a href="allordersadmin.jsp">Back to all orders</a>
+            <a href="allordersadmin.jsp">Back to all orders of users</a>
+            <br>
+            <br>
+            <a href="employeepage.jsp">Back to employeepage</a>
     </body>
 </html>

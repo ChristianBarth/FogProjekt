@@ -19,8 +19,8 @@
         <h2>Det hele foregår i cm. <% out.println(user.getEmail()); %></h2>
         <br>
         Indtast dine ønskede mål i felterne nedenfor.
-        <form name="buildcarport" action="FlatRoofServlet" method="POST">
-            <input type="hidden" name="action" value="build">
+        <form name="showusercarport" action="DrawingServlet" method="POST">
+            <input type="hidden" name="action" value="draw">
             <br>
             Længde i cm:
             <br>
@@ -35,7 +35,7 @@
             <input type="text" name="height" value="" placeholder="Maks 999"/>
             <br>
             <br>
-            <input type="submit" value="BuildCarport"/>
+            <input type="submit" value="Show Carport"/>
         </form>
     </body>
 </html>

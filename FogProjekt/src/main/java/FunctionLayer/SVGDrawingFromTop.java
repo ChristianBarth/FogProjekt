@@ -27,11 +27,9 @@ public class SVGDrawingFromTop {
         double inBetweenSpær = SVGDrawingFromTop.calculateInBetweenTop(length);
 
         while (length >= inBetweenSpær) { // Place all the spær
-            // for (int i = 0; i <= 3; i++) {
             sb.append(Spær(inBetweenSpær, xPos, yPos));
             length = length - inBetweenSpær;
             xPos += inBetweenSpær;
-            // }
         }
         return sb.toString();
     }

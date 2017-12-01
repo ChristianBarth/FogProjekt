@@ -38,6 +38,6 @@
             <% }%>
         </table>
         <br>
-        <a href="index.html">Back to index</a>
+        <a href="customerpage.jsp">Back to customerpage</a>
     </body>
 </html>

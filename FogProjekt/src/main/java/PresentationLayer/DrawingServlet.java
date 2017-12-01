@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Christian Kolz Barth
  */
-@WebServlet(name = "FlatRoofServlet", urlPatterns = {"/FlatRoofServlet"})
-public class FlatRoofServlet extends HttpServlet {
+@WebServlet(name = "DrawingServlet", urlPatterns = {"/DrawingServlet"})
+public class DrawingServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,14 +36,16 @@ public class FlatRoofServlet extends HttpServlet {
             String action = request.getParameter("action");
             HttpSession session = request.getSession();
 
-            if ("build".equals(action)) {
+            if ("draw".equals(action)) {
+                
+                //Get strings
+                String reqLength = request.getParameter("length");
+                String reqWidth = request.getParameter("width");
+                String reqHeight = request.getParameter("height");
                 
                 //Doubles
-                String reqLength = request.getParameter("length");
                 double length = Double.parseDouble(reqLength);
-                String reqWidth = request.getParameter("width");
                 double width = Double.parseDouble(reqWidth);
-                String reqHeight = request.getParameter("height");
                 double height = Double.parseDouble(reqHeight);
                 
                 //Integer
@@ -54,10 +56,6 @@ public class FlatRoofServlet extends HttpServlet {
                 User user = (User) session.getAttribute("user");
                 
                 if(length <= 999 && height <= 999 && width <= 999){
-                    
-                ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
-                
-                LogicFacade.PutOrderInDatabase(user, ListofProducts);
                 
                 String drawingFromSide = LogicFacade.getSideCarportDrawing(length, heightint);
                 
@@ -69,7 +67,7 @@ public class FlatRoofServlet extends HttpServlet {
                 session.setAttribute("drawingfromside", drawingFromSide);
                 session.setAttribute("drawingfromtop", drawingFromTop);
                 
-                String nextURL = "confirmationpage.jsp";
+                String nextURL = "showcarportdrawing.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
                     request.getRequestDispatcher("error.jsp").forward(request,response);

@@ -16,9 +16,10 @@
     <body>
         <h1>Hello Customer: <% out.print(user.getEmail()); %> .</h1>
         
-        <a href="calculatorpage.jsp">Order carport</a>
+        <a href="calculatorpage.jsp">Begin to order carport</a>
         <br><br>
         <a href="allorderscustomer.jsp">Click here to see all your orders</a>
-        
+        <br><br><br>
+        <a href="index.html">Log out</a>
     </body>
 </html>

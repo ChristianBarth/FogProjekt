@@ -44,6 +44,6 @@
             <% }%>
         </table>
         <br>
-        <a href="index.html">Back to index</a>
+        <a href="employeepage.jsp">Back to employeepage</a>
     </body>
 </html>

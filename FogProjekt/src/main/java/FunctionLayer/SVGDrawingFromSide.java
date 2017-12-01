@@ -21,11 +21,9 @@ public class SVGDrawingFromSide {
         double inBetweenStolper = SVGDrawingFromSide.calculateInBetweenSide(length);
 
         while (length >= inBetweenStolper) { // Place all the stolper
-            // for (int i = 0; i <= 3; i++) {
             sb.append(Stolpe(inBetweenStolper, xPos, yPos));
             length = length - inBetweenStolper;
             xPos += inBetweenStolper;
-            // }
         }
         return sb.toString();
     }
