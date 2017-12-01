@@ -181,8 +181,9 @@ public class SingleFlatRoofCal {
         double lengthPart = (length / 100) * 6;
         double widthPart = (width / 100) * 6;
         double amountOfScrews = lengthPart + widthPart;
+        double amountOfPacks = Math.ceil(amountOfScrews / 200);
 
-        int resultPart = (int) amountOfScrews;
+        int resultPart = (int) amountOfPacks;
         int priceForParts = resultPart * mm.getProducts().get(20).getPrice();
         Product product = new Product(mm.getProducts().get(20).getName(), mm.getProducts().get(20).getLength(), resultPart, mm.getProducts().get(20).getUnit(), mm.getProducts().get(20).getDescription(), priceForParts);
         return product;
@@ -191,15 +192,16 @@ public class SingleFlatRoofCal {
     //4,0 x 50 mm. beslagskruer 250stk.
     public Product getAmountPart21(double length, double width) {
         double lengthPart = Math.ceil(length / 60);
-        int amountOfSpær = (int) lengthPart;
-        int amountOfBeslag = amountOfSpær * 2;
-        int amountOfScrews = amountOfBeslag * 6;
-        int amountOfScrewsOnBand = (amountOfSpær * 2) * 2;
-        int amountOfPacks = amountOfScrews + amountOfScrewsOnBand;
-
-        int priceForParts = amountOfScrews * mm.getProducts().get(21).getPrice();
-
+        double amountOfSpær = lengthPart;
+        double amountOfBeslag = amountOfSpær * 2;
+        double amountOfScrews = amountOfBeslag * 6;
+        double amountOfScrewsOnBand = (amountOfSpær * 2) * 2;
+        double amountOfPacks = Math.ceil((amountOfScrews + amountOfScrewsOnBand) / 250);
+     
         int resultPart = (int) amountOfPacks;
+        int priceForParts = resultPart * mm.getProducts().get(21).getPrice();
+
+        
         Product product = new Product(mm.getProducts().get(21).getName(), mm.getProducts().get(21).getLength(), resultPart, mm.getProducts().get(21).getUnit(), mm.getProducts().get(21).getDescription(), priceForParts);
         return product;
     }
