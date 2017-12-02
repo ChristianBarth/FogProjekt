@@ -48,7 +48,7 @@
             </tr>
             <% for (Order orders : orderlines) { %>
             <tr>
-                <td><% out.println(orders.getOrdernumber()); %></td>
+                <td> <a href="OrderInfoServletAdminOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a></td>
                 <td><% out.println(orders.getEmail()); %></td>
                 <td><% out.println(orders.getPhonenumber()); %></td>
                 <td><% out.println(orders.getTime()); %></td>
