@@ -9,14 +9,12 @@ import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import FunctionLayer.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -50,8 +48,10 @@ public class OrderInfoServletAdmin extends HttpServlet {
                 
                 if (number <= orderlines.size()) {
                     ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderlines, orderdetails);
+                    int totalPrice = LogicFacade.getTotalPriceForDetails(number, orderdetails);
 
                     request.setAttribute("detailsfromid", detailsfromid);
+                    request.setAttribute("totalprice", totalPrice);
 
                     String nextURL = "/orderinfoadmin.jsp";
                     request.getRequestDispatcher(nextURL).forward(request, response);

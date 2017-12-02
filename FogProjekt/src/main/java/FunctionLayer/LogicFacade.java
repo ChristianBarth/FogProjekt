@@ -5,7 +5,6 @@
  */
 package FunctionLayer;
 
-import DataLayer.MaterialMapper;
 import DataLayer.OrderMapper;
 import DataLayer.UserMapper;
 import java.util.ArrayList;
@@ -42,11 +41,39 @@ public class LogicFacade {
     public static ArrayList<Order> getOrderLinesAdmin() {
         return OrderMapper.getOrderLines();
     }
+        // Orderdetails by id
+    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Order> orderlines, ArrayList<Product> orderdetails) {
+        ArrayList<Product> ordersofid = new ArrayList<Product>();
+        for (int i = 0; i < orderdetails.size(); i++) {
+            if (number == orderdetails.get(i).getId()) {
+                Product product = new Product(
+                        orderdetails.get(i).getName(),
+                        orderdetails.get(i).getLength(),
+                        orderdetails.get(i).getAmount(),
+                        orderdetails.get(i).getUnit(),
+                        orderdetails.get(i).getDescription(),
+                        orderdetails.get(i).getPrice()
+                );
+                ordersofid.add(product);
+            }
+        }
+        return ordersofid;
+    }
 
     public static ArrayList<Product> getOrderDetails() {
         return OrderMapper.getOrderDetails();
     }
 
+        public static int getTotalPriceForDetails(int number, ArrayList<Product> orderdetails) {
+        int totalPrice = 0;
+        for (int i = 0; i < orderdetails.size(); i++) {
+            if (number == orderdetails.get(i).getId()) {
+                totalPrice += orderdetails.get(i).getPrice();
+            }
+        }
+        return totalPrice;
+    }
+        
     public static ArrayList<Order> getOrderLinesCustomer(User user) {
 
         ArrayList<Order> userorderlist = new ArrayList<Order>();
@@ -65,25 +92,6 @@ public class LogicFacade {
             }
         }
         return userorderlist;
-    }
-
-    // Orderdetails by id
-    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Order> orderlines, ArrayList<Product> orderdetails) {
-        ArrayList<Product> ordersofid = new ArrayList<Product>();
-        for (int i = 0; i < orderdetails.size(); i++) {
-            if (number == orderdetails.get(i).getId()) {
-                Product product = new Product(
-                        orderdetails.get(i).getName(),
-                        orderdetails.get(i).getLength(),
-                        orderdetails.get(i).getAmount(),
-                        orderdetails.get(i).getUnit(),
-                        orderdetails.get(i).getDescription(),
-                        orderdetails.get(i).getPrice()
-                );
-                ordersofid.add(product);
-            }
-        }
-        return ordersofid;
     }
 
     // User login and register

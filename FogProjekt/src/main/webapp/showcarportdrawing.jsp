@@ -7,7 +7,6 @@
 <%@page import="FunctionLayer.User"%>
 <%@page import="FunctionLayer.LogicFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%
     int length = (int) session.getAttribute("length");
     int width = (int) session.getAttribute("width");
@@ -16,6 +15,7 @@
     String topDrawing = (String) session.getAttribute("drawingfromtop");
     User user = (User) session.getAttribute("user");
 %>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

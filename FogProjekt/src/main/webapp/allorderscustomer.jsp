@@ -10,11 +10,12 @@
 <%@page import="FunctionLayer.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% User user = (User) session.getAttribute("user"); %>
+<% ArrayList<Order> ListofOrders = LogicFacade.getOrderLinesCustomer(user); %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                <title>All Orders</title>
+        <title>All Orders</title>
     </head>
     <body>
         <h1>Here are all your orders:</h1>
@@ -26,8 +27,7 @@
                 <th>Dato</th>
                 <th>Status</th>
             </tr>
-            <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLinesCustomer(user);
-            for (Order orders : ListofOrders) { %>
+            <% for (Order orders : ListofOrders) { %>
             <tr>
                 <td><% out.println(orders.getOrdernumber()); %></td>
                 <td><% out.println(orders.getEmail()); %></td>

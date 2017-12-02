@@ -7,6 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin(); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,15 +32,16 @@
                 <th>Telefon</th>
                 <th>Dato</th>
                 <th>Status</th>
+                <th>Total Pris</th>
             </tr>
-            <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLinesAdmin();
-            for (Order orders : ListofOrders) { %>
+            <% for (Order orders : orderlines) { %>
             <tr>
                 <td><% out.println(orders.getOrdernumber()); %></td>
                 <td><% out.println(orders.getEmail()); %></td>
                 <td><% out.println(orders.getPhonenumber()); %></td>
                 <td><% out.println(orders.getTime()); %></td>
                 <td><% out.println(orders.getStatus()); %></td>
+                <td>Total Pris</td>
             </tr>
             <% }%>
         </table>

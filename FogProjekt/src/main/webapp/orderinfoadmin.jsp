@@ -7,6 +7,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ArrayList<Product> listorders = (ArrayList<Product>)request.getAttribute( "detailsfromid"); %>
+<% int totalPrice = (int) request.getAttribute("totalprice"); %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,8 +26,7 @@
             <th>Beskrivelse</th>
             <th>Pris</th>
         </tr>
-        <% ArrayList<Product> listorders = (ArrayList<Product>)request.getAttribute( "detailsfromid");
-            for (Product orders : listorders){ %>
+            <% for (Product orders : listorders){ %>
             <tr>
             <td><% out.println(orders.getName()); %></td>
             <td><% out.println(orders.getLength()); %></td>
@@ -36,6 +37,7 @@
             </tr>
         <% } %>
         </table>
+        <h2>Total price of the entire carport: <% out.println(totalPrice); %> DKK </h2>
         <br><br>
             <a href="allordersadmin.jsp">Back to all orders of users</a>
             <br>

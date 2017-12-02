@@ -12,6 +12,7 @@ public class Order {
     private String phonenumber;
     private Date time;
     private String status;
+    private int totalprice;
 
     public Order(int ordernumber, String email, String phonenumber, Date time, String status) {
         this.ordernumber = ordernumber;
@@ -19,6 +20,15 @@ public class Order {
         this.phonenumber = phonenumber;
         this.time = time;
         this.status = status;
+    }
+
+    public Order(int ordernumber, String email, String phonenumber, Date time, String status, int totalprice) {
+        this.ordernumber = ordernumber;
+        this.email = email;
+        this.phonenumber = phonenumber;
+        this.time = time;
+        this.status = status;
+        this.totalprice = totalprice;
     }
 
     public int getOrdernumber() {
@@ -59,6 +69,14 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(int totalprice) {
+        this.totalprice = totalprice;
     }
     
 }
