@@ -9,19 +9,21 @@ import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import FunctionLayer.Product;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Oliver
  */
-@WebServlet(name = "OrderInfoServletAdmin", urlPatterns = {"/OrderInfoServletAdmin"})
-public class OrderInfoServletAdmin extends HttpServlet {
+@WebServlet(name = "OrderLinesServletAdmin", urlPatterns = {"/OrderLinesServletAdmin"})
+public class OrderLinesServletAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,34 +36,18 @@ public class OrderInfoServletAdmin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+        response.setContentType("text/html;charset=UTF-8");
 
-            response.setContentType("text/html;charset=UTF-8");
-            String action = request.getParameter("action");
+        ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
+        ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
+        HttpSession session = request.getSession();
 
-            if ("ordernumberadmin".equals(action)) {
+        ArrayList<Order> orderlineswithTotalPrice = LogicFacade.getTotalPriceForOrder(orderdetails, orderlines);
 
-                String numberString = request.getParameter("number");
-                int number = Integer.parseInt(numberString);
-                ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
-                ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
-                
-                if (number <= orderlines.size()) {
-                    ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderdetails);
-                    int totalPrice = LogicFacade.getTotalPriceForDetails(number, orderdetails);
+        session.setAttribute("orderlineswithtotalprice", orderlineswithTotalPrice);
 
-                    request.setAttribute("detailsfromid", detailsfromid);
-                    request.setAttribute("totalprice", totalPrice);
-
-                    String nextURL = "/orderinfoadmin.jsp";
-                    request.getRequestDispatcher(nextURL).forward(request, response);
-                } else {
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
-                }
-            }
-        } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+        String nextURL = "allordersadmin.jsp";
+        request.getRequestDispatcher(nextURL).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

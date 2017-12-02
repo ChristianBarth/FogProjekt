@@ -13,6 +13,18 @@
 <% ArrayList<Order> ListofOrders = LogicFacade.getOrderLinesCustomer(user); %>
 <!DOCTYPE html>
 <html>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Orders</title>

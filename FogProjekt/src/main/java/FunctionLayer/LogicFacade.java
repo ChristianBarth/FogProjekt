@@ -37,12 +37,17 @@ public class LogicFacade {
         return SVGDrawingFromTop.BuildTopCarport(length, width);
     }
 
-    // Orderlines. Admin has access to orderdetails.
+    // Orderlines and orderdetails. Admin has access to orderdetails.
     public static ArrayList<Order> getOrderLinesAdmin() {
         return OrderMapper.getOrderLines();
     }
-        // Orderdetails by id
-    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Order> orderlines, ArrayList<Product> orderdetails) {
+
+    public static ArrayList<Product> getOrderDetails() {
+        return OrderMapper.getOrderDetails();
+    }
+
+    // Orderdetails by id
+    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Product> orderdetails) {
         ArrayList<Product> ordersofid = new ArrayList<Product>();
         for (int i = 0; i < orderdetails.size(); i++) {
             if (number == orderdetails.get(i).getId()) {
@@ -60,11 +65,7 @@ public class LogicFacade {
         return ordersofid;
     }
 
-    public static ArrayList<Product> getOrderDetails() {
-        return OrderMapper.getOrderDetails();
-    }
-
-        public static int getTotalPriceForDetails(int number, ArrayList<Product> orderdetails) {
+    public static int getTotalPriceForDetails(int number, ArrayList<Product> orderdetails) {
         int totalPrice = 0;
         for (int i = 0; i < orderdetails.size(); i++) {
             if (number == orderdetails.get(i).getId()) {
@@ -73,7 +74,7 @@ public class LogicFacade {
         }
         return totalPrice;
     }
-        
+
     public static ArrayList<Order> getOrderLinesCustomer(User user) {
 
         ArrayList<Order> userorderlist = new ArrayList<Order>();
@@ -101,5 +102,41 @@ public class LogicFacade {
 
     public static User login(String email, String password) throws LoginException {
         return UserMapper.login(email, password);
+    }
+
+    public static ArrayList<Order> getTotalPriceForOrder(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+
+        ArrayList<Order> orderlist = new ArrayList<Order>();
+        int numberindexstart = 0;
+        int numberindexstop = 17;
+        int indexmeterfororderline = 0;
+
+        for (int i = 0; i < orderlines.size(); i++) {
+            Order order = new Order(
+                    orderlines.get(i).getOrdernumber(),
+                    orderlines.get(i).getEmail(),
+                    orderlines.get(i).getPhonenumber(),
+                    orderlines.get(i).getTime(),
+                    orderlines.get(i).getStatus(),
+                    LogicFacade.getTotalPriceForEachOrder(numberindexstart, numberindexstop, indexmeterfororderline, orderdetails, orderlines)
+            );
+            orderlist.add(order);
+            numberindexstart += 17;
+            numberindexstop += 17;
+            indexmeterfororderline += 1;
+        }
+        return orderlist;
+    }
+    
+        public static int getTotalPriceForEachOrder(int numberindexstart, int numberindexstop, int indexmeterfororderline, ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+
+        int totalPrice = 0;
+
+        for (int i = numberindexstart; i < numberindexstop; i++) {
+                if (orderlines.get(indexmeterfororderline).getOrdernumber() == orderdetails.get(i).getId()) {
+                    totalPrice += orderdetails.get(i).getPrice();
+                }
+            }
+        return totalPrice;
     }
 }

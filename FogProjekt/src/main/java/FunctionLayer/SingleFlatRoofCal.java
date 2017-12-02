@@ -245,6 +245,7 @@ public class SingleFlatRoofCal {
         MaterialList.add(sfrc.getLengthPart2(length));
         MaterialList.add(sfrc.getLengthPart3(length));
         MaterialList.add(sfrc.getLengthPart7(length));
+        MaterialList.add(sfrc.getLengthPart9(length));
         MaterialList.add(sfrc.getLengthPart10(length));
         MaterialList.add(sfrc.getLengthPart14(length, width));
         MaterialList.add(sfrc.getLengthPart15(length, width));

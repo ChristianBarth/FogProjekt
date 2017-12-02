@@ -7,9 +7,21 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin(); %>
+<% ArrayList<Order> orderlines = (ArrayList<Order>) session.getAttribute("orderlineswithtotalprice"); %>
 <!DOCTYPE html>
 <html>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+        }
+    </style>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Orders</title>
@@ -31,8 +43,8 @@
                 <th>Email</th>
                 <th>Telefon</th>
                 <th>Dato</th>
-                <th>Status</th>
                 <th>Total Pris</th>
+                <th>Status</th>
             </tr>
             <% for (Order orders : orderlines) { %>
             <tr>
@@ -40,8 +52,8 @@
                 <td><% out.println(orders.getEmail()); %></td>
                 <td><% out.println(orders.getPhonenumber()); %></td>
                 <td><% out.println(orders.getTime()); %></td>
+                <td><% out.println(orders.getTotalprice()); %></td>
                 <td><% out.println(orders.getStatus()); %></td>
-                <td>Total Pris</td>
             </tr>
             <% }%>
         </table>

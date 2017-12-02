@@ -41,21 +41,20 @@ public class IDtests {
     public void tearDown() {
     }
 
-    @Test
-    public void getProductsByID() {
-        ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
-        ArrayList<Product> products = LogicFacade.getOrderDetails();
-        int number = 2;
-        ArrayList<Product> productsfromid = LogicFacade.getOrderProductsFromID(number ,orderlines, products);
-        for (Product productids : productsfromid){
-            System.out.println(productids.getName());
-            System.out.println(productids.getLength());
-            System.out.println(productids.getAmount());
-            System.out.println(productids.getUnit());
-            System.out.println(productids.getDescription());
-            System.out.println(productids.getPrice());
-            
-        }
-    }
+//    @Test
+//    public void getProductsByID() {
+//        ArrayList<Product> products = LogicFacade.getOrderDetails();
+//        int number = 2;
+//        ArrayList<Product> productsfromid = LogicFacade.getOrderProductsFromID(number , products);
+//        for (Product productids : productsfromid){
+//            System.out.println(productids.getName());
+//            System.out.println(productids.getLength());
+//            System.out.println(productids.getAmount());
+//            System.out.println(productids.getUnit());
+//            System.out.println(productids.getDescription());
+//            System.out.println(productids.getPrice());
+//            
+//        }
+//    }
 
 }
