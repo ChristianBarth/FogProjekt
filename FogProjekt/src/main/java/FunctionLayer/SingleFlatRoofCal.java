@@ -82,7 +82,7 @@ public class SingleFlatRoofCal {
 
     // 45x195mm (600cm) spærtræ ubh. Remme i sider, sadles ned i stolper.
     public Product getLengthPart7(double length) {
-        double lengthPart = Math.ceil(length / mm.getProducts().get(7).getLength());
+        double lengthPart = Math.ceil(length / mm.getProducts().get(7).getLength()) * 2;
         int lengthPartInt = (int) lengthPart;
         int priceForParts = lengthPartInt * mm.getProducts().get(7).getPrice();
         Product product = new Product(mm.getProducts().get(7).getName(), mm.getProducts().get(7).getLength(), lengthPartInt, mm.getProducts().get(7).getUnit(), mm.getProducts().get(7).getDescription(), priceForParts);
