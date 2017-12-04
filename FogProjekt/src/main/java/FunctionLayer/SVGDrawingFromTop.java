@@ -10,7 +10,7 @@ package FunctionLayer;
  * @author Oliver
  */
 public class SVGDrawingFromTop {
-    
+
     public static String BuildTopCarport(double length, int width) {
         StringBuilder sb = new StringBuilder();
         sb.append(layer( length, width));
@@ -52,4 +52,4 @@ public class SVGDrawingFromTop {
                 + size / 100 + "m" + "</text>\n";
         return res;
     }
-}
+    }
