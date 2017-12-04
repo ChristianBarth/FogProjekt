@@ -23,11 +23,11 @@
     </head>
 
     <body>
-        <h1>Vi modtog dine oplysninger. Herunder kan du se din valgte carport <% out.print(user.getEmail()); %> . </h1>
+        <h1>Vi modtog dine oplysninger. Herunder kan du se din valgte carport <% out.print(user.getEmail());%> . </h1>
         <br>
         <h1>Top Carport tegning</h1>
         <svg width="50%" 
-             viewBox="0 0 <%=length + 110%> <%=width + 80%>">
+             viewBox="0 0 <%=length + 101%> <%=width + 81%>">
         <defs>
     <marker id="beginArrow" 
             markerWidth="9" markerHeight="9" 
@@ -42,32 +42,41 @@
         <path d="M0,0 L8,4 L0,8 L0,0" style="fill: #000000;" />
     </marker>
     </defs>
-    <svg x="100" y="0" width="<%=length + 1%>" height="<%=width + 4%>" 
-         viewBox="0 0 <%=length + 1%> <%=width + 4%>">
+    <svg x="101" y="0" width="<%=length + 1%>" height="<%=width + 1%>" 
+         viewBox="0 0 <%=length + 1%> <%=width + 1%>">
     <% out.println(topDrawing);%>
     </svg>
-    <!-- Vertical line -->
-    <line x1="70"  y1="0" x2="70" y2="<%=width%>" 
+    <!-- Vertical line 1 -->
+    <line x1="40"  y1="0" x2="40" y2="<%=width%>" 
           style="stroke:#006600;
           marker-start: url(#beginArrow);
           marker-end: url(#endArrow);"/>
-    <text x="40" y="<%=width / 2%>"
+    <text x="25" y="<%=width / 2%>"
           font-size="15px"
           text-anchor="middle"
           style="writing-mode: tb;">Width: <%=width%></text>
-    <!-- Horizontal line %-->
-    <line x1="100"  y1="<%=width + 40%>" x2="<%=length + 90%>"   y2="<%=width + 40%>" 
+    <!-- Vertical line 2 -->
+    <line x1="90"  y1="36" x2="90" y2="<%=width - 30%>" 
           style="stroke:#006600;
           marker-start: url(#beginArrow);
           marker-end: url(#endArrow);"/>
-    <text x="<%=length / 2 + 100%>" y="<%=width + 80%>"
+    <text x="75" y="<%=(width - 35) / 2%>"
+          font-size="15px"
+          text-anchor="middle"
+          style="writing-mode: tb;">Width: <%=width - 70%></text>
+    <!-- Horizontal line %-->
+    <line x1="100"  y1="<%=width + 40%>" x2="<%=length + 100%>"   y2="<%=width + 40%>" 
+          style="stroke:#006600;
+          marker-start: url(#beginArrow);
+          marker-end: url(#endArrow);"/>
+    <text x="<%=length / 2 + 100%>" y="<%=width + 65%>"
           font-size="15px"
           text-anchor="middle">Length: <%=length%></text>
     </svg>
     <br>
     <h1>Side Carport tegning</h1>
     <svg width="50%" 
-         viewBox="0 0 <%=length + 110%> <%=height + 80%>">
+         viewBox="0 0 <%=length + 101%> <%=height + 81%>">
     <defs>
     <marker id="beginArrow" 
             markerWidth="9" markerHeight="9" 
@@ -82,25 +91,34 @@
         <path d="M0,0 L8,4 L0,8 L0,0" style="fill: #000000;" />
     </marker>
     </defs>
-    <svg x="100" y="0" width="<%=length + 1%>" height="<%=height + 4%>" 
-         viewBox="0 0 <%=length + 1%> <%=height + 4%>">
+    <svg x="101" y="0" width="<%=length + 1%>" height="<%=height + 1%>" 
+         viewBox="0 0 <%=length + 1%> <%=height + 1%>">
     <% out.println(sideDrawing);%>
     </svg>
-    <!-- Vertical line -->
-    <line x1="70"  y1="0" x2="70" y2="<%=height%>" 
+    <!-- Vertical line 1-->
+    <line x1="40"  y1="0" x2="40" y2="<%=height%>" 
           style="stroke:#006600;
           marker-start: url(#beginArrow);
           marker-end: url(#endArrow);"/>
-    <text x="40" y="<%=height / 2%>"
+    <text x="25" y="<%=height / 2%>"
           font-size="15px"
           text-anchor="middle"
           style="writing-mode: tb;">Height: <%=height%></text>
+    <!-- Vertical line 2 -->
+    <line x1="90"  y1="34" x2="90" y2="<%=height - 30%>" 
+          style="stroke:#006600;
+          marker-start: url(#beginArrow);
+          marker-end: url(#endArrow);"/>
+    <text x="75" y="<%=(height - 30) / 2%>"
+          font-size="15px"
+          text-anchor="middle"
+          style="writing-mode: tb;">Height: <%=height - 30%></text>
     <!-- Horizontal line %-->
     <line x1="100"  y1="<%=height + 40%>" x2="<%=length + 100%>"   y2="<%=height + 40%>" 
           style="stroke:#006600;
           marker-start: url(#beginArrow);
           marker-end: url(#endArrow);"/>
-    <text x="<%=length / 2 + 100%>" y="<%=height + 80%>"
+    <text x="<%=length / 2 + 100%>" y="<%=height + 65%>"
           font-size="15px"
           text-anchor="middle">Length: <%=length%></text>
     </svg>
@@ -109,7 +127,7 @@
     <form name="confirmordernow" action="ConfirmOrderServlet" method="POST">
         Er du sikker på dit køb?:
         <br><br>
-        <button type="submit" name="action" value="confirmorder">Submit</button>
+        <button type="submit" name="action" value="confirmorder">Ja</button>
     </form>
     <br>
     <br>
