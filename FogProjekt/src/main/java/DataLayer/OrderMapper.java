@@ -118,4 +118,17 @@ public class OrderMapper {
         }
         return productOrderDetails;
     }
+    
+    public static void updateStatusOnOrder(Order order, String status){
+        try { 
+            Connection con = Connector.connection();
+            String SQL = "UPDATE orders SET status=? WHERE ordernumber=" + order.getOrdernumber();
+            PreparedStatement ps = con.prepareStatement(SQL);
+            
+            ps.setString(1, status);
+            ps.executeUpdate();
+            
+        } catch (Exception e) {
+        }
+    }
 }

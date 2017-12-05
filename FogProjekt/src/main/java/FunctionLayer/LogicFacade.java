@@ -127,16 +127,22 @@ public class LogicFacade {
         }
         return orderlist;
     }
-    
-        public static int getTotalPriceForEachOrder(int numberindexstart, int numberindexstop, int indexmeterfororderline, ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+
+    public static int getTotalPriceForEachOrder(int numberindexstart, int numberindexstop, int indexmeterfororderline, ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
 
         int totalPrice = 0;
 
         for (int i = numberindexstart; i < numberindexstop; i++) {
-                if (orderlines.get(indexmeterfororderline).getOrdernumber() == orderdetails.get(i).getId()) {
-                    totalPrice += orderdetails.get(i).getPrice();
-                }
+            if (orderlines.get(indexmeterfororderline).getOrdernumber() == orderdetails.get(i).getId()) {
+                totalPrice += orderdetails.get(i).getPrice();
             }
+        }
         return totalPrice;
+    }
+
+    public static void putStatusIntoDatabase(Order order, String status) {
+        
+        OrderMapper.updateStatusOnOrder(order, status);
+        
     }
 }

@@ -59,7 +59,7 @@ public class OrderInfoServletAdminOnClick extends HttpServlet {
 
         } catch (Exception e) {
 
-            String nextURL = "orderinfoadmin.jsp";
+            String nextURL = "error.jsp";
             request.getRequestDispatcher(nextURL).forward(request, response);
 
         }

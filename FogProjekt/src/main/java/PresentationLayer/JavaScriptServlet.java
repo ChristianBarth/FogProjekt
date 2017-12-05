@@ -7,10 +7,8 @@ package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
-import FunctionLayer.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Oliver
  */
-@WebServlet(name = "OrderLinesServletAdmin", urlPatterns = {"/OrderLinesServletAdmin"})
-public class OrderLinesServletAdmin extends HttpServlet {
+@WebServlet(name = "JavaScriptServlet", urlPatterns = {"/JavaScriptServlet"})
+public class JavaScriptServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,24 +35,15 @@ public class OrderLinesServletAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        try {
-
-            ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
-            ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
-            HttpSession session = request.getSession();
-
-            ArrayList<Order> orderlineswithTotalPrice = LogicFacade.getTotalPriceForOrder(orderdetails, orderlines);
-
-            session.setAttribute("orderlineswithtotalprice", orderlineswithTotalPrice);
-
-            String nextURL = "allordersadmin.jsp";
-            request.getRequestDispatcher(nextURL).forward(request, response);
-        } catch (Exception e) {
-            
-            String nextURL = "error.jsp";
-            request.getRequestDispatcher(nextURL).forward(request, response);
-        }
+        
+        HttpSession sessionordernumber = request.getSession();
+        Order order = (Order) sessionordernumber.getAttribute("specificorder");
+        String status = request.getParameter("status");
+        
+        LogicFacade.putStatusIntoDatabase(order, status);
+        
+        String nextURL = "/OrderLinesServletAdmin";
+        request.getRequestDispatcher(nextURL).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

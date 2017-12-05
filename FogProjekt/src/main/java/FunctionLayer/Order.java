@@ -31,6 +31,10 @@ public class Order {
         this.totalprice = totalprice;
     }
 
+    public Order(int ordernumber) {
+        this.ordernumber = ordernumber;
+    }
+
     public int getOrdernumber() {
         return ordernumber;
     }
