@@ -10,31 +10,48 @@ package FunctionLayer;
  * @author Oliver
  */
 public class SVGDrawingFromTop {
-    
+
     public static String BuildTopCarport(double length, int width) {
         StringBuilder sb = new StringBuilder();
-        sb.append(layer( length, width));
+        sb.append(RemmeOgSpærLayer(length, (double) width));
+        sb.append(StolpeLayer(length, (double) width));
+        sb.append(tests(length, (double) width));
         return sb.toString();
     }
 
-    private static String layer(double length, int yPos) {
-        return putSpær(length, 0, yPos);
+    private static String RemmeOgSpærLayer(double length, double yPos) {
+        return putRemmeOgSpær(length, 0, yPos);
     }
 
-    public static String putSpær(double length, int xPos, int yPos) {
+    private static String StolpeLayer(double length, double yPos) {
+        return putStolper(length, 0, yPos);
+    }
+
+    private static String tests(double length, double yPos) {
+        return putTest(length, yPos);
+    }
+
+    public static String putRemmeOgSpær(double length, int xPos, double yPos) {
 
         StringBuilder sb = new StringBuilder();
-        double inBetweenSpær = SVGDrawingFromTop.calculateInBetweenTop(length);
+        double inBetweenSpær = SVGDrawingFromTop.calculateInBetweenSpærFromTop(length);
+
+        // - 2 for den præcise længde på x - aksen. 4,5 er spærets bredde
+        sb.append(Remme(length - 2, (yPos - 35)));
+        sb.append(Remme(length - 2, (yPos - 35 + 4.50)));
+        sb.append(Remme(length - 2, 0 + 35));
+        sb.append(Remme(length - 2, 0 + 35 + 4.50));
 
         while (length >= inBetweenSpær) { // Place all the spær
-            sb.append(Spær(inBetweenSpær, xPos, yPos));
+            sb.append(Spær(inBetweenSpær, xPos, (int) yPos));
             length = length - inBetweenSpær;
             xPos += inBetweenSpær;
         }
+
         return sb.toString();
     }
 
-    public static double calculateInBetweenTop(double length) {
+    public static double calculateInBetweenSpærFromTop(double length) {
 
         double amountofStolperDouble = Math.ceil(length / 60);
         int amountofStolperInt = (int) amountofStolperDouble;
@@ -43,13 +60,78 @@ public class SVGDrawingFromTop {
 
     }
 
-    public static String Spær(double size, int xPos, int yPos) {
-        String res = "<rect x='" + xPos + "' y='" + 1 + "' width='" + size + "' height='" + yPos + "'"
-                + "style=\"stroke: #000000; fill: #ffffff\"/>";
-        res += "<text x='" + (xPos + size / 2) + "' y='" + (yPos - 10) + "' "
+    public static String putStolper(double length, int xPos, double yPos) {
+
+        StringBuilder sb = new StringBuilder();
+        double inBetweenStolper = SVGDrawingFromTop.calculateInBetweenStolperFromTop(length);
+
+        // 7 for den præcise længde på x - aksen.
+        sb.append(StolperSeenFromTop(7, 35 - 2.25));
+        sb.append(StolperSeenFromTop(7, 0 + yPos - 35 - 2.25));
+        sb.append(StolperSeenFromTop(length - 7, yPos - 35 - 2.25));
+        sb.append(StolperSeenFromTop(length - 7, 35 - 2.25));
+
+        while (length >= inBetweenStolper) {
+            sb.append(StolperSeenFromTop(inBetweenStolper, yPos - 35 - 2.25));
+            sb.append(StolperSeenFromTop(inBetweenStolper, 35 - 2.25));
+            length = length - inBetweenStolper;
+            inBetweenStolper += inBetweenStolper;
+        }
+
+        return sb.toString();
+
+    }
+
+    public static double calculateInBetweenStolperFromTop(double length) {
+
+        double amountofStolperDouble = Math.ceil(length / 310);
+        int amountofStolperInt = (int) amountofStolperDouble;
+        int lengthInBetween = (int) length / amountofStolperInt;
+        return lengthInBetween;
+
+    }
+
+    public static String putTest(double length, double yPos) {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(testmetode1(length, yPos));
+        sb.append(testmetode2(length, yPos));
+
+        return sb.toString();
+    }
+
+    public static String Spær(double length, int xPos, int yPos) {
+        String res = "<rect x='" + xPos + "' y='" + 1 + "' width='" + length + "' height='" + yPos + "'"
+                + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
+        res += "<text x='" + (xPos + length / 2) + "' y='" + (yPos - 10) + "' "
                 + "font-family=\"Verdana\" font-size=\"15px\""
                 + "text-anchor=\"middle\" alignment-baseline=\"middle\">"
-                + size / 100 + "m" + "</text>\n";
+                + length / 100 + "m" + "</text>\n";
+        return res;
+    }
+
+    public static String Remme(double xPos, double yPos) {
+        String res = "<Line x1='" + 0 + "' y1='" + yPos + "' x2='" + xPos + "' y2='" + yPos + "'"
+                + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
+        return res;
+    }
+
+    public static String StolperSeenFromTop(double xPos, double yPos) {
+        String res = "<rect x='" + (xPos - 5) + "' y='" + yPos + "' width='" + 9.7 + "' height='" + 9.7 + "'"
+                + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
+        return res;
+    }
+
+    public static String testmetode1(double xPos, double yPos) {
+        String res = "<Line stroke-dasharray=\"5, 10\" x1='" + (xPos * 0.90) + "' y1='" + 35 + "' x2='" + (xPos * 0.10) + "' y2='" + (yPos - 30) + "'"
+                + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
+        return res;
+    }
+
+    public static String testmetode2(double xPos, double yPos) {
+        String res = "<Line stroke-dasharray=\"5, 10\" x1='" + (xPos * 0.10) + "' y1='" + 35 + "' x2='" + (xPos * 0.90) + "' y2='" + (yPos - 30) + "'"
+                + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
         return res;
     }
 }

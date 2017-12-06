@@ -50,7 +50,7 @@
             <tr>
                 <td> <a href="OrderInfoServletAdminOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a></td>
                 <td><% out.println(orders.getEmail()); %></td>
-                <td><% out.println(orders.getPhonenumber()); %></td>
+                <td><a href="tel://45-<%=orders.getPhonenumber()%>"> <% out.println("+45 " + orders.getPhonenumber()); %> </a></td>
                 <td><% out.println(orders.getTime()); %></td>
                 <td><% out.println(orders.getTotalprice()); %></td>
                 <td><% out.println(orders.getStatus()); %></td>
