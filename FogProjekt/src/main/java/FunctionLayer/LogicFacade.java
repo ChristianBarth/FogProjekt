@@ -140,9 +140,9 @@ public class LogicFacade {
         return totalPrice;
     }
 
-    public static void putStatusIntoDatabase(Order order, String status) {
+    public static void putStatusIntoDatabase(int ordernumber, String status) {
         
-        OrderMapper.updateStatusOnOrder(order, status);
+        OrderMapper.updateStatusOnOrder(ordernumber, status);
         
     }
 }

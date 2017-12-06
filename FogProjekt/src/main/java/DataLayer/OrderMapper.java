@@ -119,10 +119,10 @@ public class OrderMapper {
         return productOrderDetails;
     }
     
-    public static void updateStatusOnOrder(Order order, String status){
+    public static void updateStatusOnOrder(int ordernumber, String status){
         try { 
             Connection con = Connector.connection();
-            String SQL = "UPDATE orders SET status=? WHERE ordernumber=" + order.getOrdernumber();
+            String SQL = "UPDATE orders SET status=? WHERE ordernumber=" + ordernumber;
             PreparedStatement ps = con.prepareStatement(SQL);
             
             ps.setString(1, status);

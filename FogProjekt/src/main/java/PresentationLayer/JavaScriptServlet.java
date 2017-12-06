@@ -36,11 +36,11 @@ public class JavaScriptServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession sessionordernumber = request.getSession();
-        Order order = (Order) sessionordernumber.getAttribute("specificorder");
+        String ordernumberString = request.getParameter("ordernumber");
+        int ordernumber = Integer.parseInt(ordernumberString);
         String status = request.getParameter("status");
         
-        LogicFacade.putStatusIntoDatabase(order, status);
+        LogicFacade.putStatusIntoDatabase(ordernumber, status);
         
         String nextURL = "/OrderLinesServletAdmin";
         request.getRequestDispatcher(nextURL).forward(request, response);
