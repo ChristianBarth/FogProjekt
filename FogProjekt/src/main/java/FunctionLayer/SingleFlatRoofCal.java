@@ -28,7 +28,6 @@ public class SingleFlatRoofCal {
 //
 //        double length = 780;
 //        double width = 600;
-
 //        System.out.println("Part0 - Amount: " + sfrc.getLengthPart0(width).getAmount() + " Product: " + mm.getProducts().get(0).getName());
 //        System.out.println("Part1 - Amount: " + sfrc.getLengthPart1(length).getAmount() + " Product: " + mm.getProducts().get(1).getName());
 //        System.out.println("Part2 - Amount: " + sfrc.getLengthPart2(width).getAmount() + " Product: " + mm.getProducts().get(2).getName());
@@ -45,7 +44,7 @@ public class SingleFlatRoofCal {
     private MaterialMapper mm = new MaterialMapper();
 
     // 25x200mm (360cm) trykimp. Brædt til længden, på forende og bagende
-    public Product getLengthPart0(double length) {
+    public Product getAmountPart0(double length) {
         double lengthPart = (Math.ceil(length / mm.getProducts().get(0).getLength() * 2));
         int lengthPartInt = (int) lengthPart;
         int priceForParts = lengthPartInt * mm.getProducts().get(0).getPrice();
@@ -54,7 +53,7 @@ public class SingleFlatRoofCal {
     }
 
     // 25x200 mm (540cm) trykimp. Brædt til længden af siderne
-    public Product getLengthPart1(double length) {
+    public Product getAmountPart1(double length) {
         double lengthPart = (Math.ceil(length / mm.getProducts().get(1).getLength() * 2));
         int lengthPartInt = (int) lengthPart;
         int priceForParts = lengthPartInt * mm.getProducts().get(1).getPrice();
@@ -63,7 +62,7 @@ public class SingleFlatRoofCal {
     }
 
     // 25x125mm (360cm) trykimp. Brædt til oversternsbrædder til forenden
-    public Product getLengthPart2(double length) {
+    public Product getAmountPart2(double length) {
         double lengthPart = Math.ceil(length / mm.getProducts().get(2).getLength());
         int lengthPartInt = (int) lengthPart;
         int priceForParts = lengthPartInt * mm.getProducts().get(2).getPrice();
@@ -72,7 +71,7 @@ public class SingleFlatRoofCal {
     }
 
     // 25x125mm (540cm) trykimp. Brædt til oversternsbrædder til siderne
-    public Product getLengthPart3(double length) {
+    public Product getAmountPart3(double length) {
         double lengthPart = (Math.ceil(length / mm.getProducts().get(3).getLength() * 2));
         int lengthPartInt = (int) lengthPart;
         int priceForParts = lengthPartInt * mm.getProducts().get(3).getPrice();
@@ -80,8 +79,45 @@ public class SingleFlatRoofCal {
         return product;
     }
 
+    // til z på bagside af dør	
+    public Product getAmountPart4(int length, double width) {
+        int lengthPart = length / mm.getProducts().get(4).getLength();
+        int amountOfLægte = lengthPart;
+        int resultPart = amountOfLægte;
+
+        int priceForParts = resultPart * mm.getProducts().get(4).getPrice();
+
+        Product product = new Product(mm.getProducts().get(4).getName(), mm.getProducts().get(4).getLength(), resultPart, mm.getProducts().get(4).getUnit(), mm.getProducts().get(4).getDescription(), priceForParts);
+        return product;
+    }
+
+    // løsholter til skur gavle	
+    public Product getAmountPart5(double length, double width) {
+        double lengthPart = Math.ceil(width / mm.getProducts().get(5).getLength()) * 4;
+        int amountOfLøsholter = (int) lengthPart;
+        int resultPart = amountOfLøsholter;
+
+        int priceForParts = resultPart * mm.getProducts().get(5).getPrice();
+
+        Product product = new Product(mm.getProducts().get(5).getName(), mm.getProducts().get(5).getLength(), resultPart, mm.getProducts().get(5).getUnit(), mm.getProducts().get(5).getDescription(), priceForParts);
+        return product;
+    }
+
+    // løsholter til skur sider
+    public Product getAmountPart6(double length, double width) {
+        int amountOfSkurSider = 4;
+        int amountOfLøsholter = amountOfSkurSider;
+        int resultPart = amountOfLøsholter;
+
+        int priceForParts = resultPart * mm.getProducts().get(6).getPrice();
+
+        Product product = new Product(mm.getProducts().get(6).getName(), mm.getProducts().get(6).getLength(), resultPart, mm.getProducts().get(6).getUnit(), mm.getProducts().get(6).getDescription(), priceForParts);
+        return product;
+        
+    }
+
     // 45x195mm (600cm) spærtræ ubh. Remme i sider, sadles ned i stolper.
-    public Product getLengthPart7(double length) {
+    public Product getAmountPart7(double length) {
         double lengthPart = Math.ceil(length / mm.getProducts().get(7).getLength());
         int lengthPartInt = (int) lengthPart;
         int priceForParts = lengthPartInt * mm.getProducts().get(7).getPrice();
@@ -89,8 +125,19 @@ public class SingleFlatRoofCal {
         return product;
     }
 
+    // Remme i sider, sadles ned i stolper (skur del, deles)	
+    public Product getAmountPart8(double length, double width) {
+        int amountOfRemme = 1;
+        int resultPart = amountOfRemme;
+
+        int priceForParts = resultPart * mm.getProducts().get(8).getPrice();
+
+        Product product = new Product(mm.getProducts().get(8).getName(), mm.getProducts().get(8).getLength(), resultPart, mm.getProducts().get(8).getUnit(), mm.getProducts().get(8).getDescription(), priceForParts);
+        return product;
+    }
+
     // 45x195mm (600cm) spærtræ ubh. spær monteres på rem
-    public Product getLengthPart9(double length) {
+    public Product getAmountPart9(double length) {
         double lengthPart = Math.ceil(length / 60);
         int lengthPartInt = (int) lengthPart;
         Product product = new Product(mm.getProducts().get(9).getName(), mm.getProducts().get(9).getLength(), lengthPartInt, mm.getProducts().get(9).getUnit(), mm.getProducts().get(9).getDescription(), mm.getProducts().get(9).getPrice());
@@ -98,7 +145,7 @@ public class SingleFlatRoofCal {
     }
 
     //97x97 mm. trykimp. Stolpe
-    public Product getLengthPart10(double length) {
+    public Product getAmountPart10(double length) {
         double lengthPart = ((Math.ceil(length / 310)) + 1) * 2;
         int amountStolper = (int) lengthPart;
         int priceForParts = amountStolper * mm.getProducts().get(10).getPrice();
@@ -106,8 +153,46 @@ public class SingleFlatRoofCal {
         return product;
     }
 
+    // til beklædning af skur 1 på 2 (sider?)
+    public Product getAmountPart11(double length, double width) {
+        double lengthPart = Math.ceil(width * 0.19);
+        int amountOfBrædt = (int) lengthPart;
+        int resultPart = amountOfBrædt;
+
+        int priceForParts = resultPart * mm.getProducts().get(11).getPrice();
+
+        Product product = new Product(mm.getProducts().get(11).getName(), mm.getProducts().get(11).getLength(), resultPart, mm.getProducts().get(11).getUnit(), mm.getProducts().get(11).getDescription(), priceForParts);
+        return product;
+    }
+
+    // vandbrædt på stern i sider
+    public Product getAmountPart12(double length, double width) {
+        double lengthPart = Math.ceil(length / mm.getProducts().get(12).getLength());
+        int amountOfSkurSider = 2;
+        int amountOfVandbrædt = amountOfSkurSider + (int) lengthPart;
+        int resultPart = amountOfVandbrædt;
+
+        int priceForParts = resultPart * mm.getProducts().get(12).getPrice();
+
+        Product product = new Product(mm.getProducts().get(12).getName(), mm.getProducts().get(12).getLength(), resultPart, mm.getProducts().get(12).getUnit(), mm.getProducts().get(12).getDescription(), priceForParts);
+        return product;
+    }
+
+    // vandbrædt på stern i forende
+    public Product getAmountPart13(double length, double width) {
+        double lengthPart = Math.ceil(width / mm.getProducts().get(13).getLength());
+        int amountOfSkurSider = 1;
+        int amountOfVandbrædt = amountOfSkurSider + (int) lengthPart;
+        int resultPart = amountOfVandbrædt;
+
+        int priceForParts = resultPart * mm.getProducts().get(13).getPrice();
+
+        Product product = new Product(mm.getProducts().get(13).getName(), mm.getProducts().get(13).getLength(), resultPart, mm.getProducts().get(13).getUnit(), mm.getProducts().get(13).getDescription(), priceForParts);
+        return product;
+    }
+
     // Plastmo Ecolite blåtonet (600x109cm)
-    public Product getLengthPart14(double length, double width) {
+    public Product getAmountPart14(double length, double width) {
         double lengthPart = Math.ceil(length / mm.getProducts().get(14).getLength());
         double widthPart = Math.ceil(width / 109);
         int resultPart = (int) (lengthPart * widthPart);
@@ -117,7 +202,7 @@ public class SingleFlatRoofCal {
     }
 
     // Plastmo Ecolite blåtonet (360x109cm)
-    public Product getLengthPart15(double length, double width) {
+    public Product getAmountPart15(double length, double width) {
         double lengthPart = Math.ceil(length / mm.getProducts().get(15).getLength());
         double widthPart = Math.ceil(width / 109);
         int resultPart = (int) (lengthPart * widthPart);
@@ -133,7 +218,7 @@ public class SingleFlatRoofCal {
         int resultPart = (int) (lengthPart * widthPart);
         int amountOfScrews = resultPart * 50;
         double amountOfPacks = Math.ceil(amountOfScrews / 200);
-        
+
         int resultPart2 = (int) amountOfPacks;
         int priceForParts = resultPart2 * mm.getProducts().get(16).getPrice();
         Product product = new Product(mm.getProducts().get(16).getName(), mm.getProducts().get(16).getLength(), resultPart2, mm.getProducts().get(16).getUnit(), mm.getProducts().get(16).getDescription(), priceForParts);
@@ -189,7 +274,7 @@ public class SingleFlatRoofCal {
         return product;
     }
 
-    //4,0 x 50 mm. beslagskruer 250stk.
+    //4,0 x 50 mm. beslagskruer 250stk. (60 cm max afstand mellem spær)
     public Product getAmountPart21(double length, double width) {
         double lengthPart = Math.ceil(length / 60);
         double amountOfSpær = lengthPart;
@@ -197,11 +282,10 @@ public class SingleFlatRoofCal {
         double amountOfScrews = amountOfBeslag * 6;
         double amountOfScrewsOnBand = (amountOfSpær * 2) * 2;
         double amountOfPacks = Math.ceil((amountOfScrews + amountOfScrewsOnBand) / 250);
-     
+
         int resultPart = (int) amountOfPacks;
         int priceForParts = resultPart * mm.getProducts().get(21).getPrice();
 
-        
         Product product = new Product(mm.getProducts().get(21).getName(), mm.getProducts().get(21).getLength(), resultPart, mm.getProducts().get(21).getUnit(), mm.getProducts().get(21).getDescription(), priceForParts);
         return product;
     }
@@ -235,20 +319,86 @@ public class SingleFlatRoofCal {
         return product;
     }
 
+    // til montering af yderste beklædning (400 per pakke)
+    public Product getAmountPart24(double length, double width) {
+        double lengthPart = Math.ceil(width * 0.19);
+        double amountOfBrædt = lengthPart;
+        double amountOfScrews = amountOfBrædt * 4;
+        double amountOfPacks = Math.ceil(amountOfScrews / 400);
+        int resultPart = (int) amountOfPacks;
+
+        int priceForParts = resultPart * mm.getProducts().get(24).getPrice();
+
+        Product product = new Product(mm.getProducts().get(24).getName(), mm.getProducts().get(24).getLength(), resultPart, mm.getProducts().get(24).getUnit(), mm.getProducts().get(24).getDescription(), priceForParts);
+        return product;
+    }
+
+    // til montering af inderste beklædning (300 per pakke)
+    public Product getAmountPart25(double length, double width) {
+        double lengthPart = Math.ceil(width * 0.19);
+        double amountOfBrædt = lengthPart;
+        double amountOfScrews = amountOfBrædt * 4;
+        double amountOfPacks = Math.ceil(amountOfScrews / 300);
+        int resultPart = (int) amountOfPacks;
+
+        int priceForParts = resultPart * mm.getProducts().get(25).getPrice();
+
+        Product product = new Product(mm.getProducts().get(25).getName(), mm.getProducts().get(25).getLength(), resultPart, mm.getProducts().get(25).getUnit(), mm.getProducts().get(25).getDescription(), priceForParts);
+        return product;
+    }
+    
+    // til lås på dør i skur
+    public Product getAmountPart26(double length, double width) {
+        int amountOfDør = 1;
+        int resultPart = amountOfDør;
+
+        int priceForParts = resultPart * mm.getProducts().get(26).getPrice();
+
+        Product product = new Product(mm.getProducts().get(26).getName(), mm.getProducts().get(26).getLength(), resultPart, mm.getProducts().get(26).getUnit(), mm.getProducts().get(26).getDescription(), priceForParts);
+        return product;
+    }
+    
+    // Til skurdør (Hængsel) 2x pr. dør
+    public Product getAmountPart27(double length, double width) {
+        int amountOfDør = 1;
+        int amountOfHængsel = amountOfDør * 2;
+        int resultPart = amountOfHængsel;
+
+        int priceForParts = resultPart * mm.getProducts().get(27).getPrice();
+
+        Product product = new Product(mm.getProducts().get(27).getName(), mm.getProducts().get(27).getLength(), resultPart, mm.getProducts().get(27).getUnit(), mm.getProducts().get(27).getDescription(), priceForParts);
+        return product;
+    }
+    
+    // Til montering af løsholter i skur (2x pr. løsholt)
+    public Product getAmountPart28(double length, double width) {
+        double amountTilGavle = Math.ceil(width / mm.getProducts().get(5).getLength()) * 4;
+        int amountTilSider = 4;
+        int amountOfVinkelBeslag = ((int)amountTilGavle + amountTilSider) * 2; 
+   
+        int resultPart = amountOfVinkelBeslag;
+
+        int priceForParts = resultPart * mm.getProducts().get(28).getPrice();
+
+        Product product = new Product(mm.getProducts().get(28).getName(), mm.getProducts().get(28).getLength(), resultPart, mm.getProducts().get(28).getUnit(), mm.getProducts().get(28).getDescription(), priceForParts);
+        return product;
+       
+    }
+
     public static ArrayList<Product> getProductList(double length, double width) {
 
         ArrayList<Product> MaterialList = new ArrayList<Product>();
         SingleFlatRoofCal sfrc = new SingleFlatRoofCal();
 
-        MaterialList.add(sfrc.getLengthPart0(length));
-        MaterialList.add(sfrc.getLengthPart1(length));
-        MaterialList.add(sfrc.getLengthPart2(length));
-        MaterialList.add(sfrc.getLengthPart3(length));
-        MaterialList.add(sfrc.getLengthPart7(length));
-        MaterialList.add(sfrc.getLengthPart9(length));
-        MaterialList.add(sfrc.getLengthPart10(length));
-        MaterialList.add(sfrc.getLengthPart14(length, width));
-        MaterialList.add(sfrc.getLengthPart15(length, width));
+        MaterialList.add(sfrc.getAmountPart0(length));
+        MaterialList.add(sfrc.getAmountPart1(length));
+        MaterialList.add(sfrc.getAmountPart2(length));
+        MaterialList.add(sfrc.getAmountPart3(length));
+        MaterialList.add(sfrc.getAmountPart7(length));
+        MaterialList.add(sfrc.getAmountPart9(length));
+        MaterialList.add(sfrc.getAmountPart10(length));
+        MaterialList.add(sfrc.getAmountPart14(length, width));
+        MaterialList.add(sfrc.getAmountPart15(length, width));
         MaterialList.add(sfrc.getAmountPart16(length, width));
         MaterialList.add(sfrc.getAmountPart17(length, width));
         MaterialList.add(sfrc.getAmountPart18(length, width));
