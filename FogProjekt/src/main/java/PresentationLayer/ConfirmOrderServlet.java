@@ -38,8 +38,9 @@ public class ConfirmOrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
+        String option = request.getParameter("option");
 
-        if ("confirmorder".equals(action)) {
+        if ("confirmorder".equals(action) && "NoSkur".equals(option)) {
 
             double length = (int) session.getAttribute("length");
             double width = (int) session.getAttribute("width");
@@ -47,7 +48,21 @@ public class ConfirmOrderServlet extends HttpServlet {
             
             User user = (User) session.getAttribute("user");
             
-            ArrayList<Product> ListofProducts = LogicFacade.getListOfProducts(length, width);
+            ArrayList<Product> ListofProducts = LogicFacade.getListOfProductsNoSkur(length, width);
+
+            LogicFacade.PutOrderInDatabase(user, ListofProducts);
+            
+            String nextURL = "receivedorder.jsp";
+            request.getRequestDispatcher(nextURL).forward(request, response);
+        } else {
+            
+            double length = (int) session.getAttribute("length");
+            double width = (int) session.getAttribute("width");
+            double height = (int) session.getAttribute("height");
+            
+            User user = (User) session.getAttribute("user");
+            
+            ArrayList<Product> ListofProducts = LogicFacade.getListOfProductsWithSkur(length, width);
 
             LogicFacade.PutOrderInDatabase(user, ListofProducts);
             

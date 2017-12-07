@@ -14,6 +14,7 @@
     String sideDrawing = (String) session.getAttribute("drawingfromside");
     String topDrawing = (String) session.getAttribute("drawingfromtop");
     User user = (User) session.getAttribute("user");
+    String option = (String) session.getAttribute("optionforskur");
 %>
 <!DOCTYPE html>
 <html>
@@ -125,6 +126,7 @@
     <br>
     <br>
     <form name="confirmordernow" action="ConfirmOrderServlet" method="POST">
+        <input type="hidden" value="<%=option%>" name="option">
         Er du sikker på dit køb?:
         <br><br>
         <button type="submit" name="action" value="confirmorder">Ja</button>

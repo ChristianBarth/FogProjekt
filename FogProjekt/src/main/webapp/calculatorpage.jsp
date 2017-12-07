@@ -35,7 +35,14 @@
             <input type="text" name="height" value="" placeholder="Maks 999"/>
             <br>
             <br>
+             <select name="option"> 
+                <option value="YesSkur">Med skur</option>
+                <option value="NoSkur">Uden Skur</option>
+            </select>
             <input type="submit" value="Show Carport"/>
+            
+            
         </form>
+        
     </body>
 </html>

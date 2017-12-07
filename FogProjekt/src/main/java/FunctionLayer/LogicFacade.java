@@ -15,9 +15,15 @@ import java.util.ArrayList;
  */
 public class LogicFacade {
 
-    // ArrayList of all products from the database.
-    public static ArrayList<Product> getListOfProducts(double length, double width) {
-        ArrayList<Product> orders = SingleFlatRoofCal.getProductList(length, width);
+    // ArrayList of all products without "skur" from the database.
+    public static ArrayList<Product> getListOfProductsNoSkur(double length, double width) {
+        ArrayList<Product> orders = SingleFlatRoofCal.getProductsNoSkur(length, width);
+        return orders;
+    }
+
+    // ArrayList of all products with "skur" from the database.
+    public static ArrayList<Product> getListOfProductsWithSkur(double length, double width) {
+        ArrayList<Product> orders = SingleFlatRoofCal.getProductsWithSkur(length, width);
         return orders;
     }
 
@@ -33,7 +39,15 @@ public class LogicFacade {
         return SVGDrawingFromSide.BuildSideCarport(length, height);
     }
 
+    public static String getSideCarportDrawingWithSkur(double length, int height) {
+        return SVGDrawingFromSide.BuildSideCarportWithSkur(length, height);
+    }
+
     public static String getTopCarportDrawing(double length, int width) {
+        return SVGDrawingFromTop.BuildTopCarport(length, width);
+    }
+
+    public static String getTopCarportDrawingWithSkur(double length, int width) {
         return SVGDrawingFromTop.BuildTopCarport(length, width);
     }
 
@@ -104,7 +118,7 @@ public class LogicFacade {
         return UserMapper.login(email, password);
     }
 
-    public static ArrayList<Order> getTotalPriceForOrder(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+    public static ArrayList<Order> getTotalPriceForOrderWithoutSkur(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
 
         ArrayList<Order> orderlist = new ArrayList<Order>();
         int numberindexstart = 0;
@@ -128,6 +142,30 @@ public class LogicFacade {
         return orderlist;
     }
 
+    public static ArrayList<Order> getTotalPriceForOrderWithSkur(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+
+        ArrayList<Order> orderlist = new ArrayList<Order>();
+        int numberindexstart = 0;
+        int numberindexstop = 29;
+        int indexmeterfororderline = 0;
+
+        for (int i = 0; i < orderlines.size(); i++) {
+            Order order = new Order(
+                    orderlines.get(i).getOrdernumber(),
+                    orderlines.get(i).getEmail(),
+                    orderlines.get(i).getPhonenumber(),
+                    orderlines.get(i).getTime(),
+                    orderlines.get(i).getStatus(),
+                    LogicFacade.getTotalPriceForEachOrder(numberindexstart, numberindexstop, indexmeterfororderline, orderdetails, orderlines)
+            );
+            orderlist.add(order);
+            numberindexstart += 29;
+            numberindexstop += 29;
+            indexmeterfororderline += 1;
+        }
+        return orderlist;
+    }
+
     public static int getTotalPriceForEachOrder(int numberindexstart, int numberindexstop, int indexmeterfororderline, ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
 
         int totalPrice = 0;
@@ -141,8 +179,8 @@ public class LogicFacade {
     }
 
     public static void putStatusIntoDatabase(int ordernumber, String status) {
-        
+
         OrderMapper.updateStatusOnOrder(ordernumber, status);
-        
+
     }
 }
