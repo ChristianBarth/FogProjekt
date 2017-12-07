@@ -23,27 +23,6 @@
         th {
             text-align: left;
         }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 80px;
-            overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 10px 5px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown a:hover {background-color: #f1f1f1}
-
-        .show {display:block;}
     </style>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -70,7 +49,7 @@
                 <th>Status</th>
             </tr>
 
-            <% for (Order orders : orderlines) { %>
+            <% for (Order orders : orderlines) {%>
             <tr>
                 <td> <a href="OrderInfoServletAdminOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a></td>
                 <td><% out.println(orders.getEmail());%></td>
@@ -83,34 +62,21 @@
                             <a href="JavaScriptServlet?ordernumber=<%=orders.getOrdernumber()%>&status=Shipped">Shipped</a>
                             <a href="JavaScriptServlet?ordernumber=<%=orders.getOrdernumber()%>&status=Declined">Declined</a>
                         </div></div></td>
-            </tr>
-            <% }%>
-        </table>
-        <br>
-        <a href="employeepage.jsp">Back to employeepage</a>
+            <form action="OrderInfoServletAdminOnClick">
+                <select name="options">
+                    <option value="<%=orders.getOrdernumber()%>&status=Accepted">Accepted</option>
+                    <option value="<%=orders.getOrdernumber()%>">Paid</option>
+                    <option value="<%=orders.getOrdernumber()%>">Shipped</option>
+                    <option value="<%=orders.getOrdernumber()%>">Declined</option>
+                </select>
+                <br><br>
+                <input type="submit">
+            </form>
 
-        <script>
-            /* When the user clicks on the button, 
-             toggle between hiding and showing the dropdown content */
-            function myFunction() {
-                
-                document.getElementById("myDropdown").classList.toggle("show");
-            }
-
-// Close the dropdown if the user clicks outside of it
-            window.onclick = function (event) {
-                if (!event.target.matches('.dropbtn')) {
-
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    var i;
-                    for (i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-            }
-        </script>
-    </body>
+        </tr>
+        <% }%>
+    </table>
+    <br>
+    <a href="employeepage.jsp">Back to employeepage</a>
+</body>
 </html>
