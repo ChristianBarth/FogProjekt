@@ -28,47 +28,69 @@ public class DrawingServlet extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
+            String actionSkur = request.getParameter("option");
             HttpSession session = request.getSession();
 
-            if ("draw".equals(action)) {
-                
-                //Get strings
-                String reqLength = request.getParameter("length");
-                String reqWidth = request.getParameter("width");
-                String reqHeight = request.getParameter("height");
-                
-                //Doubles
-                double length = Double.parseDouble(reqLength);
-                double width = Double.parseDouble(reqWidth);
-                double height = Double.parseDouble(reqHeight);
-                
-                //Integer
-                int heightint = Integer.parseInt(reqHeight);
-                int lengthint = Integer.parseInt(reqLength);
-                int widthint = Integer.parseInt(reqWidth);
-                
+            //Get strings
+            String reqLength = request.getParameter("length");
+            String reqWidth = request.getParameter("width");
+            String reqHeight = request.getParameter("height");
+
+            //Doubles
+            double length = Double.parseDouble(reqLength);
+            double width = Double.parseDouble(reqWidth);
+            double height = Double.parseDouble(reqHeight);
+
+            //Integer
+            int heightint = Integer.parseInt(reqHeight);
+            int lengthint = Integer.parseInt(reqLength);
+            int widthint = Integer.parseInt(reqWidth);
+
+            if ("draw".equals(action) && "NoSkur".equals(actionSkur)) {
+
                 User user = (User) session.getAttribute("user");
-                
-                if(length <= 999 && height <= 999 && width <= 999){
-                
-                String drawingFromSide = LogicFacade.getSideCarportDrawing(length, heightint);
-                
-                String drawingFromTop = LogicFacade.getTopCarportDrawing(length, widthint);
-                
-                session.setAttribute("length", lengthint);
-                session.setAttribute("width", widthint);
-                session.setAttribute("height", heightint);
-                session.setAttribute("drawingfromside", drawingFromSide);
-                session.setAttribute("drawingfromtop", drawingFromTop);
-                
-                String nextURL = "showcarportdrawing.jsp";
-                request.getRequestDispatcher(nextURL).forward(request, response);
+
+                if (length <= 999 && height <= 999 && width <= 999) {
+
+                    String drawingFromSide = LogicFacade.getSideCarportDrawing(length, heightint);
+
+                    String drawingFromTop = LogicFacade.getTopCarportDrawing(length, widthint);
+
+                    session.setAttribute("length", lengthint);
+                    session.setAttribute("width", widthint);
+                    session.setAttribute("height", heightint);
+                    session.setAttribute("drawingfromside", drawingFromSide);
+                    session.setAttribute("drawingfromtop", drawingFromTop);
+                    session.setAttribute("optionforskur", actionSkur);
+
+                    String nextURL = "showcarportdrawing.jsp";
+                    request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
-                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                }
+            } else {
+                if (length <= 999 && height <= 999 && width <= 999) {
+
+                    String drawingFromSide = LogicFacade.getSideCarportDrawingWithSkur(length, heightint);
+                    
+                    String drawingFromTop = LogicFacade.getTopCarportDrawingWithSkur(length, widthint);
+
+                    session.setAttribute("length", lengthint);
+                    session.setAttribute("width", widthint);
+                    session.setAttribute("height", heightint);
+                    session.setAttribute("drawingfromside", drawingFromSide);
+                    session.setAttribute("drawingfromtop", drawingFromTop);
+                    session.setAttribute("optionforskur", actionSkur);
+
+                    String nextURL = "showcarportdrawing.jsp";
+                    request.getRequestDispatcher(nextURL).forward(request, response);
+                } else {
+                    request.getRequestDispatcher("error.jsp").forward(request, response);
                 }
             }
+
         } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request,response);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
 
     }

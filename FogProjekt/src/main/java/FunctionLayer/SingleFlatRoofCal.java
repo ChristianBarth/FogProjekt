@@ -81,9 +81,9 @@ public class SingleFlatRoofCal {
     }
 
     // til z på bagside af dør	
-    public Product getAmountPart4(int length, double width) {
-        int lengthPart = length / mm.getProducts().get(4).getLength();
-        int amountOfLægte = lengthPart;
+    public Product getAmountPart4(double length, double width) {
+        double lengthPart = length / mm.getProducts().get(4).getLength();
+        int amountOfLægte = (int)lengthPart;
         int resultPart = amountOfLægte;
 
         int priceForParts = resultPart * mm.getProducts().get(4).getPrice();
@@ -158,9 +158,12 @@ public class SingleFlatRoofCal {
 
     // til beklædning af skur 1 på 2 (sider?)
     public Product getAmountPart11(double length, double width) {
-        double lengthPart = Math.ceil(width * 0.19);
-        int amountOfBrædt = (int) lengthPart;
-        int resultPart = amountOfBrædt;
+        double SkurWidth = width - 70;
+        double langside = Math.ceil(SkurWidth / 10) * 2;
+        double breddeside = Math.ceil(110 / 10) * 2;
+        double amountOfBrædder = langside + breddeside;
+
+        int resultPart = (int) amountOfBrædder;
 
         int priceForParts = resultPart * mm.getProducts().get(11).getPrice();
 
@@ -388,7 +391,7 @@ public class SingleFlatRoofCal {
        
     }
 
-    public static ArrayList<Product> getProductList(double length, double width) {
+    public static ArrayList<Product> getProductsNoSkur(double length, double width) {
 
         ArrayList<Product> MaterialList = new ArrayList<Product>();
         SingleFlatRoofCal sfrc = new SingleFlatRoofCal();
@@ -413,4 +416,43 @@ public class SingleFlatRoofCal {
 
         return MaterialList;
     }
+    public static ArrayList<Product> getProductsWithSkur(double length, double width) {
+
+        ArrayList<Product> MaterialList = new ArrayList<Product>();
+        SingleFlatRoofCal sfrc = new SingleFlatRoofCal();
+
+        MaterialList.add(sfrc.getAmountPart0(length));
+        MaterialList.add(sfrc.getAmountPart1(length));
+        MaterialList.add(sfrc.getAmountPart2(length));
+        MaterialList.add(sfrc.getAmountPart3(length));
+        MaterialList.add(sfrc.getAmountPart4(length, width));
+        MaterialList.add(sfrc.getAmountPart5(length, width));
+        MaterialList.add(sfrc.getAmountPart6(length, width));
+        MaterialList.add(sfrc.getAmountPart7(length));
+        MaterialList.add(sfrc.getAmountPart8(length, width));
+        MaterialList.add(sfrc.getAmountPart9(length));
+        MaterialList.add(sfrc.getAmountPart10(length));
+        MaterialList.add(sfrc.getAmountPart11(length, width));
+        MaterialList.add(sfrc.getAmountPart12(length, width));
+        MaterialList.add(sfrc.getAmountPart13(length, width));
+        MaterialList.add(sfrc.getAmountPart14(length, width));
+        MaterialList.add(sfrc.getAmountPart15(length, width));
+        MaterialList.add(sfrc.getAmountPart16(length, width));
+        MaterialList.add(sfrc.getAmountPart17(length, width));
+        MaterialList.add(sfrc.getAmountPart18(length, width));
+        MaterialList.add(sfrc.getAmountPart19(length, width));
+        MaterialList.add(sfrc.getAmountPart20(length, width));
+        MaterialList.add(sfrc.getAmountPart21(length, width));
+        MaterialList.add(sfrc.getAmountPart22(length, width));
+        MaterialList.add(sfrc.getAmountPart23(length, width));
+        MaterialList.add(sfrc.getAmountPart24(length, width));
+        MaterialList.add(sfrc.getAmountPart25(length, width));
+        MaterialList.add(sfrc.getAmountPart26(length, width));
+        MaterialList.add(sfrc.getAmountPart27(length, width));
+        MaterialList.add(sfrc.getAmountPart28(length, width));
+
+        return MaterialList;
+    }
+    
 }
+

@@ -37,6 +37,7 @@ public class SelectOptionForStatusServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         String ordernumberString = request.getParameter("ordernumber");
+        System.out.println(ordernumberString);
         int ordernumber = Integer.parseInt(ordernumberString);
         String status = request.getParameter("option");
         

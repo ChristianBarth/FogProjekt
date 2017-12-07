@@ -15,7 +15,17 @@ public class SVGDrawingFromTop {
         StringBuilder sb = new StringBuilder();
         sb.append(RemmeOgSpærLayer(length, (double) width));
         sb.append(StolpeLayer(length, (double) width));
-        sb.append(tests(length, (double) width));
+        sb.append(HulbåndLayer(length, (double) width));
+        return sb.toString();
+    }
+
+    public static String BuildTopCarportWithSkur(double length, int width) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(RemmeOgSpærLayer(length, (double) width));
+        sb.append(StolpeLayer(length, (double) width));
+        sb.append(HulbåndLayerMedSkur(length, (double) width));
+        sb.append(SkurLayer(length, (double) width));
+        sb.append(SkurStolpeLayer(length, (double) width));
         return sb.toString();
     }
 
@@ -24,13 +34,27 @@ public class SVGDrawingFromTop {
     }
 
     private static String StolpeLayer(double length, double yPos) {
-        return putStolper(length, 0, yPos);
+        return putStolper(length, yPos);
     }
 
-    private static String tests(double length, double yPos) {
-        return putTest(length, yPos);
+    private static String HulbåndLayer(double length, double yPos) {
+        return putHulbånd(length, yPos);
+    }
+    
+    private static String HulbåndLayerMedSkur(double length, double yPos) {
+        return putHulbånd(length - 110, yPos);
     }
 
+    private static String SkurLayer(double length, double yPos){
+        return putSkur(length, yPos);
+    }
+    
+    private static String SkurStolpeLayer(double length, double yPos){
+        return putStolperToSkur(length, yPos);
+    }
+    
+    
+    
     public static String putRemmeOgSpær(double length, int xPos, double yPos) {
 
         StringBuilder sb = new StringBuilder();
@@ -60,7 +84,7 @@ public class SVGDrawingFromTop {
 
     }
 
-    public static String putStolper(double length, int xPos, double yPos) {
+    public static String putStolper(double length, double yPos) {
 
         StringBuilder sb = new StringBuilder();
         double inBetweenStolper = SVGDrawingFromTop.calculateInBetweenStolperFromTop(length);
@@ -81,6 +105,28 @@ public class SVGDrawingFromTop {
         return sb.toString();
 
     }
+    
+    public static String putStolperToSkur(double length, double yPos) {
+        StringBuilder sb = new StringBuilder();
+        
+      
+        
+         sb.append(StolperSeenFromTop(length - 110, 35 - 2.25));
+         sb.append(StolperSeenFromTop(length - 110, yPos - 35 - 2.25));
+         sb.append(StolperSeenFromTop(length - 110, (yPos / 2)));
+         sb.append(StolperSeenFromTop(length - 5, (yPos / 2)));
+        return sb.toString();
+    }
+    
+    private static String putSkur(double length, double yPos) {
+        StringBuilder sb = new StringBuilder(); 
+       
+        length = length - 110;
+        
+        sb.append(Skur(length, yPos));
+        
+        return sb.toString();
+    }
 
     public static double calculateInBetweenStolperFromTop(double length) {
 
@@ -91,12 +137,12 @@ public class SVGDrawingFromTop {
 
     }
 
-    public static String putTest(double length, double yPos) {
+    public static String putHulbånd(double length, double yPos) {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append(testmetode1(length, yPos));
-        sb.append(testmetode2(length, yPos));
+        sb.append(hulbånd1(length, yPos));
+        sb.append(hulbånd2(length, yPos));
 
         return sb.toString();
     }
@@ -123,15 +169,22 @@ public class SVGDrawingFromTop {
         return res;
     }
 
-    public static String testmetode1(double xPos, double yPos) {
+    public static String hulbånd1(double xPos, double yPos) {
         String res = "<Line stroke-dasharray=\"5, 10\" x1='" + (xPos * 0.90) + "' y1='" + 35 + "' x2='" + (xPos * 0.10) + "' y2='" + (yPos - 30) + "'"
                 + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
         return res;
     }
 
-    public static String testmetode2(double xPos, double yPos) {
+    public static String hulbånd2(double xPos, double yPos) {
         String res = "<Line stroke-dasharray=\"5, 10\" x1='" + (xPos * 0.10) + "' y1='" + 35 + "' x2='" + (xPos * 0.90) + "' y2='" + (yPos - 30) + "'"
                 + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
         return res;
     }
+    
+     public static String Skur(double size, double yPos) {
+        String res = "<rect x='" + size + "' y='" + 37 + "' width='" + 110 + "' height='" + (yPos - 70) + "'"
+                + "style=\"stroke: #000000; fill:#ffd000\" fill-opacity=\"0.2\"/>";
+        return res;
+    }
+    
 }
