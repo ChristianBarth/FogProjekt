@@ -41,11 +41,23 @@
             </tr>
             <% for (Order orders : ListofOrders) { %>
             <tr>
-                <td><% out.println(orders.getOrdernumber()); %></td>
+                <% if (orders.getStatus().equals("Paid")) { %>
+                <td> <a href="OrderInfoServletCustomerOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a> </td>
+                  <% } else { %>
+                  <td><% out.println(orders.getOrdernumber()); %>
+                  <% } %> </td>
                 <td><% out.println(orders.getEmail()); %></td>
                 <td><% out.println(orders.getPhonenumber()); %></td>
                 <td><% out.println(orders.getTime()); %></td>
                 <td><% out.println(orders.getStatus()); %></td>
+                <% if (orders.getStatus().equals("Accepted")) {%>
+                <td>
+                    <form action="CustomerPayServlet">
+                        <input name="ordernumber" type="hidden" value="<%=orders.getOrdernumber()%>">
+                        <button type="submit">Pay</button>
+                    </form>
+                </td>
+                <% } %>
             </tr>
             <% }%>
         </table>

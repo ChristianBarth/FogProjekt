@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Oliver
  */
-@WebServlet(name = "JavaScriptServlet", urlPatterns = {"/JavaScriptServlet"})
-public class JavaScriptServlet extends HttpServlet {
+@WebServlet(name = "SelectOptionForStatusServlet", urlPatterns = {"/SelectOptionForStatusServlet"})
+public class SelectOptionForStatusServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +38,7 @@ public class JavaScriptServlet extends HttpServlet {
         
         String ordernumberString = request.getParameter("ordernumber");
         int ordernumber = Integer.parseInt(ordernumberString);
-        String status = request.getParameter("status");
+        String status = request.getParameter("option");
         
         LogicFacade.putStatusIntoDatabase(ordernumber, status);
         

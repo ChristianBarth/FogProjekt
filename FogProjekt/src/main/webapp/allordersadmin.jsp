@@ -56,27 +56,23 @@
                 <td><a href="tel://45-<%=orders.getPhonenumber()%>"> <% out.println("+45 " + orders.getPhonenumber()); %> </a></td>
                 <td><% out.println(orders.getTime()); %></td>
                 <td><% out.println(orders.getTotalprice());%></td>
-                <td><div class="dropdown"><button onclick="myFunction()" class="dropbtn"><%=orders.getStatus()%></button><div id="myDropdown" class="dropdown-content">
-                            <a href="JavaScriptServlet?ordernumber=<%=orders.getOrdernumber()%>&status=Accepted">Accepted</a>
-                            <a href="JavaScriptServlet?ordernumber=<%=orders.getOrdernumber()%>&status=Paid">Paid</a>
-                            <a href="JavaScriptServlet?ordernumber=<%=orders.getOrdernumber()%>&status=Shipped">Shipped</a>
-                            <a href="JavaScriptServlet?ordernumber=<%=orders.getOrdernumber()%>&status=Declined">Declined</a>
-                        </div></div></td>
-            <form action="OrderInfoServletAdminOnClick">
-                <select name="options">
-                    <option value="<%=orders.getOrdernumber()%>&status=Accepted">Accepted</option>
-                    <option value="<%=orders.getOrdernumber()%>">Paid</option>
-                    <option value="<%=orders.getOrdernumber()%>">Shipped</option>
-                    <option value="<%=orders.getOrdernumber()%>">Declined</option>
-                </select>
-                <br><br>
-                <input type="submit">
-            </form>
-
-        </tr>
-        <% }%>
-    </table>
-    <br>
-    <a href="employeepage.jsp">Back to employeepage</a>
+                <td><% out.println(orders.getStatus());%></td>
+                <td>
+                    <form action="SelectOptionForStatusServlet">
+                        <input name="ordernumber" type="hidden" value="<%=orders.getOrdernumber()%>">
+                        <select name="option">
+                            <option value="Accepted">Accepted</option>
+                            <option value="Paid">Paid</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Declined">Declined</option>
+                        </select>
+                        <input type="submit" value="Opdater">
+                    </form>
+                </td>
+            </tr>
+            <% }%>
+        </table>
+<br>
+<a href="employeepage.jsp">Back to employeepage</a>
 </body>
 </html>
