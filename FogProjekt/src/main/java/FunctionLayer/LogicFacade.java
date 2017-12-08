@@ -48,7 +48,7 @@ public class LogicFacade {
     }
 
     public static String getTopCarportDrawingWithSkur(double length, int width) {
-        return SVGDrawingFromTop.BuildTopCarport(length, width);
+        return SVGDrawingFromTop.BuildTopCarportWithSkur(length, width);
     }
 
     // Orderlines and orderdetails. Admin has access to orderdetails.
