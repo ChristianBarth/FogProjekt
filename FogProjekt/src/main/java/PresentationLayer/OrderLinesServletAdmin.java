@@ -44,7 +44,7 @@ public class OrderLinesServletAdmin extends HttpServlet {
             ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
             HttpSession session = request.getSession();
 
-            ArrayList<Order> orderlineswithTotalPrice = LogicFacade.getTotalPriceForOrderWithoutSkur(orderdetails, orderlines);
+            ArrayList<Order> orderlineswithTotalPrice = LogicFacade.getTotalPriceForOrderline(orderdetails, orderlines);
 
             session.setAttribute("orderlineswithtotalprice", orderlineswithTotalPrice);
 

@@ -118,11 +118,10 @@ public class LogicFacade {
         return UserMapper.login(email, password);
     }
 
-    public static ArrayList<Order> getTotalPriceForOrderWithoutSkur(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+    public static ArrayList<Order> getTotalPriceForOrderline(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
 
         ArrayList<Order> orderlist = new ArrayList<Order>();
         int numberindexstart = 0;
-        int numberindexstop = 17;
         int indexmeterfororderline = 0;
 
         for (int i = 0; i < orderlines.size(); i++) {
@@ -132,49 +131,27 @@ public class LogicFacade {
                     orderlines.get(i).getPhonenumber(),
                     orderlines.get(i).getTime(),
                     orderlines.get(i).getStatus(),
-                    LogicFacade.getTotalPriceForEachOrder(numberindexstart, numberindexstop, indexmeterfororderline, orderdetails, orderlines)
+                    LogicFacade.getTotalPriceForEachOrder(numberindexstart, indexmeterfororderline, orderdetails, orderlines)
             );
             orderlist.add(order);
-            numberindexstart += 17;
-            numberindexstop += 17;
             indexmeterfororderline += 1;
         }
         return orderlist;
     }
-
-    public static ArrayList<Order> getTotalPriceForOrderWithSkur(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
-
-        ArrayList<Order> orderlist = new ArrayList<Order>();
-        int numberindexstart = 0;
-        int numberindexstop = 29;
-        int indexmeterfororderline = 0;
-
-        for (int i = 0; i < orderlines.size(); i++) {
-            Order order = new Order(
-                    orderlines.get(i).getOrdernumber(),
-                    orderlines.get(i).getEmail(),
-                    orderlines.get(i).getPhonenumber(),
-                    orderlines.get(i).getTime(),
-                    orderlines.get(i).getStatus(),
-                    LogicFacade.getTotalPriceForEachOrder(numberindexstart, numberindexstop, indexmeterfororderline, orderdetails, orderlines)
-            );
-            orderlist.add(order);
-            numberindexstart += 29;
-            numberindexstop += 29;
-            indexmeterfororderline += 1;
-        }
-        return orderlist;
-    }
-
-    public static int getTotalPriceForEachOrder(int numberindexstart, int numberindexstop, int indexmeterfororderline, ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+    
+    public static int getTotalPriceForEachOrder(int numberindexstart, int indexmeterfororderline, ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
 
         int totalPrice = 0;
 
-        for (int i = numberindexstart; i < numberindexstop; i++) {
-            if (orderlines.get(indexmeterfororderline).getOrdernumber() == orderdetails.get(i).getId()) {
-                totalPrice += orderdetails.get(i).getPrice();
+        for (int i = 0; i < orderdetails.size(); i++) {
+            if (orderlines.get(indexmeterfororderline).getOrdernumber() == orderdetails.get(numberindexstart).getId()) {
+                totalPrice += orderdetails.get(numberindexstart).getPrice();
+                numberindexstart += 1;
+            } else {
+                numberindexstart += 1;
             }
         }
+        
         return totalPrice;
     }
 

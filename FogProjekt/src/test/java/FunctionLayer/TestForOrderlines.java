@@ -43,7 +43,7 @@ public class TestForOrderlines {
 //        ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
 //        ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
 //
-//        ArrayList<Order> listoforders = LogicFacade.getTotalPriceForOrder(orderdetails, orderlines);
+//        ArrayList<Order> listoforders = LogicFacade.getTotalPriceForOrderline(orderdetails, orderlines);
 //
 //        for (Order orders : listoforders) {
 //            
