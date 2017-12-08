@@ -41,7 +41,7 @@
             </tr>
             <% for (Order orders : ListofOrders) { %>
             <tr>
-                <% if (orders.getStatus().equals("Paid")) { %>
+                <% if (orders.getStatus().equals("Paid") || (orders.getStatus().equals("Shipped"))) { %>
                 <td> <a href="OrderInfoServletCustomerOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a> </td>
                   <% } else { %>
                   <td><% out.println(orders.getOrdernumber()); %>
