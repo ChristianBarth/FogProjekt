@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
+import FunctionLayer.MessageException;
 import FunctionLayer.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -50,7 +51,7 @@ public class DrawingServlet extends HttpServlet {
 
                 User user = (User) session.getAttribute("user");
 
-                if (length <= 999 && height <= 999 && width <= 999) {
+                if (length <= 1000 && height <= 1000 && width <= 1000) {
 
                     String drawingFromSide = LogicFacade.getSideCarportDrawing(length, heightint);
 
@@ -66,10 +67,10 @@ public class DrawingServlet extends HttpServlet {
                     String nextURL = "showcarportdrawing.jsp";
                     request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    throw new MessageException ("Please type a number under 1000 in the input boxes");
                 }
             } else {
-                if (length <= 999 && height <= 999 && width <= 999) {
+                if (length <= 1000 && height <= 1000 && width <= 1000) {
 
                     String drawingFromSide = LogicFacade.getSideCarportDrawingWithSkur(length, heightint);
                     
@@ -85,12 +86,13 @@ public class DrawingServlet extends HttpServlet {
                     String nextURL = "showcarportdrawing.jsp";
                     request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    throw new MessageException ("Please type a number under 1000 in the input boxes");
                 }
             }
 
-        } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } catch (MessageException ex) {
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher("calculatorpage.jsp").forward(request, response);
         }
 
     }

@@ -110,11 +110,11 @@ public class LogicFacade {
     }
 
     // User login and register
-    public static void createUser(User user) {
+    public static void createUser(User user) throws MessageException {
         UserMapper.createUser(user);
     }
 
-    public static User login(String email, String password) throws LoginException {
+    public static User login(String email, String password) throws MessageException {
         return UserMapper.login(email, password);
     }
 

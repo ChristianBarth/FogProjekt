@@ -9,9 +9,9 @@ package FunctionLayer;
  *
  * @author Christian Kolz Barth
  */
-public class LoginException extends Exception {
+public class MessageException extends Exception {
     
-    public LoginException( String msg ) {
+    public MessageException( String msg ) {
         super( msg );
     }         
 }

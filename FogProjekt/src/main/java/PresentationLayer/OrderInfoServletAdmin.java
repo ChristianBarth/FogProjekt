@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
+import FunctionLayer.MessageException;
 import FunctionLayer.Order;
 import FunctionLayer.Product;
 import java.io.IOException;
@@ -38,15 +39,15 @@ public class OrderInfoServletAdmin extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
+            String numberString = request.getParameter("number");
+            int number = Integer.parseInt(numberString);
 
-            if ("ordernumberadmin".equals(action)) {
-
-                String numberString = request.getParameter("number");
-                int number = Integer.parseInt(numberString);
+            if ("ordernumberadmin".equals(action) && !"".equals(numberString)) {
+                
                 ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
                 ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
-                
-                if (number <= orderlines.size()) {
+
+                if (number > 0 && number <= orderlines.size()) {
                     ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderdetails);
                     int totalPrice = LogicFacade.getTotalPriceForDetails(number, orderdetails);
 
@@ -56,11 +57,12 @@ public class OrderInfoServletAdmin extends HttpServlet {
                     String nextURL = "/orderinfoadmin.jsp";
                     request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
-                    request.getRequestDispatcher("error.jsp").forward(request, response);
+                    throw new MessageException("Ordernumber does not exist in our database");
                 }
             }
-        } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } catch (MessageException ex) {
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher("allordersadmin.jsp").forward(request, response);
         }
     }
 

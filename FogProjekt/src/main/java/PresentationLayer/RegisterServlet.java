@@ -6,6 +6,7 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
+import FunctionLayer.MessageException;
 import FunctionLayer.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -38,25 +39,29 @@ public class RegisterServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
 
-            if ("register".equals(action)) {
-                
-                String email = request.getParameter("email");
-                String password1 = request.getParameter("password1");
-                String password2 = request.getParameter("password2");
-                String phonenumber = request.getParameter("phonenumber");
+            String email = request.getParameter("email");
+            String password1 = request.getParameter("password1");
+            String password2 = request.getParameter("password2");
+            String phonenumber = request.getParameter("phonenumber");
+
+            if ("register".equals(action) && !"".equals(email) && !"".equals(password1) && !"".equals(phonenumber)) {
 
                 if (password1.equals(password2)) {
-                    
+
                     User user = new User(email, password1, phonenumber, "customer");
                     LogicFacade.createUser(user);
 
                     String nextURL = "index.html";
                     request.getRequestDispatcher(nextURL).forward(request, response);
+                } else {
+                    throw new MessageException("The two passwords did not match, please try again");
                 }
+            } else {
+                throw new MessageException("Please type your email, password and phonenumber in the input fields");
             }
-        } catch (Exception e) {
-            e.getMessage();
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } catch (MessageException ex) {
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher("registeruser.jsp").forward(request, response);
         }
     }
 

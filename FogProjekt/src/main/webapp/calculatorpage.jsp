@@ -15,7 +15,7 @@
     </head>
     <body>
         <h1>Byg din egen carport</h1>
-        
+
         <h2>Det hele foregår i cm. <% out.println(user.getEmail()); %></h2>
         <br>
         Indtast dine ønskede mål i felterne nedenfor.
@@ -24,25 +24,28 @@
             <br>
             Længde i cm:
             <br>
-            <input type="text" name="length" value="" placeholder="Maks 999"/> 
+            <input type="text" name="length" value="" placeholder="Max 1000"/> 
             <br>
             Bredde i cm:
             <br>
-            <input type="text" name="width" value="" placeholder="Maks 999"/>
+            <input type="text" name="width" value="" placeholder="Max 1000"/>
             <br>
             Højde i cm:
             <br>
-            <input type="text" name="height" value="" placeholder="Maks 999"/>
+            <input type="text" name="height" value="" placeholder="Max 1000"/>
             <br>
             <br>
-             <select name="option"> 
+            <select name="option"> 
                 <option value="YesSkur">Med skur</option>
                 <option value="NoSkur">Uden Skur</option>
             </select>
             <input type="submit" value="Show Carport"/>
-            
-            
         </form>
-        
+
+        <% String error = (String) request.getAttribute("error");
+            if (error != null) {%>
+        <h2>Error! Something went wrong!</h2>
+        <p><%=error%></p>
+        <% }%>
     </body>
 </html>

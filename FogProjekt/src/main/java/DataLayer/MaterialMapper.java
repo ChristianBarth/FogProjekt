@@ -33,6 +33,7 @@ public class MaterialMapper {
                 products.add(product);
             }
         } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
         }
         return products;
     }

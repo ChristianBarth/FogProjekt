@@ -74,7 +74,7 @@ insert into `products`(`name`, `length`, `unit`, `description`, `price`) values
 ('4,5 x 60 mm. skruer 200stk.', 0, 'Pakke', 'Til montering af stern&vandbrædt', 419),
 ('4,0 x 50 mm. beslagskruer 250 stk.', 0, 'Pakke', 'Til montering af universalbeslag + hulbånd', 350),
 ('bræddebolt 10 x 120 mm.', 0, 'Stk', 'Til montering af rem på stolper', 190),
-('firkantskiver 40x40x11 mm.', 0, 'Stk', 'Til montyering af rem på stolper', 610),
+('firkantskiver 40x40x11 mm.', 0, 'Stk', 'Til montering af rem på stolper', 610),
 ('4,5 x 70 mm. Skruer 400 stk.', 0, 'Pakke', 'Til montering af yderste beklædning', 480),
 ('4,5 x 50 mm. Skruer 300 stk.', 0, 'Pakke', 'Til montering af inderste beklædning', 189),
 ('stalddørsgreb 50x75', 0, 'Sæt', 'Til lås på dør i skur', 189),

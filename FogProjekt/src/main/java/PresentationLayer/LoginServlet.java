@@ -6,8 +6,11 @@
 package PresentationLayer;
 
 import FunctionLayer.LogicFacade;
+import FunctionLayer.MessageException;
 import FunctionLayer.User;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,10 +40,11 @@ public class LoginServlet extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             String action = request.getParameter("action");
+            
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
 
-            if ("login".equals(action)) {
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
+            if ("login".equals(action) && !"".equals(email) && !"".equals(password)) {
 
                 User user = LogicFacade.login(email, password);
                 HttpSession session = request.getSession();
@@ -53,10 +57,13 @@ public class LoginServlet extends HttpServlet {
                     String nextURLadmin = "employeepage.jsp";
                     request.getRequestDispatcher(nextURLadmin).forward(request, response);
                 }
+            } else {
+                throw new MessageException("Please type your email and your password in the input fields");
             }
 
-        } catch (Exception e) {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } catch (MessageException ex) {
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher("loginpage.jsp").forward(request, response);
         }
     }
 

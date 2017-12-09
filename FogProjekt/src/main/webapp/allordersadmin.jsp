@@ -72,7 +72,13 @@
             </tr>
             <% }%>
         </table>
-<br>
-<a href="employeepage.jsp">Back to employeepage</a>
-</body>
+        <br>
+    <% String error = (String) request.getAttribute("error");
+        if (error != null) {%>
+    <h2>Error! Something went wrong!</h2>
+    <p><%=error%></p>
+    <% }%>
+        <br>
+        <a href="employeepage.jsp">Back to employeepage</a>
+    </body>
 </html>

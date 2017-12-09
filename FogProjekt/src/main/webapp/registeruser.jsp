@@ -35,5 +35,11 @@
             <br><br>
             <input type="submit" value="Register"/>
         </form>
+
+        <% String error = (String) request.getAttribute("error");
+            if (error != null) {%>
+        <h2>Error! Something went wrong!</h2>
+        <p><%=error%></p>
+        <% } %>
     </body>
 </html>

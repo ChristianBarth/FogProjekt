@@ -5,7 +5,7 @@
  */
 package DataLayer;
 
-import FunctionLayer.LoginException;
+import FunctionLayer.MessageException;
 import FunctionLayer.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ import java.sql.ResultSet;
  */
 public class UserMapper {
 
-    public static void createUser(User user) {
+    public static void createUser(User user) throws MessageException {
 
         try {
             Connection con = Connector.connection();
@@ -33,11 +33,11 @@ public class UserMapper {
             ps.executeUpdate();
             
         } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
+            throw new MessageException("Could not create user, please fill out all the text fields");
         }
     }
 
-    public static User login( String email, String password ) throws LoginException {
+    public static User login( String email, String password ) throws MessageException {
         try {
             
             Connection con = Connector.connection();
@@ -54,11 +54,11 @@ public class UserMapper {
                 User user = new User(email, password, phoneNumber, role);
                 return user;
             } else {
-                throw new LoginException("Could not validate user");
+                throw new MessageException("Could not validate user");
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new LoginException(ex.getMessage());
+            throw new MessageException(ex.getMessage());
         }
     }
 }
