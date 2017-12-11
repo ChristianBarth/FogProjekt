@@ -51,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
                     User user = new User(email, password1, phonenumber, "customer");
                     LogicFacade.createUser(user);
 
-                    String nextURL = "index.html";
+                    String nextURL = "loginpage.jsp";
                     request.getRequestDispatcher(nextURL).forward(request, response);
                 } else {
                     throw new MessageException("The two passwords did not match, please try again");

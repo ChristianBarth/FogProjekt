@@ -104,14 +104,6 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <!-- Welcome Message -->
-                <div class="text-center mt-4">
-                    <div class="text-heading text-muted text-lg">Welcome To</div>
-                    <h1 class="my-2">Business Casual</h1>
-                    <div class="text-heading text-muted text-lg">By
-                        <strong>Start Bootstrap</strong>
-                    </div>
-                </div>
             </div>
 
             <div class="bg-faded p-4 my-4">

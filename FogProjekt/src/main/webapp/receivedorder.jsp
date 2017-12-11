@@ -68,10 +68,10 @@
         </nav>
         <div class="container">
             <br>
-            <h1 class="text-shadow text-white">Her er din bekræftelse af din bestilling <% out.println(user.getEmail());%>. </h1>
-            <h2 class="text-shadow text-white">Din ordrer er blevet modtaget og vil blive behandlet snarest muligt.</h2>
+            <h1 class="text-shadow text-black">Her er din bekræftelse af din bestilling <% out.println(user.getEmail());%>. </h1>
+            <h2 class="text-shadow text-black">Din ordrer er blevet modtaget og vil blive behandlet snarest muligt.</h2>
             <br><br>
-            <a href="customerpage.jsp">Du kan se dine ordrer ved at clicke her!</a>
+            <a href="customerpage.jsp"><h4>Du kan se dine ordrer ved at clicke her!</h4></a>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br>
 

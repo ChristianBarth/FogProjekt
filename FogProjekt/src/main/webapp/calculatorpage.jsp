@@ -85,8 +85,8 @@
                         <br><br>
                         <% String error = (String) request.getAttribute("error");
                             if (error != null) {%>
-                        <h2>Error! Something went wrong!</h2>
-                        <p><%=error%></p>
+                        <h2 class="text-shadow text-white">Error! Something went wrong!</h2>
+                        <p class="text-shadow text-white"><%=error%></p>
                         <% }%>
                     </div>
                 </div>

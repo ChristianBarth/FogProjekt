@@ -96,6 +96,7 @@
             <br>
             <h3 class="text-shadow text-white">Total price of the entire carport: <% out.println(totalPrice);%> DKK </h3>
         </div>
+        <br>
 
         <!-- /.container -->
 

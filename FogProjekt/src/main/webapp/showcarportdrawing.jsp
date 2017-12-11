@@ -178,14 +178,15 @@
             <br>
             <form name="confirmordernow" action="ConfirmOrderServlet" method="POST">
                 <input type="hidden" value="<%=option%>" name="option">
-                <h6 class="text-shadow text-white">Er du sikker på dit køb?</h6>
-                <br><br>
+                <h4 class="text-shadow text-white">Er du sikker på dit køb?</h4>
+                <br>
                 <button class="btn btn-secondary" type="submit" name="action" value="confirmorder">Ja</button>
             </form>
-            <br><br>
-            <a href="calculatorpage.jsp">Nej det er jeg ikke. Jeg vil godt bestille en anden carport</a>
+                <br><br>
+                <a href="calculatorpage.jsp"><h4>Nej det er jeg ikke. Jeg vil godt bestille en anden carport</h4></a>
         </div>
-                
+        <br>
+
         <!-- /.container -->
 
         <footer class="bg-faded text-center py-5">
