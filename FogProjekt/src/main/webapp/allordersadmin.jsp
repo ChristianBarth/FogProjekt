@@ -10,7 +10,6 @@
 <%@page import="FunctionLayer.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% ArrayList<Order> orderlines = (ArrayList<Order>) session.getAttribute("orderlineswithtotalprice"); %>
-<% HttpSession sessionordernumber = request.getSession(); %>
 <% User user = (User) session.getAttribute("user"); %>
 <!DOCTYPE html>
 <html>
@@ -46,8 +45,8 @@
     </head>
     <body>
 
-        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Business Casual</div>
-        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Johannes Fog</div>
+        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">Firskovsvej 20| 2800 Lyngby | 45 87 10 01</div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
@@ -71,66 +70,60 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container" align="center">
+            <div class="bg-faded2 p-4 my-4">
+                <h2 class="card-title text-shadow text-white text-uppercase mb-0">Alle ordrer</h2>
+                <br>
+                <form name="findordernumber" action="OrderInfoServletAdmin" method="POST">
+                    <input type="hidden" name="action" value="ordernumberadmin">
+                    <h4 class="card-title text-shadow text-white text-uppercase mb-0">Indtast ordrenummer:</h4>
+                    <br>
+                    <input type="text" name="number" value=""/>
+                    <br><br>
+                    <input class="btn btn-secondary" type="submit" value="Search">
+                </form>
+                <br><br>
+                <table>
+                    <tr>
+                        <th><h4 class="text-shadow text-white">Ordrenummer</h4></th>
+                        <th><h4 class="text-shadow text-white">Email</h4></th> 
+                        <th><h4 class="text-shadow text-white">Telefonnummer</h4></th>
+                        <th><h4 class="text-shadow text-white">Dato</h4></th>
+                        <th><h4 class="text-shadow text-white">Total Pris</h4></th>
+                        <th><h4 class="text-shadow text-white">Status</h4></th>
+                    </tr>
 
-            <div class="bg-faded p-4 my-4">
-                <div class="card card-inverse">
-                    <img class="card-img img-fluid w-100" src="img/slide-1.jpg" alt="">
-                    <div class="card-img-overlay bg-overlay">
-                        <h2 class="card-title text-shadow text-white text-uppercase mb-0">Alle ordrer</h2>
-                        <br>
-                        <form name="findordernumber" action="OrderInfoServletAdmin" method="POST">
-                            <input type="hidden" name="action" value="ordernumberadmin">
-                            <h4 class="card-title text-shadow text-white text-uppercase mb-0">Indtast ordrenummer:</h4>
-                            <input type="text" name="number" value=""/>
-                            <br><br>
-                            <input class="btn btn-secondary" type="submit" value="Search">
-                        </form>
-                        <br><br>
-                        <table>
-                            <tr>
-                                <th><h4 class="text-shadow text-white">Ordrenummer</h4></th>
-                                <th><h4 class="text-shadow text-white">Email</h4></th> 
-                                <th><h4 class="text-shadow text-white">Telefonnummer</h4></th>
-                                <th><h4 class="text-shadow text-white">Dato</h4></th>
-                                <th><h4 class="text-shadow text-white">Total Pris</h4></th>
-                                <th><h4 class="text-shadow text-white">Status</h4></th>
-                            </tr>
+                    <% for (Order orders : orderlines) {%>
+                    <tr>
 
-                            <% for (Order orders : orderlines) {%>
-                            <tr>
-
-                                <td> <a href="OrderInfoServletAdminOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <h6><% out.println(orders.getOrdernumber()); %></h6></a></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getEmail());%></h6></td>
-                                <td><a href="tel://45-<%=orders.getPhonenumber()%>"> <h6><% out.println("+45 " + orders.getPhonenumber()); %></h6></a></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getTime()); %></h6></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getTotalprice());%></h6></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getStatus());%></h6></td>
-                                <td>
-                                    <form action="SelectOptionForStatusServlet">
-                                        <input name="ordernumber" type="hidden" value="<%=orders.getOrdernumber()%>">
-                                        <select name="option">
-                                            <option value="Accepted">Accepted</option>
-                                            <option value="Paid">Paid</option>
-                                            <option value="Shipped">Shipped</option>
-                                            <option value="Declined">Declined</option>
-                                        </select>
-                                        <input type="submit" value="Opdater">
-                                    </form>
-                                </td>
-                            </tr>
-                            <% } %>
-                        </table>
-                        <br><br>
-                        <% String error = (String) request.getAttribute("error");
-                                if (error != null) {%>
-                        <h2 class="text-shadow text-white">Error! Something went wrong!</h2>
-                        <p class="text-shadow text-white"><%=error%></p>
-                        <% }%>
-                    </div>
-                </div>
+                        <td> <a href="OrderInfoServletAdminOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <h6><% out.println(orders.getOrdernumber()); %></h6></a></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getEmail());%></h6></td>
+                        <td><a href="tel://45-<%=orders.getPhonenumber()%>"> <h6><% out.println("+45 " + orders.getPhonenumber()); %></h6></a></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getTime()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getTotalprice());%></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getStatus());%></h6></td>
+                        <td>
+                            <form action="SelectOptionForStatusServlet">
+                                <input name="ordernumber" type="hidden" value="<%=orders.getOrdernumber()%>">
+                                <select name="option">
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Declined">Declined</option>
+                                </select>
+                                <input type="submit" value="Opdater">
+                            </form>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+                <br><br>
+                <% String error = (String) request.getAttribute("error");
+                            if (error != null) {%>
+                <h2 class="text-shadow text-white">Error! Something went wrong!</h2>
+                <p class="text-shadow text-white"><%=error%></p>
+                <% }%>
             </div>
-
         </div>
 
         <!-- /.container -->

@@ -36,25 +36,19 @@ public class OrderLinesServletAdmin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
 
-        try {
+        ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
+        ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
+        HttpSession session = request.getSession();
 
-            ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
-            ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
-            HttpSession session = request.getSession();
+        ArrayList<Order> orderlineswithTotalPrice = LogicFacade.getTotalPriceForOrderLines(orderdetails, orderlines);
 
-            ArrayList<Order> orderlineswithTotalPrice = LogicFacade.getTotalPriceForOrderline(orderdetails, orderlines);
+        session.setAttribute("orderlineswithtotalprice", orderlineswithTotalPrice);
 
-            session.setAttribute("orderlineswithtotalprice", orderlineswithTotalPrice);
-
-            String nextURL = "allordersadmin.jsp";
-            request.getRequestDispatcher(nextURL).forward(request, response);
-        } catch (Exception e) {
-            
-            String nextURL = "error.jsp";
-            request.getRequestDispatcher(nextURL).forward(request, response);
-        }
+        String nextURL = "allordersadmin.jsp";
+        request.getRequestDispatcher(nextURL).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

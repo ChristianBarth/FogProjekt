@@ -61,7 +61,7 @@ public class LogicFacade {
     }
 
     // Orderdetails by id
-    public static ArrayList<Product> getOrderProductsFromID(int number, ArrayList<Product> orderdetails) {
+    public static ArrayList<Product> getOrderDetailsFromID(int number, ArrayList<Product> orderdetails) {
         ArrayList<Product> ordersofid = new ArrayList<Product>();
         for (int i = 0; i < orderdetails.size(); i++) {
             if (number == orderdetails.get(i).getId()) {
@@ -118,7 +118,7 @@ public class LogicFacade {
         return UserMapper.login(email, password);
     }
 
-    public static ArrayList<Order> getTotalPriceForOrderline(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
+    public static ArrayList<Order> getTotalPriceForOrderLines(ArrayList<Product> orderdetails, ArrayList<Order> orderlines) {
 
         ArrayList<Order> orderlist = new ArrayList<Order>();
         int numberindexstart = 0;

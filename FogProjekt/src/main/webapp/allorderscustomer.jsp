@@ -45,8 +45,8 @@
     </head>
     <body>
 
-        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Business Casual</div>
-        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Johannes Fog</div>
+        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">Firskovsvej 20| 2800 Lyngby | 45 87 10 01</div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
@@ -73,49 +73,42 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <div class="container" align="center">
+            <div class="bg-faded2 p-4 my-4">
+                <h2 class="card-title text-shadow text-white text-uppercase mb-0">Alle dine ordre</h2>
+                <br>
+                <table>
+                    <tr>
+                        <th><h4 class="text-shadow text-white">Ordrenummer</h4></th>
+                        <th><h4 class="text-shadow text-white">Email</h4></th> 
+                        <th><h4 class="text-shadow text-white">Telefonnummer</h4></th>
+                        <th><h4 class="text-shadow text-white">Dato</h4></th>
+                        <th><h4 class="text-shadow text-white">Status</h4></th>
+                    </tr>
 
-            <div class="bg-faded p-4 my-4">
-                <div class="card card-inverse">
-                    <img class="card-img img-fluid w-100" src="img/slide-1.jpg" alt="">
-                    <div class="card-img-overlay bg-overlay">
-                        <h2 class="card-title text-shadow text-white text-uppercase mb-0">Alle dine ordre</h2>
-                        <br>
-                        <table>
-                            <tr>
-                                <th><h4 class="text-shadow text-white">Ordrenummer</h4></th>
-                                <th><h4 class="text-shadow text-white">Email</h4></th> 
-                                <th><h4 class="text-shadow text-white">Telefonnummer</h4></th>
-                                <th><h4 class="text-shadow text-white">Dato</h4></th>
-                                <th><h4 class="text-shadow text-white">Status</h4></th>
-                            </tr>
-
-                            <% for (Order orders : orderlines) { %>
-                            <tr>
-                                <% if (orders.getStatus().equals("Paid") || (orders.getStatus().equals("Shipped"))) {%>
-                                <td> <a href="OrderInfoServletCustomerOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a> </td>
-                                <% } else { %>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getOrdernumber()); %>
-                                        <% } %> </h6></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getEmail()); %></h6></a></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getPhonenumber()); %></h6></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getTime());%></h6></td>
-                                <td><h6 class="text-shadow text-white"><% out.println(orders.getStatus());%></h6></td>
-                                    <% if (orders.getStatus().equals("Accepted")) {%>
-                                <td>
-                                    <form action="CustomerPayServlet">
-                                        <input name="ordernumber" type="hidden" value="<%=orders.getOrdernumber()%>">
-                                        <button type="submit">Betal</button>
-                                    </form>
-                                </td>
-                                <% } %>
-                            </tr>
-                            <% }%>
-                        </table>
-                    </div>
-                </div>
+                    <% for (Order orders : orderlines) { %>
+                    <tr>
+                        <% if (orders.getStatus().equals("Paid") || (orders.getStatus().equals("Shipped"))) {%>
+                        <td> <a href="OrderInfoServletCustomerOnClick?ordernumber=<%=orders.getOrdernumber()%>"> <% out.println(orders.getOrdernumber()); %> </a> </td>
+                        <% } else { %>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getOrdernumber()); %>
+                                <% } %> </h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getEmail()); %></h6></a></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getPhonenumber()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getTime());%></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getStatus());%></h6></td>
+                            <% if (orders.getStatus().equals("Accepted")) {%>
+                        <td>
+                            <form action="CustomerPayServlet">
+                                <input name="ordernumber" type="hidden" value="<%=orders.getOrdernumber()%>">
+                                <button type="submit">Betal</button>
+                            </form>
+                        </td>
+                        <% } %>
+                    </tr>
+                    <% }%>
+                </table>
             </div>
-
         </div>
 
         <!-- /.container -->

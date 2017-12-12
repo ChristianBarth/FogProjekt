@@ -48,7 +48,7 @@ public class OrderInfoServletAdmin extends HttpServlet {
                 ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
 
                 if (number > 0 && number <= orderlines.size()) {
-                    ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderdetails);
+                    ArrayList<Product> detailsfromid = LogicFacade.getOrderDetailsFromID(number, orderdetails);
                     int totalPrice = LogicFacade.getTotalPriceForDetails(number, orderdetails);
 
                     request.setAttribute("detailsfromid", detailsfromid);

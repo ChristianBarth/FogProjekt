@@ -41,8 +41,8 @@
     </head>
     <body>
 
-        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Business Casual</div>
-        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Johannes Fog</div>
+        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">Firskovsvej 20| 2800 Lyngby | 45 87 10 01</div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
@@ -66,12 +66,14 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <br>
-            <h1 class="text-shadow text-black">Her er din bekræftelse af din bestilling <% out.println(user.getEmail());%>. </h1>
-            <h2 class="text-shadow text-black">Din ordrer er blevet modtaget og vil blive behandlet snarest muligt.</h2>
-            <br><br>
-            <a href="customerpage.jsp"><h4>Du kan se dine ordrer ved at clicke her!</h4></a>
+        <div class="container" align="center">
+            <div class="bg-faded2 p-4 my-4">
+                <br>
+                <h1 class="text-shadow text-black">Her er din bekræftelse af din bestilling <% out.println(user.getEmail());%>. </h1>
+                <h2 class="text-shadow text-black">Din ordrer er blevet modtaget og vil blive behandlet snarest muligt.</h2>
+                <br><br>
+                <a href="allorderscustomer.jsp"><h4>Du kan se dine ordrer ved at clicke her!</h4></a>
+            </div>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br>
 

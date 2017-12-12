@@ -8,7 +8,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="FunctionLayer.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% ArrayList<Product> listorders = (ArrayList<Product>) request.getAttribute("detailsfromidcustomer"); %>
+<% ArrayList<Product> listorder = (ArrayList<Product>) request.getAttribute("detailsfromidcustomer"); %>
 <% int totalPrice = (int) request.getAttribute("totalpricecustomer"); %>
 <% User user = (User) session.getAttribute("user"); %>
 <!DOCTYPE html>
@@ -45,12 +45,12 @@
     </style>
     <body>
 
-        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Business Casual</div>
-        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Johannes Fog</div>
+        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">Firskovsvej 20| 2800 Lyngby | 45 87 10 01</div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
-            <div class="container">
+            <div class="container" align="center">
                 <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="#">Start Bootstrap</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -73,31 +73,32 @@
                 </div>
             </div>
         </nav>
-        <br>
-        <div class="container">
-            <h1 class="text-shadow text-white"  text-align: center>Order information</h1>
-            <table>
-                <tr>
-                    <th><h4 class="text-shadow text-white">Titel</h4></th>
-                    <th><h4 class="text-shadow text-white">Længde</h4></th>
-                    <th><h4 class="text-shadow text-white">Antal</h4></th>
-                    <th><h4 class="text-shadow text-white">Enhed</h4></th>
-                    <th><h4 class="text-shadow text-white">Beskrivelse</h4></th>
-                    <th><h4 class="text-shadow text-white">Pris</h4></th>
-                </tr>
-                <% for (Product orders : listorders) { %>
-                <tr>
-                    <td><h6 class="text-shadow text-white"><% out.println(orders.getName()); %></h6></td>
-                    <td><h6 class="text-shadow text-white"><% out.println(orders.getLength()); %></h6></td>
-                    <td><h6 class="text-shadow text-white"><% out.println(orders.getAmount()); %></h6></td>
-                    <td><h6 class="text-shadow text-white"><% out.println(orders.getUnit()); %></h6></td>
-                    <td><h6 class="text-shadow text-white"><% out.println(orders.getDescription()); %></h6></td>
-                    <td><h6 class="text-shadow text-white"><% out.println(orders.getPrice()); %></h6></td>
-                </tr>
-                <% } %>
-            </table>
-            <br>
-            <h3 class="text-shadow text-white">Total price of the entire carport: <% out.println(totalPrice);%> DKK </h3>
+        <div class="container" align="center">
+            <div class="bg-faded2 p-4 my-4" opacity="0.5">
+                <h1 class="text-shadow text-white"  text-align: center>Order information</h1>
+                <table>
+                    <tr>
+                        <th><h4 class="text-shadow text-white">Titel</h4></th>
+                        <th><h4 class="text-shadow text-white">Længde</h4></th>
+                        <th><h4 class="text-shadow text-white">Antal</h4></th>
+                        <th><h4 class="text-shadow text-white">Enhed</h4></th>
+                        <th><h4 class="text-shadow text-white">Beskrivelse</h4></th>
+                        <th><h4 class="text-shadow text-white">Pris</h4></th>
+                    </tr>
+                    <% for (Product orders : listorder) { %>
+                    <tr>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getName()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getLength()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getAmount()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getUnit()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getDescription()); %></h6></td>
+                        <td><h6 class="text-shadow text-white"><% out.println(orders.getPrice()); %></h6></td>
+                    </tr>
+                    <% } %>
+                </table>
+                <br>
+                <h3 class="text-shadow text-white">Total price of the entire carport: <% out.println(totalPrice);%> DKK </h3>
+            </div>
         </div>
         <br>
 

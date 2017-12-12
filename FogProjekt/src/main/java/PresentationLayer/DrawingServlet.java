@@ -49,8 +49,6 @@ public class DrawingServlet extends HttpServlet {
 
             if ("draw".equals(action) && "NoSkur".equals(actionSkur)) {
 
-                User user = (User) session.getAttribute("user");
-
                 if (length <= 1000 && height <= 1000 && width <= 1000) {
 
                     String drawingFromSide = LogicFacade.getSideCarportDrawing(length, heightint);

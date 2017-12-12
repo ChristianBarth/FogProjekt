@@ -43,7 +43,8 @@ public class SVGDrawingFromSide {
         StringBuilder sb = new StringBuilder();
         double inBetweenStolper = SVGDrawingFromSide.calculateInBetweenSide(length);
 
-        while (length >= inBetweenStolper) { // Place all the stolper
+        // Place all stolper
+        while (length >= inBetweenStolper) {
             sb.append(Stolpe(inBetweenStolper, xPos, yPos));
             length = length - inBetweenStolper;
             xPos += inBetweenStolper;

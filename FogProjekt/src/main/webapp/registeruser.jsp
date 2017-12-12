@@ -27,8 +27,8 @@
     </head>
     <body>
 
-        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Business Casual</div>
-        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>
+        <div class="tagline-upper text-center text-heading text-shadow text-white mt-5 d-none d-lg-block">Johannes Fog</div>
+        <div class="tagline-lower text-center text-expanded text-shadow text-uppercase text-white mb-5 d-none d-lg-block">Firskovsvej 20| 2800 Lyngby | 45 87 10 01</div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-faded py-lg-4">
@@ -60,7 +60,7 @@
                         <h2 class="card-title text-shadow text-white text-uppercase mb-0">Registrer</h2>
                         <br>
                         <form name="registeruser" action="RegisterServlet" method="POST">
-                             <input type="hidden" name="action" value="register">
+                            <input type="hidden" name="action" value="register">
                             <h4 class="card-title text-shadow text-white text-uppercase mb-0">Indtast email:</h4>
                             <input type="text" name="email" value="" placeholder="eksempel@mail.dk"/>
                             <br><br>
@@ -79,7 +79,7 @@
                         <a href="loginpage.jsp">Har du allerede et account? Click her!</a>
                         <br><br>
                         <% String error = (String) request.getAttribute("error");
-                                                if (error != null) {%>
+                            if (error != null) {%>
                         <h2 class="text-shadow text-white">Error! Something went wrong!</h2>
                         <p class="text-shadow text-white"><%=error%></p>
                         <% }%>

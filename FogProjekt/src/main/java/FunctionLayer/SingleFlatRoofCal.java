@@ -5,9 +5,7 @@
  */
 package FunctionLayer;
 
-import FunctionLayer.Product;
 import DataLayer.MaterialMapper;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,33 +13,6 @@ import java.util.ArrayList;
  */
 public class SingleFlatRoofCal {
 
-//    public static void main(String[] args) {
-//        MaterialMapper mm = new MaterialMapper();
-//
-//        mm.getProducts();
-//        for (Product product : mm.getProducts()) {
-//            System.out.println(product.getLength());
-//        }
-//        System.out.println("Element: " + mm.getProducts().get(0).getPrice());
-//
-//        SingleFlatRoofCal sfrc = new SingleFlatRoofCal();
-//
-//        double length = 780;
-//        double width = 600;
-
-//        System.out.println("Part0 - Amount: " + sfrc.getLengthPart0(width).getAmount() + " Product: " + mm.getProducts().get(0).getName());
-//        System.out.println("Part1 - Amount: " + sfrc.getLengthPart1(length).getAmount() + " Product: " + mm.getProducts().get(1).getName());
-//        System.out.println("Part2 - Amount: " + sfrc.getLengthPart2(width).getAmount() + " Product: " + mm.getProducts().get(2).getName());
-//        System.out.println("Part3 - Amount: " + sfrc.getLengthPart3(length).getAmount() + " Product: " + mm.getProducts().get(3).getName());
-//        
-//        System.out.println("Part7 - Amount: " + sfrc.getLengthPart7(length).getAmount() + " Product: " + mm.getProducts().get(7).getName());
-//        System.out.println("Part9 - Amount: " + sfrc.getLengthPart9(width).getAmount() + " Product: " + mm.getProducts().get(9).getName());
-//
-//        System.out.println("Part10 - Amount: " + sfrc.getLengthPart10(width).getAmount() + " Product: " + mm.getProducts().get(10).getName());
-//
-//        System.out.println("Part15 - Amount: " + sfrc.getLengthPart15(length, width).getAmount() + " Product: " + mm.getProducts().get(15).getName());
-//        System.out.println("Part16 - Amount: " + sfrc.getAmountPart16(length, width).getAmount() + " Product: " + mm.getProducts().get(16).getName());
-//    }
     private MaterialMapper mm = new MaterialMapper();
 
     // 25x200mm (360cm) trykimp. Brædt til længden, på forende og bagende

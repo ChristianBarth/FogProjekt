@@ -9,7 +9,6 @@ import FunctionLayer.LogicFacade;
 import FunctionLayer.Order;
 import FunctionLayer.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,17 +34,15 @@ public class OrderInfoServletAdminOnClick extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
 
             response.setContentType("text/html;charset=UTF-8");
 
             String ordernumberString = request.getParameter("ordernumber");
             int number = Integer.parseInt(ordernumberString);
-            ArrayList<Order> orderlines = LogicFacade.getOrderLinesAdmin();
             ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
 
-            if (number <= orderlines.size()) {
-                ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderdetails);
+            
+                ArrayList<Product> detailsfromid = LogicFacade.getOrderDetailsFromID(number, orderdetails);
                 int totalPrice = LogicFacade.getTotalPriceForDetails(number, orderdetails);
 
                 request.setAttribute("detailsfromid", detailsfromid);
@@ -53,16 +50,6 @@ public class OrderInfoServletAdminOnClick extends HttpServlet {
 
                 String nextURL = "/orderinfoadmin.jsp";
                 request.getRequestDispatcher(nextURL).forward(request, response);
-            } else {
-                request.getRequestDispatcher("error.jsp").forward(request, response);
-            }
-
-        } catch (Exception e) {
-
-            String nextURL = "error.jsp";
-            request.getRequestDispatcher(nextURL).forward(request, response);
-
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

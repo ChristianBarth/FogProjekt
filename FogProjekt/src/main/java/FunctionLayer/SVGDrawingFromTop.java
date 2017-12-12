@@ -60,13 +60,14 @@ public class SVGDrawingFromTop {
         StringBuilder sb = new StringBuilder();
         double inBetweenSpær = SVGDrawingFromTop.calculateInBetweenSpærFromTop(length);
 
-        // - 2 for den præcise længde på x - aksen. 4,5 er spærets bredde
+        // - 2 for den præcise længde på x - aksen og 4,5 er spærets bredde
         sb.append(Remme(length - 2, (yPos - 35)));
         sb.append(Remme(length - 2, (yPos - 35 + 4.50)));
         sb.append(Remme(length - 2, 0 + 35));
         sb.append(Remme(length - 2, 0 + 35 + 4.50));
-
-        while (length >= inBetweenSpær) { // Place all the spær
+        
+        // Place all spær
+        while (length >= inBetweenSpær) {
             sb.append(Spær(inBetweenSpær, xPos, (int) yPos));
             length = length - inBetweenSpær;
             xPos += inBetweenSpær;
@@ -108,8 +109,6 @@ public class SVGDrawingFromTop {
     
     public static String putStolperToSkur(double length, double yPos) {
         StringBuilder sb = new StringBuilder();
-        
-      
         
          sb.append(StolperSeenFromTop(length - 110, 35 - 2.25));
          sb.append(StolperSeenFromTop(length - 110, yPos - 35 - 2.25));

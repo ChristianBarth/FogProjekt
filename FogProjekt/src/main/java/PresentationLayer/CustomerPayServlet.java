@@ -8,7 +8,6 @@ package PresentationLayer;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +41,7 @@ public class CustomerPayServlet extends HttpServlet {
         LogicFacade.putStatusIntoDatabase(number, "Paid");
 
         ArrayList<Product> orderdetails = LogicFacade.getOrderDetails();
-        ArrayList<Product> detailsfromid = LogicFacade.getOrderProductsFromID(number, orderdetails);
+        ArrayList<Product> detailsfromid = LogicFacade.getOrderDetailsFromID(number, orderdetails);
         int totalPrice = LogicFacade.getTotalPriceForDetails(number, orderdetails);
 
         request.setAttribute("detailsfromidcustomer", detailsfromid);
