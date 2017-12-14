@@ -5,12 +5,12 @@ USE `jfog`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `email` varchar(90) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `phonenumber` varchar(45) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  PRIMARY KEY (`email`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
+`email` varchar(90) NOT NULL,
+`password` varchar(45) NOT NULL,
+`phonenumber` varchar(45) NOT NULL,
+`role` varchar(45) NOT NULL,
+PRIMARY KEY (`email`),
+UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 insert into `users`(`email`, `password`, `phonenumber`, `role`) values
@@ -41,12 +41,12 @@ FOREIGN KEY (`ordernumber`) REFERENCES orders(`ordernumber`)
 
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
-    `varenummer` int(30) NOT NULL AUTO_INCREMENT,
-	`name` varchar(90) NOT NULL,
-    `length` int(30) NOT NULL,
-    `unit` varchar(90) NOT NULL,
-	`description` varchar(90) NOT NULL,
-    `price` int(30) NOT NULL,
+`varenummer` int(30) NOT NULL AUTO_INCREMENT,
+`name` varchar(90) NOT NULL,
+`length` int(30) NOT NULL,
+`unit` varchar(90) NOT NULL,
+`description` varchar(90) NOT NULL,
+`price` int(30) NOT NULL,
 PRIMARY KEY (`varenummer`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 

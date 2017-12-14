@@ -50,7 +50,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             
             ArrayList<Product> ListofProducts = LogicFacade.getListOfProductsNoSkur(length, width);
 
-            LogicFacade.PutOrderInDatabase(user, ListofProducts);
+            LogicFacade.PutOrderIntoDatabase(user, ListofProducts);
             
             String nextURL = "receivedorder.jsp";
             request.getRequestDispatcher(nextURL).forward(request, response);
@@ -63,7 +63,7 @@ public class ConfirmOrderServlet extends HttpServlet {
             
             ArrayList<Product> ListofProducts = LogicFacade.getListOfProductsWithSkur(length, width);
 
-            LogicFacade.PutOrderInDatabase(user, ListofProducts);
+            LogicFacade.PutOrderIntoDatabase(user, ListofProducts);
             
             String nextURL = "receivedorder.jsp";
             request.getRequestDispatcher(nextURL).forward(request, response);

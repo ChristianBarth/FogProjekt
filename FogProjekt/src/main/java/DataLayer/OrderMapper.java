@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class OrderMapper {
     
-        public static void putUserInfoIntoOrders(User user) {
+        public static void putUserInfoIntoOrder(User user) {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO orders (useremail, phonenumber, status) VALUES (?, ?, ?)";
@@ -45,7 +45,7 @@ public class OrderMapper {
         return newestInt;
     }
 
-    public void putOrderInDatabase(ArrayList<Product> ListofItems) {
+    public void putListOfProductsIntoDatabase(ArrayList<Product> ListofItems) {
 
         try {
             Connection con = Connector.connection();
