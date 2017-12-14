@@ -54,13 +54,13 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav mx-auto">
                         <li class="nav-item active px-lg-4">
-                            <a class="nav-link text-uppercase text-expanded">Velkommen admin: <% out.println(user.getEmail());%></a>
+                            <a class="nav-link text-uppercase text-expanded">Velkommen: <% out.println(user.getEmail());%></a>
                         </li>
                         <li class="nav-item active px-lg-4">
                             <a class="nav-link text-uppercase text-expanded" href="index.html">Log out</a>
                         </li>
                         <li class="nav-item px-lg-4">
-                            <a class="nav-link text-uppercase text-expanded" href="OrderLinesServletAdmin">View orders</a>
+                            <a class="nav-link text-uppercase text-expanded" href="allorderscustomer.jsp">View orders</a>
                         </li>
                     </ul>
                 </div>
