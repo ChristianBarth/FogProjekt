@@ -30,8 +30,7 @@ public class LogicFacade {
     // Put the orderlines into the database.
     public static void PutOrderIntoDatabase(User user, ArrayList<Product> ListofItems) {
         OrderMapper.putUserInfoIntoOrder(user);
-        OrderMapper om = new OrderMapper();
-        om.putListOfProductsIntoDatabase(ListofItems);
+        OrderMapper.putListOfProductsIntoDatabase(ListofItems);
     }
 
     // Flat Drawings

@@ -27,7 +27,7 @@ public class OrderMapper {
         }
     }
 
-    public int getOrderID() {
+    public static int getOrderID() {
 
         int newestInt = -1;
 
@@ -45,12 +45,12 @@ public class OrderMapper {
         return newestInt;
     }
 
-    public void putListOfProductsIntoDatabase(ArrayList<Product> ListofItems) {
+    public static void putListOfProductsIntoDatabase(ArrayList<Product> ListofItems) {
 
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO stykliste (ordernumber, titel, længde, antal, enhed, beskrivelse, pris) VALUES (?, ?, ? , ?, ?, ?, ?)";
-            int orderID = this.getOrderID();
+            int orderID = OrderMapper.getOrderID();
             PreparedStatement ps = con.prepareStatement(SQL);
             for (Product product : ListofItems) {
                 ps.setInt(1, orderID);
