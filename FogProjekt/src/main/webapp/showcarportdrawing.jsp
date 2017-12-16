@@ -177,7 +177,6 @@
                 <br>
                 <br>
                 <form name="confirmordernow" action="ConfirmOrderServlet" method="POST">
-                    <input type="hidden" value="<%=option%>" name="option">
                     <h4 class="text-shadow text-white">Er du sikker på dit køb?</h4>
                     <br>
                     <button class="btn btn-secondary" type="submit" name="action" value="confirmorder">Ja</button>

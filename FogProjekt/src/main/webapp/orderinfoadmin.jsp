@@ -72,7 +72,7 @@
         </nav>
         <div class="container" align="center">
             <div class="bg-faded2 p-4 my-4">
-                <h1 class="text-shadow text-white"  text-align: center>Order information</h1>
+                <h1 class="text-shadow text-white"  text-align: center>Ordre information</h1>
                 <table>
                     <tr>
                         <th><h4 class="text-shadow text-white">Titel</h4></th>
@@ -94,7 +94,7 @@
                     <% } %>
                 </table>
                 <br>
-                <h3 class="text-shadow text-white">Total price of the entire carport: <% out.println(totalPrice);%> DKK </h3>
+                <h3 class="text-shadow text-white">Total pris af carport: <% out.println(totalPrice);%> DKK </h3>
             </div>
         </div>
         <br>

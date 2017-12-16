@@ -39,7 +39,7 @@ public class ConfirmOrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
-        String option = request.getParameter("option");
+        String option = (String) session.getAttribute("option");
 
         if ("confirmorder".equals(action) && "NoSkur".equals(option)) {
 
