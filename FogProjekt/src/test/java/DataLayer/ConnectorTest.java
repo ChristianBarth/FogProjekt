@@ -39,16 +39,16 @@ public class ConnectorTest {
     public void tearDown() {
     }
     
-//    @Test
-//    public void canConnect() throws Exception {
-//        Connection con = Connector.connection();
-//        assertTrue(con != null);
-//        con.close();
-//    }
-//    
-//    @Test
-//    public void hasDriver() throws SQLException, ClassNotFoundException {
-//        Class.forName("com.mysql.jdbc.Driver");
-//        assertTrue(true);
-//    }
+    @Test
+    public void canConnect() throws Exception {
+        Connection con = Connector.connection();
+        assertTrue(con != null);
+        con.close();
+    }
+    
+    @Test
+    public void hasDriver() throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+        assertTrue(true);
+    }
 }
