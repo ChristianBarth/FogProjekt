@@ -17,7 +17,7 @@ public class OrderMapper {
         public static void putUserInfoIntoOrder(User user) {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO orders (useremail, phonenumber, status) VALUES (?, ?, ?)";
+            String SQL = "INSERT INTO orderlines (useremail, phonenumber, status) VALUES (?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPhoneNumber());
@@ -33,7 +33,7 @@ public class OrderMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT max(ordernumber) FROM orders";
+            String SQL = "SELECT max(ordernumber) FROM orderlines";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -49,7 +49,7 @@ public class OrderMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO stykliste (ordernumber, titel, længde, antal, enhed, beskrivelse, pris) VALUES (?, ?, ? , ?, ?, ?, ?)";
+            String SQL = "INSERT INTO billofmaterials (ordernumber, title, length, amount, unit, description, price) VALUES (?, ?, ? , ?, ?, ?, ?)";
             int orderID = this.getOrderID();
             PreparedStatement ps = con.prepareStatement(SQL);
             for (Product product : ListofItems) {
@@ -74,7 +74,7 @@ public class OrderMapper {
         ArrayList<Order> ListofOrders = new ArrayList<Order>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT ordernumber, useremail, phonenumber, date, status FROM orders";
+            String SQL = "SELECT ordernumber, useremail, phonenumber, date, status FROM orderlines";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
 
@@ -98,19 +98,19 @@ public class OrderMapper {
         ArrayList<Product> productOrderDetails = new ArrayList<Product>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT ordernumber, titel, længde, antal, enhed, beskrivelse, pris FROM stykliste";
+            String SQL = "SELECT ordernumber, title, length, amount, unit, description, price FROM billofmaterials";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Product product = new Product(
                         rs.getInt("ordernumber"),
-                        rs.getString("titel"),
-                        rs.getInt("længde"),
-                        rs.getInt("antal"),
-                        rs.getString("enhed"),
-                        rs.getString("beskrivelse"),
-                        rs.getInt("pris")
+                        rs.getString("title"),
+                        rs.getInt("length"),
+                        rs.getInt("amount"),
+                        rs.getString("unit"),
+                        rs.getString("description"),
+                        rs.getInt("price")
                 );
                 productOrderDetails.add(product);
             }
@@ -122,7 +122,7 @@ public class OrderMapper {
     public static void updateStatusOnOrder(int ordernumber, String status){
         try { 
             Connection con = Connector.connection();
-            String SQL = "UPDATE orders SET status=? WHERE ordernumber=" + ordernumber;
+            String SQL = "UPDATE orderlines SET status=? WHERE ordernumber=" + ordernumber;
             PreparedStatement ps = con.prepareStatement(SQL);
             
             ps.setString(1, status);
