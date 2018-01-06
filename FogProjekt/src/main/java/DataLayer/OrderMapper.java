@@ -49,13 +49,9 @@ public class OrderMapper {
 
         try {
             Connection con = Connector.connection();
-<<<<<<< HEAD
-            String SQL = "INSERT INTO stykliste (ordernumber, titel, længde, antal, enhed, beskrivelse, pris) VALUES (?, ?, ? , ?, ?, ?, ?)";
+
             int orderID = OrderMapper.getOrderID();
-=======
             String SQL = "INSERT INTO billofmaterials (ordernumber, title, length, amount, unit, description, price) VALUES (?, ?, ? , ?, ?, ?, ?)";
-            int orderID = this.getOrderID();
->>>>>>> 3b67c3da582822cdbbe9b53561cb06094b59d017
             PreparedStatement ps = con.prepareStatement(SQL);
             for (Product product : ListofItems) {
                 ps.setInt(1, orderID);
@@ -102,6 +98,7 @@ public class OrderMapper {
 
         ArrayList<Product> productOrderDetails = new ArrayList<Product>();
         try {
+            
             Connection con = Connector.connection();
             String SQL = "SELECT ordernumber, title, length, amount, unit, description, price FROM billofmaterials";
             PreparedStatement ps = con.prepareStatement(SQL);
